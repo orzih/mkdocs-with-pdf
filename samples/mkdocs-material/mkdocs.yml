@@ -1,0 +1,131 @@
+# Project information
+site_name: Material for MkDocs
+site_description: A Material Design theme for MkDocs
+site_author: Martin Donath
+site_url: https://squidfunk.github.io/mkdocs-material/
+
+# Repository
+repo_name: squidfunk/mkdocs-material
+repo_url: https://github.com/squidfunk/mkdocs-material
+edit_uri: ""
+
+# Copyright
+copyright: 'Copyright &copy; 2016 - 2020 Martin Donath'
+
+# Configuration
+theme:
+  name: material
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  # Default values, taken from mkdocs_theme.yml
+  language: en
+  feature:
+    tabs: true
+  palette:
+    primary: indigo
+    accent: indigo
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/images/favicon.png
+  logo:
+    icon: "\uE80C"
+extra_css:
+  - 'https://fonts.googleapis.com/css?family=Noto+Sans+JP|Noto+Serif+JP'
+  - 'https://fonts.googleapis.com/css?family=Open+Sans:600,800'
+  - assets/css/extra.css
+
+# Plugins
+plugins:
+  - search
+  #- minify:
+  #    minify_html: true
+  - with-pdf:
+      #cover_title:
+      cover_subtitle: A Material Design theme for MkDocs
+      toc_level: 3
+      excludes_children:
+        - 'release-notes/:upgrading'
+        - 'release-notes/:changelog'
+      output_path: ../document.pdf
+      #debug_html: true
+      #verbose: true
+
+# Customization
+extra:
+  social:
+    - type: globe
+      link: http://struct.cc
+    - type: github-alt
+      link: https://github.com/squidfunk
+    - type: twitter
+      link: https://twitter.com/squidfunk
+    - type: linkedin
+      link: https://www.linkedin.com/in/squidfunk/
+
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Material: index.md
+  - Getting started: getting-started.md
+  - Extensions:
+    - Admonition: extensions/admonition.md
+    - CodeHilite: extensions/codehilite.md
+    - Footnotes: extensions/footnotes.md
+    - Metadata: extensions/metadata.md
+    - Permalinks: extensions/permalinks.md
+    - PyMdown: extensions/pymdown.md
+  - Plugins:
+    - Minify HTML: plugins/minify-html.md
+    - Revision date: plugins/revision-date.md
+    - Search: plugins/search.md
+  - Specimen: specimen.md
+  - Customization: customization.md
+  - Compliance with GDPR: compliance.md
+  - Release notes: release-notes.md
+  - Author's notes: authors-notes.md
+  - Contributing: contributing.md
+  - License: license.md
+
+# Google Analytics
+#google_analytics:
+#  - !!python/object/apply:os.getenv ["GOOGLE_ANALYTICS_KEY"]
+#  - auto

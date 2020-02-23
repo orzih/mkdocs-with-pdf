@@ -1,0 +1,9 @@
+@media print {
+  body {
+    min-width: 300px !important; // reset. TODO:
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "Pango",
+        "mkdocs",
+        "orzih",
+        "weasyprint"
+    ],
+    "python.pythonPath": "/home/jack/.local/share/virtualenvs/mkdocs-with-pdf-skkdm6Mv/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true
+}

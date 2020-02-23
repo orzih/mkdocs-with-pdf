@@ -1,0 +1,61 @@
+@page {
+  size: a4 portrait;
+  margin: 25mm 10mm 25mm 10mm;
+  counter-increment: page;
+  white-space: pre;
+  color: grey;
+
+  @top-right {
+    font-size: 7pt;
+    content: string(chapter);
+  }
+
+  @bottom-center {
+    font-size: 8pt;
+    content: '- 'counter(page)'/'counter(pages)' -';
+  }
+
+  @bottom-right {
+    font-size: 6pt;
+    content: string(copyright);
+  }
+}
+
+@media print {
+  body {
+    background: none;
+    background-color: #fff;
+  }
+}
+
+article {
+  page-break-before: always;
+  min-height: 100vh;
+
+  /* Defining all page breaks */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  a,
+  blockquote,
+  table,
+  pre,
+  ul,
+  ol,
+  dl {
+    page-break-inside: avoid;
+  }
+
+  div.admonition {
+    page-break-inside: avoid;
+  }
+
+}

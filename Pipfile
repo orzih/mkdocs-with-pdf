@@ -1,0 +1,21 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+mkdocs-material = "*"
+mkdocs-with-pdf = {editable = true,path = "."}
+flake8 = "*"
+autopep8 = "*"
+mdx-gh-links = "*"
+pymdown-extensions = "*"
+
+[packages]
+mkdocs = "*"
+beautifulsoup4 = "*"
+libsass = "*"
+weasyprint = "*"
+
+[requires]
+python_version = "3.6"
