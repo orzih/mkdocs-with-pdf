@@ -33,7 +33,7 @@ If you want to add a new theme, see [adding support for new themes](#adding-supp
 1. Install the package with pip:
 
     ```bash
-    pip install git+https://github.com/orzih/mkdocs-with-pdf
+    pip install mkdocs-with-pdf
     ```
 
 2. Enable the plugin in your `mkdocs.yml`:
@@ -182,8 +182,6 @@ If you want to contribute to the code of this project, please read the [Contribu
 ## Special thanks to
 
 * [Terry Zhao][zhaoterryy] the author of the [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin] the source of our inspiration. We've used some of his code in this project.
-
----
 
 [mkdocs-pdf-export-plugin]: https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
 [zhaoterryy]:  https://github.com/zhaoterryy
