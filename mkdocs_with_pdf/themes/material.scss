@@ -1,0 +1,69 @@
+@media print {
+  .md-container {
+    display: block;
+    padding-top: 0;
+  }
+
+  .md-main {
+    display: block;
+    height: inherit;
+  }
+
+  .md-main__inner {
+    height: inherit;
+    padding-top: 0;
+  }
+
+  .md-typeset .codehilitetable .linenos {
+    display: none;
+  }
+
+  .md-typeset {
+    .footnote-ref {
+      display: inline-block;
+    }
+
+    .admonition {
+      display: block;
+      border-top: .1rem solid rgba(0, 0, 0, .07);
+      border-right: .1rem solid rgba(0, 0, 0, .07);
+      border-bottom: .1rem solid rgba(0, 0, 0, .07);
+      page-break-inside: avoid;
+    }
+
+    a::after {
+      color: inherit;
+      content: none;
+    }
+
+    table:not([class]) th {
+      min-width: 0;
+    }
+
+    table {
+      border: .1rem solid rgba(0, 0, 0, .07);
+    }
+
+    // Tabbed code block container
+    .superfences-tabs {
+      display: block;
+
+      >label {
+        font-weight: 700;
+        font-style: italic;
+      }
+
+      >.superfences-content {
+        display: block;
+      }
+    }
+
+    // content indent
+    &>div,
+    &>div.admonition,
+    &>table,
+    &>p {
+      margin-left: 1em;
+    }
+  }
+}
