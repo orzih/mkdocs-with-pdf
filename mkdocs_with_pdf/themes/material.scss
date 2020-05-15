@@ -4,8 +4,15 @@
     .tabbed-set {
       display: block;
 
+      // Hide radio buttons
+      >input {
+        &:checked+label {
+          color: #666;
+        }
+      }
+
       >label {
-        background-color: rgba($color: #999, $alpha: 0.2);
+        background-color: rgba($color: #aaa, $alpha: 0.2);
         padding: 0.2rem 2rem;
         margin: 0;
         border: none;
