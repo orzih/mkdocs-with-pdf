@@ -6,8 +6,11 @@ from bs4 import BeautifulSoup
 
 def get_stylesheet() -> str:
     base_path = os.path.abspath(os.path.dirname(__file__))
-    filename = os.path.join(base_path, "material.scss")
-    return sass.compile(filename=filename, output_style='compressed')
+    style = ""
+    for src in ["material.scss", "material-polyfills.css"]:
+        filename = os.path.join(base_path, src)
+        style += sass.compile(filename=filename, output_style='compressed')
+    return style
 
 
 def inject_link(html: str, href: str) -> str:

@@ -1,69 +1,45 @@
 @media print {
-  .md-container {
-    display: block;
-    padding-top: 0;
-  }
-
-  .md-main {
-    display: block;
-    height: inherit;
-  }
-
-  .md-main__inner {
-    height: inherit;
-    padding-top: 0;
-  }
-
-  .md-typeset .codehilitetable .linenos {
-    display: none;
-  }
-
   .md-typeset {
-    .footnote-ref {
-      display: inline-block;
-    }
-
-    .admonition {
-      display: block;
-      border-top: .1rem solid rgba(0, 0, 0, .07);
-      border-right: .1rem solid rgba(0, 0, 0, .07);
-      border-bottom: .1rem solid rgba(0, 0, 0, .07);
-      page-break-inside: avoid;
-    }
-
-    a::after {
-      color: inherit;
-      content: none;
-    }
-
-    table:not([class]) th {
-      min-width: 0;
-    }
-
-    table {
-      border: .1rem solid rgba(0, 0, 0, .07);
-    }
-
     // Tabbed code block container
-    .superfences-tabs {
+    .tabbed-set {
       display: block;
 
       >label {
+        background-color: rgba($color: #999, $alpha: 0.2);
+        padding: 0.2rem 2rem;
+        margin: 0;
+        border: none;
         font-weight: 700;
-        font-style: italic;
+        color: #666;
       }
 
-      >.superfences-content {
+      >.tabbed-content {
         display: block;
+        box-shadow: none;
       }
+    }
+
+    // details
+    > details summary::after {
+        display: none;
     }
 
     // content indent
     &>div,
     &>div.admonition,
+    &>details,
+    &>div.tabbed-set,
+    &>blockquote,
+    &>mark,
     &>table,
     &>p {
-      margin-left: 1em;
+      margin-left: 0.7rem;
+    }
+    &>table.highlighttable {
+      margin: 0 0 0 0.7rem;
+    }
+    &>ul {
+      margin-left: 1.5rem;
     }
   }
 }

@@ -1,5 +1,11 @@
 # PDF Generate Plugin for MkDocs
 
+<p align="center">
+  <a href="https://pypi.org/project/mkdocs-with-pdf">
+    <img src="https://img.shields.io/pypi/v/mkdocs-with-pdf.svg" alt="Python Package Index"/>
+  </a>
+</p>
+
 This plugin will generate a PDF single PDF file from your MkDocs repository.
 This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 
@@ -10,10 +16,10 @@ This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 * Shift down sub-page headings level.
 * using [WeasyPrint][weasyprint].
 
-## Sample output
+## Samples
 
-* [PDF of _'MkDocs' docs_](samples/mkdocs/document.pdf) - :point_right: [samples/mkdocs](samples/mkdocs/)
-* [PDF of _'Material for MkDocs' docs_](samples/mkdocs-material/document.pdf)  - :point_right: [samples/mkdocs-material](samples/mkdocs-material/)
+* [PDF of _'MkDocs' docs_](samples/mkdocs/README.md)
+* [PDF of _'Material for MkDocs' docs_](samples/mkdocs-material/README.md)
 
 ## Requirements
 

@@ -4,18 +4,22 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-mkdocs-material = "*"
 mkdocs-with-pdf = {editable = true,path = "."}
+pymdown-extensions = ">=7.0"
+mkdocs-material = ">=5.0"
+mkdocs-material-extensions = ">=1.0b1"
 flake8 = "*"
 autopep8 = "*"
 mdx-gh-links = "*"
-pymdown-extensions = "*"
 
 [packages]
-mkdocs = "*"
+mkdocs = ">=1.1"
 beautifulsoup4 = "*"
 libsass = "*"
 weasyprint = "*"
 
 [requires]
 python_version = "3.6"
+
+[pipenv]
+allow_prereleases = true
