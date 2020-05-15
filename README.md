@@ -1,10 +1,6 @@
 # PDF Generate Plugin for MkDocs
 
-<p>
-  <a href="https://pypi.org/project/mkdocs-with-pdf">
-    <img src="https://img.shields.io/pypi/v/mkdocs-with-pdf.svg" alt="Python Package Index"/>
-  </a>
-</p>
+[![PyPI version](https://img.shields.io/pypi/v/mkdocs-with-pdf.svg)](https://pypi.org/project/mkdocs-with-pdf)
 
 This plugin will generate a PDF single PDF file from your MkDocs repository.
 This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].

@@ -1,7 +1,8 @@
-recursive-include mkdocs_with_pdf *.scss
+recursive-include mkdocs_with_pdf *.scss *.css
 recursive-exclude samples *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+recursive-exclude * node_modules
 include CHANGELOG
 include CONTRIBUTING.md
 include LICENSE
