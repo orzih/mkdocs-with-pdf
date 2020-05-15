@@ -1,0 +1,19 @@
+// ----------------------------------------------------------------------------
+// Dependencies
+// ----------------------------------------------------------------------------
+
+@import "modularscale";
+@import "material-color";
+
+// ----------------------------------------------------------------------------
+// Local imports
+// ----------------------------------------------------------------------------
+
+@import "utilities/convert";
+
+@import "config";
+
+@import "extensions/admonition";
+@import "extensions/footnotes";
+
+@import "extensions/pymdown/tasklist";
