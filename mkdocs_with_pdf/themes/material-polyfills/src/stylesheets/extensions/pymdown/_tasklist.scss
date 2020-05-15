@@ -26,23 +26,22 @@
 
 // Icon definitions
 :root {
-  --print-md-tasklist-icon: svg-load("@mdi/svg/svg/checkbox-blank-circle.svg", fill: "#00000012"); // --md-default-fg-color--lightest
+  --print-md-tasklist-icon: svg-load("@mdi/svg/svg/checkbox-blank-circle.svg", fill: "#cccccc"); // --md-default-fg-color--lightest
   --print-md-tasklist-icon--checked: svg-load("@mdi/svg/svg/check-circle.svg", fill: "#{$clr-green-a400}");
 }
 
 // ----------------------------------------------------------------------------
-
-// Scoped in typesetted content to match specificity of regular content
-.md-typeset {
-  // Wrapper for list controls, in case custom checkboxes are enabled
-  .task-list-control {
-    // Checkbox icon in unchecked state
-    .task-list-indicator::before {
-      background: var(--print-md-tasklist-icon);
-    }
-    // Checkbox icon in checked state
-    [type="checkbox"]:checked + .task-list-indicator::before {
-      background: var(--print-md-tasklist-icon--checked);
+@media print {
+  .md-typeset {
+    .task-list-control {
+      .task-list-indicator::before {
+        background-color: transparent;
+        background-image: var(--print-md-tasklist-icon);
+      }
+      [type="checkbox"]:checked+.task-list-indicator::before {
+        background-color: transparent;
+        background-image: var(--print-md-tasklist-icon--checked);
+      }
     }
   }
 }

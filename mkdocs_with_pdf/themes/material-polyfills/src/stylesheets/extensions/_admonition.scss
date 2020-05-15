@@ -28,19 +28,18 @@
 /// Admonition flavours
 ///
 $admonitions: (
-  note:                       pencil $clr-blue-a200,
-  abstract summary tldr:      text-subject $clr-light-blue-a400,
-  info todo:                  information $clr-cyan-a700,
-  tip hint important:         fire $clr-teal-a700,
-  success check done:         check-circle $clr-green-a700,
-  question help faq:          help-circle $clr-light-green-a700,
-  warning caution attention:  alert $clr-orange-a400,
-  failure fail missing:       close-circle $clr-red-a200,
-  danger error:               flash-circle $clr-red-a400,
-  bug:                        bug $clr-pink-a400,
-  example:                    format-list-numbered $clr-deep-purple-a400,
-  quote cite:                 format-quote-close $clr-grey
-) !default;
+  note: pencil $clr-blue-a200,
+  abstract summary tldr: text-subject $clr-light-blue-a400,
+  info todo: information $clr-cyan-a700,
+  tip hint important: fire $clr-teal-a700,
+  success check done: check-circle $clr-green-a700,
+  question help faq: help-circle $clr-light-green-a700,
+  warning caution attention: alert $clr-orange-a400,
+  failure fail missing: close-circle $clr-red-a200,
+  danger error: flash-circle $clr-red-a400,
+  bug: bug $clr-pink-a400,
+  example: format-list-numbered $clr-deep-purple-a400,
+  quote cite: format-quote-close $clr-grey) !default;
 
 // ----------------------------------------------------------------------------
 // Rules: layout
@@ -60,57 +59,42 @@ $admonitions: (
 
 // ----------------------------------------------------------------------------
 
-// Scoped in typesetted content to match specificity of regular content
-.md-typeset {
-  // Admonition title
-  .admonition-title {
-    // Icon
-    @media print {
-      &::before {
-        background: var(--md-admonition-icon--note);
-      }
-    }
-
-    // Reset code inside Admonition titles
-    code {
-      margin: initial;
-      padding: initial;
-      color: currentColor;
-      background-color: transparent;
-      border-radius: initial;
-      box-shadow: none;
-    }
-  }
-}
-
-// ----------------------------------------------------------------------------
-// Rules: flavours
-// ----------------------------------------------------------------------------
-
-@each $names, $props in $admonitions {
-  $name: nth($names, 1);
-  $tint: nth($props, 2);
-
-  // Define base class
-  .md-typeset .admonition.#{$name} {
-    // border-color: $tint;
-  }
-
-  // Define base class
-  .md-typeset .#{$name} > .admonition-title {
-    @media print {
+@media print {
+  // Scoped in typesetted content to match specificity of regular content
+  .md-typeset {
+    // Admonition title
+    .admonition-title {
       // Icon
       &::before {
-        background: var(--print--md-admonition-icon--#{$name});
+        background-color: transparent;
+        background-image: var(--print-md-admonition-icon--note);
       }
     }
   }
 
-  // Define synonyms for base class
-  @if length($names) > 1 {
-    @for $n from 2 through length($names) {
-      .#{nth($names, $n)} {
-        @extend .#{$name};
+  // ----------------------------------------------------------------------------
+  // Rules: flavours
+  // ----------------------------------------------------------------------------
+
+  @each $names, $props in $admonitions {
+    $name: nth($names, 1);
+    $tint: nth($props, 2);
+
+    // Define base class
+    .md-typeset .#{$name} > .admonition-title,
+    .md-typeset .#{$name} > summary {
+      &::before {
+        background-color: transparent;
+        background-image: var(--print-md-admonition-icon--#{$name});
+      }
+    }
+
+    // Define synonyms for base class
+    @if length($names) > 1 {
+      @for $n from 2 through length($names) {
+        .#{nth($names, $n)} {
+          @extend .#{$name};
+        }
       }
     }
   }

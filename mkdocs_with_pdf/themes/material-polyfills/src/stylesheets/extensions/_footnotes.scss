@@ -38,7 +38,8 @@
     // Back reference icon
     @media print {
       &::before {
-        background: var(--print-md-footnotes-icon);
+        background-color: transparent;
+        background-image: var(--print-md-footnotes-icon);
       }
     }
   }
