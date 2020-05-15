@@ -2,16 +2,19 @@
 
 - [Output PDF](document.pdf)
 
-## Document source
+## Test source
 
-Copied from https://github.com/mkdocs/mkdocs/
+|            |                                               |
+| ---------- | --------------------------------------------- |
+| Repository | https://github.com/mkdocs/mkdocs/             |
+| Commit     | ff0b7260564e65b6547fd41753ec971e4237823b      |
 
-- docs/
-- mkdocs.yml - modified
-
-and, added
-
-- docs/css/pdf-print.css
+- use Original
+  - docs/
+- modified
+  - mkdocs.yml - modified
+- added
+  - docs/css/pdf-print.css
 
 ### build log
 

@@ -1,6 +1,6 @@
 # PDF Generate Plugin for MkDocs
 
-<p align="center">
+<p>
   <a href="https://pypi.org/project/mkdocs-with-pdf">
     <img src="https://img.shields.io/pypi/v/mkdocs-with-pdf.svg" alt="Python Package Index"/>
   </a>
