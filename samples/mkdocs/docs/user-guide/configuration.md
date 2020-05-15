@@ -502,21 +502,38 @@ plugins:
 
   **default**: `'[\s\-]+'`
 
+##### **min_search_length**
+
+An integer value that defines the minimum length for a search query. By default
+searches shorter than 3 chars in length are ignored as search result quality with
+short search terms is poor. However, for some use cases (such as documentation
+about Message Queues which might generate searches for 'MQ') it may be preferable
+to set a shorter limit.
+
+```yaml
+plugins:
+    - search:
+        min_search_length: 2
+```
+
+  **default**: 3
+
 ##### **lang**
 
 A list of languages to use when building the search index as identified by their
 [ISO 639-1] language codes. With [Lunr Languages], the following languages are
 supported:
 
+* `ar`: Arabic
 * `da`: Danish
-* `du`: Dutch
+* `nl`: Dutch
 * `en`: English
 * `fi`: Finnish
 * `fr`: French
 * `de`: German
 * `hu`: Hungarian
 * `it`: Italian
-* `jp`: Japanese
+* `ja`: Japanese
 * `no`: Norwegian
 * `pt`: Portuguese
 * `ro`: Romanian
@@ -525,6 +542,7 @@ supported:
 * `sv`: Swedish
 * `th`: Thai
 * `tr`: Turkish
+* `vi`: Vietnamese
 
 You may [contribute additional languages].
 

@@ -1,17 +1,21 @@
-hero: Metadata enables hero teaser texts
+---
+template: overrides/main.html
+hero: Set heroes with metadata
 path: tree/master/docs/extensions
 source: metadata.md
+---
 
 # Metadata
 
-The [Metadata][1] extension makes it possible to add metadata to a document
-which gives more control over the theme in a page-specific context.
+[Metadata][1] is an extension included in the standard Markdown library that
+makes it possible to control certain properties in a page-specific context,
+e.g. the page title or description.
 
   [1]: https://python-markdown.github.io/extensions/meta_data/
 
-## Installation
+## Configuration
 
-Add the following lines to your `mkdocs.yml`:
+Add the following lines to `mkdocs.yml`:
 
 ``` yaml
 markdown_extensions:
@@ -28,39 +32,42 @@ actual page content and made available to the theme.
 Example:
 
 ``` markdown
+---
 title: Lorem ipsum dolor sit amet
 description: Nullam urna elit, malesuada eget finibus ut, ac tortor.
 path: path/to/file
 source: file.js
+---
 
 # Headline
 
 ...
 ```
 
-See the next section which covers the metadata that is supported by Material.
+See the next section which covers the supported metadata.
 
-### Setting a hero text
+### Setting a hero
 
-Material exposes a simple text-only page-local hero via Metadata, as you can
-see on the current page when you scroll to the top. It's as simple as:
+Material for MkDocs exposes a simple text-only page-local hero via Metadata, as
+you can see on the current page when you scroll to the top. It's as simple as:
 
 ``` markdown
-hero: Metadata enables hero teaser texts
+hero: Set heroes with metadata
 ```
 
 ### Linking sources
 
-When a document is related to a specific set of source files and the `repo_url`
-is defined inside the project's `mkdocs.yml`, the files can be linked using the
+When a document is related to a specific source file and the `repo_url` is
+defined inside the project's `mkdocs.yml`, the file can be linked using the
 `source` key:
 
 ``` markdown
 source: file.js
 ```
 
-The filename is appended to the `repo_url` set in your `mkdocs.yml`, but can
-be prefixed with a `path` to ensure correct path resolving:
+The filename is appended to the `repo_url` set in `mkdocs.yml`, but can be
+prefixed with a `path` to ensure correct path resolving. The name of the source
+file is shown in the tooltip.
 
 Example:
 
@@ -69,16 +76,10 @@ path: tree/master/docs/extensions
 source: metadata.md
 ```
 
-Result:
-
-See the [source][2] section for the resulting output.
-
-  [2]: #__source
-
 ### Redirecting to another page
 
 It's sometimes necessary to move documents around in the navigation tree and
-redirect user from the old URL to the new one. The `redirect` meta-tag allows
+redirect users from the old URL to the new one. The `redirect` meta-tag allows
 to create a redirection from the current document to the address specified in
 the tag.
 
@@ -94,7 +95,7 @@ accessing that document's URL will automatically redirect to `/new/url`.
 
 #### Page title
 
-The page title can be overridden on a per-document level:
+The page title can be overridden on a per-document basis:
 
 ``` markdown
 title: Lorem ipsum dolor sit amet
@@ -107,7 +108,7 @@ title.
 
 #### Page description
 
-The page description can also be overridden on a per-document level:
+The page description can also be overridden on a per-document basis:
 
 ``` yaml
 description: Nullam urna elit, malesuada eget finibus ut, ac tortor.
@@ -118,14 +119,14 @@ document `head` for the current page to the provided value.
 
 #### Disqus
 
-As described in the [getting started guide][3], the Disqus comments section can
-be enabled on a per-document level:
+As described in the [getting started guide][3], Disqus can be enabled on a
+per-document basis:
 
 ``` markdown
 disqus: your-shortname
 ```
 
-Disqus can be disabled for a specific page by setting it to an empty value:
+Disqus can also be disabled for a specific page by setting it to an empty value:
 
 ``` markdown
 disqus:
