@@ -80,7 +80,7 @@ plugins:
         - 'release-notes/:upgrading'
         - 'release-notes/:changelog'
       output_path: ../document.pdf
-      debug_html: true
+      #debug_html: true
       #verbose: true
 
 # Customization
