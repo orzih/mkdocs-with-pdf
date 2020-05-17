@@ -1,3 +1,8 @@
+mkdocs-with-pdf 0.2.2 (2020-05-17)
+
+  * Exclude custom style source from package distination.
+  * Add page break rule for tabs.
+
 mkdocs-with-pdf 0.2.1 (2020-05-16)
 
   * Update for icons for material theme
