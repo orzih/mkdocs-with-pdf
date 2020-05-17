@@ -58,4 +58,11 @@ article {
     page-break-inside: avoid;
   }
 
+  div.tabbed-set > label {
+    page-break-after: avoid;
+  }
+  div.tabbed-content {
+    page-break-inside: avoid;
+  }
+
 }
