@@ -7,7 +7,7 @@ verify_ssl = true
 mkdocs-with-pdf = {editable = true,path = "."}
 pymdown-extensions = ">=7.0"
 mkdocs-material = ">=5.0"
-mkdocs-material-extensions = ">=1.0b1"
+mkdocs-material-extensions = ">=1.0"
 flake8 = "*"
 autopep8 = "*"
 mdx-gh-links = "*"
