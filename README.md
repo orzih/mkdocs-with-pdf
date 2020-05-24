@@ -14,8 +14,11 @@ This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 
 ## Samples
 
-* [PDF of _'MkDocs' docs_](samples/mkdocs/README.md)
-* [PDF of _'Material for MkDocs' docs_](samples/mkdocs-material/README.md)
+* [PDF of _'MkDocs' docs_][sample_mkdocs]
+* [PDF of _'Material for MkDocs' docs_][sample_mkdocs-material]
+
+[sample_mkdocs]: https://github.com/orzih/mkdocs-with-pdf/blob/master/samples/mkdocs/README.md
+[sample_mkdocs-material]: https://github.com/orzih/mkdocs-with-pdf/blob/master/samples/mkdocs-material/README.md
 
 ## Requirements
 
@@ -25,8 +28,6 @@ This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
     * [Linux][weasyprint-linux]
     * [MacOS][weasyprint-macos]
     * [Windows][weasyprint-windows]
-
-If you want to add a new theme, see [adding support for new themes](#adding-support-for-new-themes) for more information.
 
 ## How to use
 
@@ -188,7 +189,7 @@ If you want to contribute to the code of this project, please read the [Contribu
 [mkdocs-pdf-export-plugin]: https://github.com/zhaoterryy/mkdocs-pdf-export-plugin
 [zhaoterryy]:  https://github.com/zhaoterryy
 
-[weasyprint]: [WeasyPrint](http://weasyprint.org/)
+[weasyprint]: http://weasyprint.org/
 [weasyprint-linux]: https://weasyprint.readthedocs.io/en/latest/install.html#linux
 [weasyprint-macos]: https://weasyprint.readthedocs.io/en/latest/install.html#os-x
 [weasyprint-windows]: https://weasyprint.readthedocs.io/en/latest/install.html#windows
