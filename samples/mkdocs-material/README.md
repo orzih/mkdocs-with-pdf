@@ -7,7 +7,7 @@
 |            |                                               |
 | ---------- | --------------------------------------------- |
 | Repository | https://github.com/squidfunk/mkdocs-material/ |
-| Commit     | 32d57e66c737119742b4d4f1d12c46eb359b122d      |
+| Commit     | a43679b1048c39c21861e4c622e2e3f2c6cdc90b      |
 
 - use Original
   - CONTRIBUTING.md

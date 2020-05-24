@@ -29,7 +29,7 @@
         <meta name="author" content="{{ config.site_author }}">
       {% endif %}
       <link rel="shortcut icon" href="{{ config.theme.favicon | url }}">
-      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-5.1.6">
+      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-5.2.1">
     {% endblock %}
     {% block htmltitle %}
       {% if page and page.meta and page.meta.title %}
@@ -41,9 +41,9 @@
       {% endif %}
     {% endblock %}
     {% block styles %}
-      <link rel="stylesheet" href="{{ 'assets/stylesheets/main.127eade9.min.css' | url }}">
-      {% if palette.primary or palette.accent %}
-        <link rel="stylesheet" href="{{ 'assets/stylesheets/palette.c929de0b.min.css' | url }}">
+      <link rel="stylesheet" href="{{ 'assets/stylesheets/main.d6c38d2b.min.css' | url }}">
+      {% if palette.scheme or palette.primary or palette.accent %}
+        <link rel="stylesheet" href="{{ 'assets/stylesheets/palette.02db69e1.min.css' | url }}">
       {% endif %}
       {% if palette.primary %}
         {% import "partials/palette.html" as map %}
@@ -78,10 +78,11 @@
     {% block extrahead %}{% endblock %}
   </head>
   {% set direction = config.theme.direction or lang.t('direction') %}
-  {% if palette.primary or palette.accent %}
+  {% if palette.scheme or palette.primary or palette.accent %}
+    {% set scheme  = palette.scheme | lower %}
     {% set primary = palette.primary | replace(" ", "-") | lower %}
     {% set accent  = palette.accent  | replace(" ", "-") | lower %}
-    <body dir="{{ direction }}" data-md-color-primary="{{ primary }}" data-md-color-accent="{{ accent }}">
+    <body dir="{{ direction }}" data-md-color-scheme="{{ scheme }}" data-md-color-primary="{{ primary }}" data-md-color-accent="{{ accent }}">
   {% else %}
     <body dir="{{ direction }}">
   {% endif %}
@@ -178,8 +179,8 @@
       {% endblock %}
     </div>
     {% block scripts %}
-      <script src="{{ 'assets/javascripts/vendor.809e24aa.min.js' | url }}"></script>
-      <script src="{{ 'assets/javascripts/bundle.8566d47a.min.js' | url }}"></script>
+      <script src="{{ 'assets/javascripts/vendor.de50e36d.min.js' | url }}"></script>
+      <script src="{{ 'assets/javascripts/bundle.ff925e8b.min.js' | url }}"></script>
       {%- set translations = {} -%}
       {%- for key in [
         "clipboard.copy",
@@ -203,7 +204,7 @@
           base: "{{ base_url }}",
           features: {{ config.theme.features | tojson }},
           search: Object.assign({
-            worker: "{{ 'assets/javascripts/worker/search.f6ebf1dc.min.js' | url }}"
+            worker: "{{ 'assets/javascripts/worker/search.27c6a5e6.min.js' | url }}"
           }, typeof search !== "undefined" && search)
         })
       </script>
