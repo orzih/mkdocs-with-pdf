@@ -321,6 +321,50 @@ theme:
   direction: rtl
 ```
 
+### Color scheme
+
+> Default: `default`
+
+Material for MkDocs supports two color schemes: a light mode, which is just
+called `default`, and a dark mode, which is called `slate`. The color scheme
+can be set from `mkdocs.yml`:
+
+``` yaml
+theme:
+  palette:
+    scheme: slate
+```
+
+Click on a color name to change the color scheme of the theme:
+
+<style>
+  .md-typeset button[data-md-color-scheme] {
+    cursor: pointer;
+    transition: opacity 250ms;
+  }
+  .md-typeset button[data-md-color-scheme]:hover {
+    opacity: 0.75;
+  }
+  .md-typeset button[data-md-color-scheme] > code {
+    display: block;
+    color: var(--md-primary-bg-color);
+    background-color: var(--md-primary-fg-color);
+  }
+</style>
+
+<button data-md-color-scheme="default"><code>default</code></button>
+<button data-md-color-scheme="slate"><code>slate</code></button>
+
+<script>
+  var buttons = document.querySelectorAll("button[data-md-color-scheme]")
+  buttons.forEach(function(button) {
+    var attr = "data-md-color-scheme"
+    button.addEventListener("click", function() {
+      document.body.setAttribute(attr, this.getAttribute(attr))
+    })
+  })
+</script>
+
 ### Color palette
 
 The Material Design [color palette][10] comes with 20 hues, all of which are
