@@ -35,6 +35,8 @@ class Generator(object):
         """ on_post_page """
         soup = self._soup_from_content(output_content, page)
 
+        self._remove_empty_tags(soup)
+
         if not self._head:
             self._head = soup.find('head')
             # self.logger.debug(f'{self._head}')
@@ -99,6 +101,17 @@ class Generator(object):
         render.write_pdf(abs_pdf_path)
 
     # ------------------------
+    def _remove_empty_tags(self, soup: PageElement):
+        includes = ['article', 'p']
+        while True:
+            hit = False
+            for x in soup.find_all():
+                if x.name in includes and len(x.get_text(strip=True)) == 0:
+                    # self.logger.debug(f'Strip: {x}')
+                    x.extract()
+                    hit = True
+            if not hit:
+                break
 
     def _shift_heading(self, article: PageElement, page, parent):
         if not parent:
