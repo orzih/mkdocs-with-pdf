@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.2.4 (2020-07-15)
+
+  * Excluded form empty tags if it has image.
+
 mkdocs-with-pdf 0.2.3 (2020-05-24)
 
   * Fixed to skip empty pages.
