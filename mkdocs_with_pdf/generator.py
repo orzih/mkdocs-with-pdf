@@ -102,11 +102,20 @@ class Generator(object):
 
     # ------------------------
     def _remove_empty_tags(self, soup: PageElement):
+
+        def is_blank(el):
+            if len(el.get_text(strip=True)) != 0:
+                return False
+            elif el.find(['img', 'svg']):
+                return False
+            else:
+                return True
+
         includes = ['article', 'p']
         while True:
             hit = False
             for x in soup.find_all():
-                if x.name in includes and len(x.get_text(strip=True)) == 0:
+                if x.name in includes and is_blank(x):
                     # self.logger.debug(f'Strip: {x}')
                     x.extract()
                     hit = True
