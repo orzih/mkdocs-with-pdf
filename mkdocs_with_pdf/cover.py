@@ -14,7 +14,7 @@ def make_cover(soup: PageElement, options: Options):
     if not options.cover:
         return
 
-    options.logger.info(f'Generate a cover page.')
+    options.logger.info('Generate a cover page.')
 
     article = soup.new_tag('article', id='doc-cover')
 

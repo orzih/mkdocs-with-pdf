@@ -30,7 +30,8 @@ def make_indexes(soup: PageElement, options: Options) -> None:
     def makeLink(h: Tag) -> Tag:
 
         li = soup.new_tag('li')
-        a = soup.new_tag('a', href=f'#{h.attrs["id"]}')
+        ref = h.get('id', '')
+        a = soup.new_tag('a', href=f'#{ref}')
         for el in h.contents:
             if el.name == 'a':
                 a.append(el.contents[0])
