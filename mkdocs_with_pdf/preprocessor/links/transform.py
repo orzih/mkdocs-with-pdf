@@ -73,7 +73,7 @@ def _transform_href(href: str, rel_url: str) -> str:
             return href
 
         href = _normalize_href(href, rel_url)
-        return '#{}:'.format(href)
+        return '#{}'.format(href)
 
     if head != '' and not head.endswith('/'):
         head += '/'

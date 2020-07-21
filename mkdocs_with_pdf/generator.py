@@ -62,6 +62,7 @@ class Generator(object):
             if self._options.heading_shift:
                 article = self._shift_heading(article, page, page.parent)
 
+            article['id'] = f'{page.url}'
             article['data-url'] = f'/{page.url}'
             setattr(page, 'pdf-article', article)
 
