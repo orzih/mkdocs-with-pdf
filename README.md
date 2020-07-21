@@ -100,10 +100,10 @@ plugins:
 > ```css "e.g."
 > @page {
 >   @bottom-left {
->     content: string(author);
+>     content: string(author) !important;
 >   }
 >   @bottom-right {
->     content: string(copyright);
+>     content: string(copyright) !important;
 >   }
 > }
 > ```
@@ -197,5 +197,5 @@ If you want to contribute to the code of this project, please read the [Contribu
 [mkdocs-plugins]: http://www.mkdocs.org/user-guide/plugins/
 [mkdocs-material]: https://github.com/squidfunk/mkdocs-material
 
-[contributing]: CONTRIBUTING.md
+[contributing]: https://github.com/orzih/mkdocs-with-pdf/blob/master/CONTRIBUTING.md
 [github-issues]: https://github.com/orzih/mkdocs-with-pdf/issues
