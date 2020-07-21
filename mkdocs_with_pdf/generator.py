@@ -136,11 +136,7 @@ class Generator(object):
 
         if page == parent.children[0]:
             article = self._shift_heading(article, parent, parent.parent)
-
-            id = page.url if (hasattr(page, 'url') and page.url) else ''
-            id = id.strip('/').rstrip('/')
-            id = id if id else str(uuid4())
-
+            
             soup = BeautifulSoup('', 'html.parser')
             h1 = soup.new_tag('h1', id=f'{id}')
             h1.append(parent.title)
