@@ -64,11 +64,11 @@ def _transform_href(href: str, rel_url: str) -> str:
             if href.endswith('.png'):
                 return href
             id = '' if not href.endswith('/') else href.split('/')[-2]
-            return f'#{href}:{id}'
+            return f'#{href}:{id}' if (id) else f'#{href}'
         elif href.startswith('..'):
             id = '' if not href.endswith('/') else href.split('/')[-2]
             href = _normalize_href(href, rel_url)
-            return f'#{href}:{id}'
+            return f'#{href}:{id}' if (id) else f'#{href}'
         elif not is_doc(href):
             return href
 
@@ -78,7 +78,7 @@ def _transform_href(href: str, rel_url: str) -> str:
     if head != '' and not head.endswith('/'):
         head += '/'
 
-    return '#{}{}:{}'.format(head, section, id)
+    return '#{}{}:{}'.format(head, section, id) if (id) else '#{}{}'.format(head, section)
 
 
 def _normalize_href(href: str, rel_url: str) -> str:
