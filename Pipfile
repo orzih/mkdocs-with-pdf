@@ -23,3 +23,8 @@ python_version = "3.6"
 
 [pipenv]
 allow_prereleases = true
+
+[scripts]
+lint = "flake8 --show-source mkdocs_with_pdf"
+format = "autopep8 -ivr mkdocs_with_pdf"
+test = "python -m unittest discover -v -s tests"

@@ -11,7 +11,6 @@ def get_combined(
         soup: PageElement,
         base_url: str,
         rel_url: str) -> PageElement:
-
     """ transforms all relative hrefs pointing to other html docs
     into relative pdf hrefs
     """

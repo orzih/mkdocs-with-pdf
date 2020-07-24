@@ -28,7 +28,6 @@ def make_indexes(soup: PageElement, options: Options) -> None:
     exclude_lv2 = exclude_lv3 = False
 
     def makeLink(h: Tag) -> Tag:
-
         li = soup.new_tag('li')
         ref = h.get('id', '')
         a = soup.new_tag('a', href=f'#{ref}')

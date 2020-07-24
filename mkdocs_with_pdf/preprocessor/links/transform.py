@@ -47,7 +47,10 @@ def _transform_href(href: str, rel_url: str) -> str:
         if rel_url == '.' and head == '':
             return f'#.:{id}'
 
-        head = _normalize_href(head, rel_url)
+        if head.endswith('.md'):
+            head = _normalize_internal_href(head)
+        else:
+            head = _normalize_href(head, rel_url)
         section = ''
 
     elif num_hashtags == 1:
@@ -60,7 +63,9 @@ def _transform_href(href: str, rel_url: str) -> str:
 
     elif num_hashtags == 0:
 
-        if head == '.' or rel_url == '.':
+        if tail == '' and not head.endswith('/'):
+            return href
+        elif head == '.' or rel_url == '.':
             if href.endswith('.png'):
                 return href
             id = '' if not href.endswith('/') else href.split('/')[-2]
@@ -83,6 +88,25 @@ def _transform_href(href: str, rel_url: str) -> str:
 
 def _normalize_href(href: str, rel_url: str) -> str:
     return urljoin(rel_url, href)
+
+
+def _normalize_internal_href(href: str) -> str:
+    """
+    normalized for the internal link (direct '.md' file link).
+
+    convert to the embedded anchor-tag.
+
+    + ignored all path and suffix information(using filename only).
+    + considered to be the directory directly under the root.
+    """
+
+    filename = os.path.basename(href)
+    if not filename:
+        return href
+    name, ext = os.path.splitext(filename)
+    if not name or ext != '.md':
+        return href
+    return name + '/'
 
 
 def transform_id(id: str, rel_url: str):
