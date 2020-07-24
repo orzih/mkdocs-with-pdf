@@ -37,6 +37,7 @@ def make_indexes(soup: PageElement, options: Options) -> None:
             else:
                 a.append(clone_element(el))
         li.append(a)
+        options.logger.debug(f"| [{h.get_text(separator=' ')}]({ref})")
         return li
 
     toc = soup.new_tag('article', id='doc-toc')
@@ -56,8 +57,7 @@ def make_indexes(soup: PageElement, options: Options) -> None:
             h1ul.append(h1li)
             h2ul = h2li = h3ul = None
 
-            exclude_lv2 = _is_exclude(
-                h.get('id', None), options.excludes_children)
+            exclude_lv2 = _is_exclude(h.get('id', None), options)
 
         elif not exclude_lv2 and h.name == 'h2' and level >= 2:
 
@@ -68,8 +68,7 @@ def make_indexes(soup: PageElement, options: Options) -> None:
             h2ul.append(h2li)
             h3ul = None
 
-            exclude_lv3 = _is_exclude(
-                h.get('id', None), options.excludes_children)
+            exclude_lv3 = _is_exclude(h.get('id', None), options)
 
         elif not exclude_lv2 and not exclude_lv3 \
                 and h.name == 'h3' and level >= 3:
@@ -109,8 +108,7 @@ def _inject_heading_order(soup: Tag, options: Options):
             h2n = h3n = 0
             prefix = f'{h1n}.'
 
-            exclude_lv2 = _is_exclude(
-                h.get('id', None), options.excludes_children)
+            exclude_lv2 = _is_exclude(h.get('id', None), options)
 
         elif not exclude_lv2 and h.name == 'h2' and level >= 2:
 
@@ -118,8 +116,7 @@ def _inject_heading_order(soup: Tag, options: Options):
             h3n = 0
             prefix = f'{h1n}.{h2n}'
 
-            exclude_lv3 = _is_exclude(
-                h.get('id', None), options.excludes_children)
+            exclude_lv3 = _is_exclude(h.get('id', None), options)
 
         elif not exclude_lv2 and not exclude_lv3 \
                 and h.name == 'h3' and level >= 3:
@@ -130,17 +127,19 @@ def _inject_heading_order(soup: Tag, options: Options):
         else:
             continue
 
+        options.logger.debug(f"| [{prefix} {h.text}]({h.get('id', '(none)')})")
+
         nm_tag = soup.new_tag('span', **{'class': 'pdf-order'})
         nm_tag.append(prefix)
         h.insert(0, nm_tag)
 
 
-def _is_exclude(url: str, excludes: list) -> bool:
+def _is_exclude(url: str, options: Options) -> bool:
     if not url:
         return False
 
-    for section in excludes:
-        if url.startswith(section):
-            return True
+    if url in options.excludes_children:
+        options.logger.info(f"|  (exclude '{url}')")
+        return True
 
     return False
