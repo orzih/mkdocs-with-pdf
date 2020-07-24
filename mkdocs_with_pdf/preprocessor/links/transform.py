@@ -80,13 +80,15 @@ def _transform_href(href: str, rel_url: str) -> str:
         href = _normalize_href(href, rel_url)
         return '#{}:'.format(href)
 
-    if head != '' and not head.endswith('/'):
+    if head != '' and not head.endswith('/') and not head.endswith('index'):
         head += '/'
 
     return '#{}{}:{}'.format(head, section, id)
 
 
 def _normalize_href(href: str, rel_url: str) -> str:
+    if href == '' and rel_url.endswith('index.html'):
+        return rel_url.rsplit('.', 1)[0]
     return urljoin(rel_url, href)
 
 
