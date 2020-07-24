@@ -1,3 +1,8 @@
+mkdocs-with-pdf 0.3.0 (2020-07-24)
+
+  * Supports page exclusion.
+  * Fixed for the internal link anchors.
+
 mkdocs-with-pdf 0.2.4 (2020-07-15)
 
   * Excluded form empty tags if it has image.
@@ -8,7 +13,7 @@ mkdocs-with-pdf 0.2.3 (2020-05-24)
 
 mkdocs-with-pdf 0.2.2 (2020-05-17)
 
-  * Exclude custom style source from package distination.
+  * Exclude custom style source from package destination.
   * Add page break rule for tabs.
 
 mkdocs-with-pdf 0.2.1 (2020-05-16)
