@@ -78,8 +78,7 @@ plugins:
       cover_subtitle: A Material Design theme for MkDocs
       toc_level: 3
       excludes_children:
-        - 'release-notes/:upgrading'
-        - 'release-notes/:changelog'
+        - 'releases/changelog/:upgrading'
       output_path: ../document.pdf
       #debug_html: true
       #verbose: true

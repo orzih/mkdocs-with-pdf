@@ -20,14 +20,13 @@
 
 ```sh
 $ mkdocs build
-INFO    -  Cleaning site directory
+INFO    -  Cleaning site directory 
 INFO    -  Building documentation to directory: /tmp/mkdocs-with-pdf/samples/mkdocs-material/site 
-INFO    -  Number headings up to level 3.
-INFO    -  Generate a table of contents up to heading level 3.
-INFO    -  Generate a cover page.
-ERROR   -  No anchor #extensions/pymdown/:pymdown for internal URI reference
-ERROR   -  No anchor #plugins/getting-started.md/:language for internal URI reference
-ERROR   -  No anchor #plugins/getting-started.md/:language for internal URI reference
-INFO    -  Converting 19 articles to PDF took 17.1s
-INFO    -  Documentation built in 18.98 seconds
+INFO    -  Number headings up to level 3. 
+INFO    -  |  (exclude 'releases/changelog/:upgrading') 
+INFO    -  Generate a table of contents up to heading level 3. 
+INFO    -  |  (exclude 'releases/changelog/:upgrading') 
+INFO    -  Generate a cover page. 
+INFO    -  Converting 19 articles to PDF took 17.0s 
+INFO    -  Documentation built in 18.93 seconds 
 ```
