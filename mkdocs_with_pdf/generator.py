@@ -33,6 +33,16 @@ class Generator(object):
 
     def on_post_page(self, output_content: str, page, pdf_path: str) -> str:
         """ on_post_page """
+
+        def is_excluded(url: str) -> bool:
+            return url in self._options.exclude_pages
+
+        if is_excluded(page.url):
+            self.logger.info(f'Page skipped: [{page.title}]({page.url})')
+            return f"<!-- skipped '{page}' -->"
+        else:
+            self.logger.debug(f' (post: [{page.title}]({page.url})')
+
         soup = self._soup_from_content(output_content, page)
 
         self._remove_empty_tags(soup)

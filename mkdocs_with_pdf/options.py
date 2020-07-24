@@ -31,7 +31,9 @@ class Options(object):
         ('heading_shift', config_options.Type(bool, default=True)),
         ('toc_level', config_options.Type(int, default=2)),
         ('ordered_chapter_level', config_options.Type(int, default=3)),
-        ('excludes_children', config_options.Type(list, default=[]))
+        ('excludes_children', config_options.Type(list, default=[])),
+
+        ('exclude_pages', config_options.Type(list, default=[]))
     )
 
     def __init__(self, local_config, config, logger: logging):
@@ -62,6 +64,9 @@ class Options(object):
         self.toc_level = local_config['toc_level']
         self.ordered_chapter_level = local_config['ordered_chapter_level']
         self.excludes_children = local_config['excludes_children']
+
+        # Page
+        self.exclude_pages = local_config['exclude_pages']
 
         # Theming
         self.theme_name = config['theme'].name

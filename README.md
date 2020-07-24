@@ -73,7 +73,9 @@ plugins:
         #excludes_children:
         #    - 'release-notes/:upgrading'
         #    - 'release-notes/:changelog'
-        #
+        #exclude_pages:
+        #    - 'bugs/'
+        #    - 'appendix/contribute/'
         #output_path: any-place/document.pdf
         #enabled_if_env: ENABLE_PDF_EXPORT
         #
@@ -148,6 +150,14 @@ plugins:
 
     Set the page `id` of `nav` url. If the `id` matches in this list, it will be excluded from the heading number addition and table of contents.  
     **default**: `[]`
+
+##### for Page
+
+* `exclude_pages`
+
+    Set the page `id` of `nav` url. If the `id` matches in this list, it will be excluded page contents.  
+    **default**: `[]`  
+    _**since**: `v0.3.0`_
 
 ##### ... and more
 
