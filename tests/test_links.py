@@ -44,11 +44,17 @@ class TransformHrefTestCase(unittest.TestCase):
             [['#hash', 'path1/index.html'], '#path1/index:hash'],
             [['#hash', 'path2/index.html'], '#path2/index:hash'],
             [['#hash', 'path3/index.html'], '#path3/index:hash'],
+
+            # Internal links with `use_directory_urls: false`
+            [['#one', 'test.html'], '#test:one'],
+            [['#one', 'test2.html'], '#test2:one'],
+            [['test2.html#one', 'test.html'], '#test2:one'],
         ]
 
         for pattern in patterns:
-            case, x_href = pattern
-            href, rel_url = case
+            with self.subTest(pattern=pattern):
+                case, x_href = pattern
+                href, rel_url = case
 
-            r = transform_href(href, rel_url)
-            self.assertEqual(r, x_href, f"rel_url='{rel_url}', href='{href}'")
+                r = transform_href(href, rel_url)
+                self.assertEqual(r, x_href)

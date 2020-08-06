@@ -27,6 +27,10 @@ def transform_href(href: str, rel_url: str) -> str:
         f' -- ["{head}", "{tail}"]',
         file=sys.stderr)
     '''
+    '''
+    import sys
+    print(f"[ ['{href}', '{rel_url}'], '{x_href}'],", file=sys.stderr)
+    '''
 
     return x_href
 
@@ -40,18 +44,21 @@ def _transform_href(href: str, rel_url: str) -> str:
 
     if tail.startswith('#'):
 
+        section = ''
         id = tail[1:]
         if not id:
             id = '' if not rel_url.endswith('/') else rel_url.split('/')[-2]
 
-        if rel_url == '.' and head == '':
-            return f'#.:{id}'
+        if head == '':
+            if rel_url == '.':
+                return f'#.:{id}'
+            section = _section_if_current_document(rel_url)
 
-        if head.endswith('.md'):
-            head = _normalize_internal_href(head)
-        else:
-            head = _normalize_href(head, rel_url)
-        section = ''
+        if not section:
+            if head.endswith('.md'):
+                head = _normalize_internal_href(head)
+            else:
+                head = _normalize_href(head, rel_url)
 
     elif num_hashtags == 1:
 
@@ -109,6 +116,15 @@ def _normalize_internal_href(href: str) -> str:
     if not name or ext != '.md':
         return href
     return name + '/'
+
+
+def _section_if_current_document(href: str) -> str:
+    basename, filename = os.path.split(href)
+    if not basename and filename:
+        name, ext = os.path.splitext(filename)
+        if name and ext == '.html':
+            return name
+    return ''
 
 
 def transform_id(id: str, rel_url: str):
