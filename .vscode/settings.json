@@ -5,7 +5,6 @@
         "orzih",
         "weasyprint"
     ],
-    "python.pythonPath": "${env:VIRTUAL_ENV}/bin/python",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true
 }
