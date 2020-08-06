@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.3.2 (2020-08-07)
+
+  * Fixed current page refs when `use_directory_urls=false`.
+
 mkdocs-with-pdf 0.3.1 (2020-07-24)
 
   * Fixed link processing for "index.html".
