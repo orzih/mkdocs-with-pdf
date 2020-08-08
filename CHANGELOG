@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.3.3 (2020-08-08)
+
+  * Fixed current page refs in subdirectories w/o directory-urls.
+
 mkdocs-with-pdf 0.3.2 (2020-08-07)
 
   * Fixed current page refs when `use_directory_urls=false`.
