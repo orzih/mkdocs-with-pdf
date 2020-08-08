@@ -2,7 +2,7 @@
 
 [![PyPI version](https://img.shields.io/pypi/v/mkdocs-with-pdf.svg)](https://pypi.org/project/mkdocs-with-pdf)
 
-This plugin will generate a PDF single PDF file from your MkDocs repository.
+This plugin will generate a single PDF file from your MkDocs repository.
 This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 
 ## Features
