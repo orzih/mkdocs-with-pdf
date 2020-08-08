@@ -120,10 +120,13 @@ def _normalize_internal_href(href: str) -> str:
 
 def _section_if_current_document(href: str) -> str:
     basename, filename = os.path.split(href)
-    if not basename and filename:
+    if filename:
         name, ext = os.path.splitext(filename)
         if name and ext == '.html':
-            return name
+            if not basename:
+                return name
+            else:
+                return f'{basename}/{name}'
     return ''
 
 

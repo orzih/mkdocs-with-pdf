@@ -49,6 +49,9 @@ class TransformHrefTestCase(unittest.TestCase):
             [['#one', 'test.html'], '#test:one'],
             [['#one', 'test2.html'], '#test2:one'],
             [['test2.html#one', 'test.html'], '#test2:one'],
+            [['#one', 'path/test.html'], '#path/test:one'],
+            [['#one', 'path/sub/test.html'], '#path/sub/test:one'],
+
         ]
 
         for pattern in patterns:
