@@ -599,7 +599,7 @@ report it on [Lunr.py's issues] and fall back to the Node.js version.
 [exts]: https://python-markdown.github.io/extensions/
 [3rd]: https://github.com/Python-Markdown/markdown/wiki/Third-Party-Extensions
 [configuring pages and navigation]: writing-your-docs.md#configure-pages-and-navigation
-[theme_dir]: styling-your-docs.md#using-the-theme_dir
+[theme_dir]: styling-your-docs.md#using-the-theme-custom_dir
 [styling your docs]: styling-your-docs.md
 [extra_css]: #extra_css
 [Plugins]: plugins.md

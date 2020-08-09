@@ -348,7 +348,7 @@ Users can review the [configuration options][search config] available and theme
 authors should review how [search and themes] interact.
 
 [search config]: ../user-guide/configuration.md#search
-[search and themes]: ../user-guide/custom-themes.md#search_and_themes
+[search and themes]: ../user-guide/custom-themes.md#search-and-themes
 
 #### `theme_dir` Configuration Option fully Deprecated
 
@@ -919,7 +919,7 @@ mkdocs.yml file and deprecate the existing approach, support will be removed
 with MkDocs 1.0.
 
 [new way]: ../user-guide/writing-your-docs.md#configure-pages-and-navigation
-[nested pages]: ../user-guide/writing-your-docs.md#multilevel-documentation
+[nested pages]: ../user-guide/writing-your-docs.md#configure-pages-and-navigation
 
 #### Warn users about the removal of builtin themes
 
@@ -937,7 +937,7 @@ JavaScript library [lunr.js]. It has been added to both the `mkdocs` and
 for adding it to your own themes.
 
 [lunr.js]: https://lunrjs.com/
-[supporting search]: ../user-guide/styling-your-docs.md#search-and-themes
+[supporting search]: ../user-guide/custom-themes.md#search-and-themes
 
 #### New Command Line Interface
 
@@ -968,7 +968,7 @@ documentation.
 [extra_javascript]: ../user-guide/configuration.md#extra_javascript
 [extra_css]: ../user-guide/configuration.md#extra_css
 [extra_templates]: ../user-guide/configuration.md#extra_templates
-[global variables]: ../user-guide/styling-your-docs.md#global-context
+[global variables]: ../user-guide/custom-themes.md#global-context
 
 ### Other Changes and Additions to Version 0.13.0
 

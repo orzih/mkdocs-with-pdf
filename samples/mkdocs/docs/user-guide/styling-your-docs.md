@@ -363,7 +363,7 @@ any additional CSS files included in the `custom_dir`.
 [extra_javascript]: ./configuration.md#extra_javascript
 [Jinja documentation]: http://jinja.pocoo.org/docs/dev/templates/#template-inheritance
 [mkdocs]: #mkdocs
-[ReadTheDocs]: ./deploying-your-docs.md#readthedocs
+[ReadTheDocs]: ./deploying-your-docs.md#read-the-docs
 [Template Variables]: ./custom-themes.md#template-variables
 [custom_dir]: ./configuration.md#custom_dir
 [name]: ./configuration.md#name
