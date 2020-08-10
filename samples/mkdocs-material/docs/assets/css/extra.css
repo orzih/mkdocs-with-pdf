@@ -5,20 +5,10 @@ article h2#release-notes\/\:upgrading~ul {
 }
 
 @media print {
-  svg * {
-    fill: #333333;
-  }
-
   #doc-toc ul li > a > span,
   .md-typeset h2 > span {
     display: inline-block;
   }
-
-  #doc-toc .twemoji > img,
-  .md-typeset .twemoji > img {
-    height: 18px;
-  }
-
 
   .tx-content__footer hr {
     display: inline-block;

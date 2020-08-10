@@ -14,6 +14,7 @@ from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.soup_util import clone_element
+from .utils.emoji_util import fix_twemoji
 
 
 class Generator(object):
@@ -99,6 +100,8 @@ class Generator(object):
 
         make_indexes(soup, self._options)
         make_cover(soup, self._options)
+
+        fix_twemoji(soup, self._options.logger)
 
         if self._options.debug_html:
             print(f'{soup}')
