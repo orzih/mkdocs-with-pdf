@@ -22,16 +22,46 @@
   <meta name="twitter:title" content="{{ title }}">
   <meta name="twitter:description" content="{{ config.site_description }}">
   <meta name="twitter:image" content="{{ image }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/overrides.011ebae6.min.css' | url }}">
 {% endblock %}
 {% block announce %}
-  <style>.md-announce a,.md-announce a:focus,.md-announce a:hover{color:currentColor}.md-announce strong{white-space:nowrap}.md-announce .twitter{margin-left:.2em;color:#00acee}</style>
-  <a href="https://github.com/sponsors/squidfunk">
-    If you like this project and use it a lot, consider sponsoring it via <strong>GitHub
-    <span class="twemoji">
-      <svg viewBox="0 2 12 16">
-        <path fill="#ea4aaa" d="M8.727 3C7.091 3 6.001 4.65 6.001 4.65S4.909 3 3.273 3C1.636 3 0 4.1 0 6.3 0 9.6 6 14 6 14s6-4.4 6-7.7C12 4.1 10.364 3 8.727 3z"></path>
-      </svg>
+  <a href="https://twitter.com/squidfunk">
+    For updates follow <strong>@squidfunk</strong> on
+    <span class="twemoji twitter">
+      {% include ".icons/fontawesome/brands/twitter.svg" %}
     </span>
-    Sponsors</strong>
+    <strong>Twitter</strong>
   </a>
+{% endblock %}
+{% block content %}
+  {{ super() }}
+  <footer class="tx-content__footer md-typeset">
+    <a href="{{ 'insiders/' | url }}" title="Material for MkDocs Insiders">
+      <hr>
+      <span class="twemoji">
+        {% include ".icons/logo.svg" %}
+      </span>
+      <span class="twemoji">
+        {% include ".icons/material/plus.svg" %}
+      </span>
+      <span class="twemoji tx-heart">
+        {% include ".icons/octicons/heart-fill-24.svg" %}
+      </span>
+      <hr>
+    </a>
+  </footer>
+{% endblock %}
+{% block analytics %}
+  {{ super() }}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", ev => {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
 {% endblock %}

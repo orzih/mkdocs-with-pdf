@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ced26ebd08874e37b316e9d5180cabc9b811c70245a9c57f53df8443cee3c503"
+            "sha256": "94ff58552cb2986b0c9d7b664f2842b64ba761539f6bbde173e443de18f234ac"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -467,6 +467,12 @@
             ],
             "version": "==1.1"
         },
+        "htmlmin": {
+            "hashes": [
+                "sha256:50c1ef4630374a5d723900096a961cff426dff46b48f34d194a81bbe14eca178"
+            ],
+            "version": "==0.1.12"
+        },
         "importlib-metadata": {
             "hashes": [
                 "sha256:90bb658cdbbf6d1735b6341ce708fc7024a3e14e99ffdc5783edea9f9b077f83",
@@ -488,6 +494,12 @@
                 "sha256:d348c5d4ae31496b2aa060d6d9b787864dd204f9480baaa52d18850cb43e9f49"
             ],
             "version": "==0.16.0"
+        },
+        "jsmin": {
+            "hashes": [
+                "sha256:b6df99b2cd1c75d9d342e4335b535789b8da9107ec748212706ef7bbe5c2553b"
+            ],
+            "version": "==2.2.2"
         },
         "libsass": {
             "hashes": [
@@ -596,6 +608,21 @@
             ],
             "index": "pypi",
             "version": "==1.0"
+        },
+        "mkdocs-minify-plugin": {
+            "hashes": [
+                "sha256:06fecd8ddb9cb90f30bcee2d94c3d4b46a090f403d7ff0edff089a435906c4ee",
+                "sha256:9bac96276b1681debb3eb2cf5bae972586b4c1138e8d78ea63a984ea6276563d"
+            ],
+            "index": "pypi",
+            "version": "==0.3.0"
+        },
+        "mkdocs-redirects": {
+            "hashes": [
+                "sha256:0a21301bee7f743d622226a6869f4718f3bfb26887985e23aafac7f7f6b050aa"
+            ],
+            "index": "pypi",
+            "version": "==1.0.1"
         },
         "mkdocs-with-pdf": {
             "editable": true,
