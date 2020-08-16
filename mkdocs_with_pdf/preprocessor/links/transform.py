@@ -1,7 +1,6 @@
 import os
-from urllib.parse import urljoin
-
-from .util import is_doc
+import re
+from urllib.parse import (urljoin, urlparse)
 
 
 def transform_href(href: str, rel_url: str) -> str:
@@ -17,7 +16,29 @@ def transform_href(href: str, rel_url: str) -> str:
         str -- a replased URL string.
     """
 
-    x_href = _transform_href(href, rel_url)
+    def transform():
+        target_url = urlparse(href)
+
+        if target_url.scheme or target_url.netloc:
+            # do not care, will be not reachable
+            return href
+
+        hash = target_url.fragment
+        target = urljoin(rel_url, target_url.path)
+
+        if target in ['/', '.', 'index.html']:
+            return f'#.:{hash}'
+
+        if target.endswith('.png'):
+            return href
+        elif target.endswith('index.html'):
+            target = re.sub(r'index\.html$', '', target)
+        else:
+            target = re.sub(r'\.(html|md)$', '/', target)
+
+        return f'#{target}:{hash}'
+
+    x_href = transform()
 
     ''' ...for DEBUG block. :FIXME: needs unit test.
     head, tail = os.path.split(href)
@@ -35,108 +56,22 @@ def transform_href(href: str, rel_url: str) -> str:
     return x_href
 
 
-def _transform_href(href: str, rel_url: str) -> str:
-    # :FIXME: I want to be more simple implementation.
-
-    head, tail = os.path.split(href)
-
-    num_hashtags = tail.count('#')
-
-    if tail.startswith('#'):
-
-        section = ''
-        id = tail[1:]
-        if not id:
-            id = '' if not rel_url.endswith('/') else rel_url.split('/')[-2]
-
-        if head == '':
-            if rel_url == '.':
-                return f'#.:{id}'
-            section = _section_if_current_document(rel_url)
-
-        if not section:
-            if head.endswith('.md'):
-                head = _normalize_internal_href(head)
-            else:
-                head = _normalize_href(head, rel_url)
-
-    elif num_hashtags == 1:
-
-        section, ext = tuple(os.path.splitext(tail))
-        id = str.split(ext, '#')[1]
-        if head.startswith('..'):
-            href = _normalize_href(href, rel_url)
-            return f'#{href}:{id}'
-
-    elif num_hashtags == 0:
-
-        if tail == '' and not head.endswith('/'):
-            return href
-        elif head == '.' or rel_url == '.':
-            if href.endswith('.png'):
-                return href
-            id = '' if not href.endswith('/') else href.split('/')[-2]
-            return f'#{href}:{id}'
-        elif href.startswith('..'):
-            id = '' if not href.endswith('/') else href.split('/')[-2]
-            href = _normalize_href(href, rel_url)
-            return f'#{href}:{id}'
-        elif not is_doc(href):
-            return href
-
-        href = _normalize_href(href, rel_url)
-        return '#{}:'.format(href)
-
-    if head != '' and not head.endswith('/') and not head.endswith('index'):
-        head += '/'
-
-    return '#{}{}:{}'.format(head, section, id)
-
-
-def _normalize_href(href: str, rel_url: str) -> str:
-    if href == '' and rel_url.endswith('index.html'):
-        return rel_url.rsplit('.', 1)[0]
-    return urljoin(rel_url, href)
-
-
-def _normalize_internal_href(href: str) -> str:
-    """
-    normalized for the internal link (direct '.md' file link).
-
-    convert to the embedded anchor-tag.
-
-    + ignored all path and suffix information(using filename only).
-    + considered to be the directory directly under the root.
-    """
-
-    filename = os.path.basename(href)
-    if not filename:
-        return href
-    name, ext = os.path.splitext(filename)
-    if not name or ext != '.md':
-        return href
-    return name + '/'
-
-
-def _section_if_current_document(href: str) -> str:
-    basename, filename = os.path.split(href)
-    if filename:
-        name, ext = os.path.splitext(filename)
-        if name and ext == '.html':
-            if not basename:
-                return name
-            else:
-                return f'{basename}/{name}'
-    return ''
-
-
 def transform_id(id: str, rel_url: str):
     """normalize id to foo/bar/section:id"""
+
+    if rel_url in ['.', 'index.html']:
+        return f'.:{id}'
 
     head, tail = os.path.split(rel_url)
     section, _ = os.path.splitext(tail)
 
-    if len(head) > 0:
-        head += '/'
+    def normalize(path):
+        if len(path) == 0 or path in ['index']:
+            return ''
+        else:
+            return path + '/'
 
-    return '{}{}:{}'.format(head, section, id)
+    head = normalize(head)
+    section = normalize(section)
+
+    return f'{head}{section}:{id}'
