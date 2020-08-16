@@ -15,8 +15,8 @@ def get_combined(
     into relative pdf hrefs
     """
 
-    for id in soup.find_all(id=True):
-        id['id'] = transform_id(id['id'], rel_url)
+    for element in soup.find_all(id=True):
+        element['id'] = transform_id(element['id'], rel_url)
 
     for a in soup.find_all('a', href=True):
         if urls.url_is_absolute(a['href']) or os.path.isabs(a['href']):

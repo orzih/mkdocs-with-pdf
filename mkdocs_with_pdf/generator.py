@@ -1,8 +1,8 @@
 import logging
 import os
+import re
 from importlib import import_module
 from importlib.util import module_from_spec, spec_from_file_location
-from uuid import uuid4
 
 from bs4 import BeautifulSoup, PageElement
 from weasyprint import HTML, urls
@@ -73,9 +73,20 @@ class Generator(object):
             if self._options.heading_shift:
                 article = self._shift_heading(article, page, page.parent)
 
-            article['id'] = f'{page.url}:'  # anchor for each page.
-            article['data-url'] = f'/{page.url}'
+            page_path = self._page_path_for_id(page)
+            article['id'] = f'{page_path}:'  # anchor for each page.
+            article['data-url'] = f'/{page_path}'
             setattr(page, 'pdf-article', article)
+
+            '''
+            print(f'url: "{page.url:40s}", id="{page_path}"')
+            for el in article.find_all(id=True):
+                print(f"id={el['id']}")
+            for el in article.find_all('a', href=True):
+                print(f"href={el['href']}")
+            '''
+        else:
+            self.logger.warning(f'Missing article: [{page.title}]({page.url})')
 
         return self._theme.inject_link(output_content, pdf_path)
 
@@ -104,6 +115,7 @@ class Generator(object):
         fix_twemoji(soup, self._options.logger)
 
         if self._options.debug_html:
+            self._link_check(soup)
             print(f'{soup}')
 
         html = HTML(string=str(soup))
@@ -150,16 +162,23 @@ class Generator(object):
         if page == parent.children[0]:
             article = self._shift_heading(article, parent, parent.parent)
 
-            id = page.url if (hasattr(page, 'url') and page.url) else ''
-            id = id.strip('/').rstrip('/')
-            id = id if id else str(uuid4())
-
+            page_path = self._page_path_for_id(page)
             soup = BeautifulSoup('', 'html.parser')
-            h1 = soup.new_tag('h1', id=f'{id}')
+            h1 = soup.new_tag('h1', id=f'{page_path}')
             h1.append(parent.title)
             article.insert(0, h1)
 
         return article
+
+    def _page_path_for_id(self, page):
+        """ normalize to directory urls style"""
+        path = page.url
+        path = '.' if not path or path == 'index.html' else path
+        if path.endswith('index.html'):
+            path = re.sub(r'index\.html$', '', path)
+        elif path.endswith('.html'):
+            path = re.sub(r'\.html$', '/', path)
+        return path
 
     def _soup_from_content(self, content: str, page):
         soup = BeautifulSoup(content, 'html.parser')
@@ -215,3 +234,35 @@ class Generator(object):
         except ImportError as e:
             self.logger.error(f'Could not load theme handler {theme}: {e}')
             return generic_theme
+
+    # -------------------------------------------------------------
+
+    def _link_check(self, soup):
+        from urllib.parse import urlparse
+
+        anchors = set(map(lambda el: '#' + el['id'], soup.find_all(id=True)))
+
+        '''
+        from pprint import pprint as pp
+        pp(anchors)
+        '''
+
+        missing = set()
+        for el in soup.find_all('a', href=True):
+            href = el['href']
+            target_url = urlparse(href)
+
+            if target_url.scheme or target_url.netloc:
+                continue
+            if href in anchors:
+                continue
+
+            missing.add(href)
+
+        if len(missing):
+            self.logger.error(f'Missing {len(missing)} link(s):')
+            for link in sorted(missing):
+                self.logger.warning(f'  | {link}')
+            self.logger.info('  | --- found anchors:')
+            for anchor in sorted(anchors):
+                self.logger.info(f'  | {anchor}')
