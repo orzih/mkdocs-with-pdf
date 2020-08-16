@@ -129,6 +129,11 @@ plugins:
 
 ##### for Heading and TOC
 
+* `toc_title`
+
+    Set the title text of _Table of Content_.  
+    **default**: `Table of Content`
+
 * `heading_shift`
 
     Set this value to `false`, disable shift heading in child page.  

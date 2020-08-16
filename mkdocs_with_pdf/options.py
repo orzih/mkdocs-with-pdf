@@ -28,6 +28,7 @@ class Options(object):
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
 
+        ('toc_title', config_options.Type(str, default="Table of contents")),
         ('heading_shift', config_options.Type(bool, default=True)),
         ('toc_level', config_options.Type(int, default=2)),
         ('ordered_chapter_level', config_options.Type(int, default=3)),
@@ -60,6 +61,7 @@ class Options(object):
             self._cover_subtitle = local_config['cover_subtitle']
 
         # TOC and Chapter heading
+        self.toc_title = _normalize(local_config['toc_title'])
         self.heading_shift = local_config['heading_shift']
         self.toc_level = local_config['toc_level']
         self.ordered_chapter_level = local_config['ordered_chapter_level']
