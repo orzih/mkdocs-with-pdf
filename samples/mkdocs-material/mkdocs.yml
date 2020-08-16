@@ -97,6 +97,8 @@ plugins:
       #debug_html: true
       #verbose: true
 
+#use_directory_urls: false
+
 # Customization
 extra:
   social:

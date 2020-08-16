@@ -52,3 +52,4 @@ plugins:
         #verbose: true
         #debug_html: true
 
+#use_directory_urls: false

@@ -13,7 +13,7 @@
   - .browserslistrc
   - CONTRIBUTING.md
   - LICENSE
-  - docs/
+  - docs/ - (with fix broken links)
   - material/
 - modified
   - mkdocs.yml - modified
@@ -22,13 +22,13 @@
 
 ```sh
 $ mkdocs build
-INFO    -  Cleaning site directory 
-INFO    -  Building documentation to directory: /tmp/mkdocs-with-pdf/samples/mkdocs-material/site 
-INFO    -  Number headings up to level 3. 
-INFO    -  |  (exclude 'releases/changelog/:upgrading') 
-INFO    -  Generate a table of contents up to heading level 3. 
-INFO    -  |  (exclude 'releases/changelog/:upgrading') 
-INFO    -  Generate a cover page. 
-INFO    -  Converting 19 articles to PDF took 17.0s 
-INFO    -  Documentation built in 18.93 seconds 
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: /tmp/mkdocs-with-pdf/samples/mkdocs-material/site
+WARNING -  Missing article: [Home]()
+INFO    -  Number headings up to level 3.
+INFO    -  Generate a table of contents up to heading level 3.
+INFO    -  Generate a cover page.
+ERROR   -  No anchor #.: for internal URI reference
+INFO    -  Converting 34 articles to PDF took 19.3s
+INFO    -  Documentation built in 22.46 seconds
 ```

@@ -20,11 +20,11 @@
 
 ```sh
 $ mkdocs build
-INFO    -  Cleaning site directory 
+INFO    -  Cleaning site directory
 INFO    -  Building documentation to directory: /tmp/mkdocs-with-pdf/samples/mkdocs/site
-INFO    -  Number headings up to level 3. 
-INFO    -  Generate a table of contents up to heading level 2. 
-INFO    -  Generate a cover page. 
-INFO    -  Converting 10 articles to PDF took 7.0s 
-INFO    -  Documentation built in 7.40 seconds 
+INFO    -  Number headings up to level 3.
+INFO    -  Generate a table of contents up to heading level 2.
+INFO    -  Generate a cover page.
+INFO    -  Converting 10 articles to PDF took 7.3s
+INFO    -  Documentation built in 7.75 seconds
 ```
