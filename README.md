@@ -67,6 +67,7 @@ plugins:
         #cover: false
         #cover_title: TITLE TEXT
         #cover_subtitle: SUBTITLE TEXT
+        #toc_title: TOC TITLE TEXT
         #heading_shift: false
         #toc_level: 3
         #ordered_chapter_level: 2
@@ -132,7 +133,8 @@ plugins:
 * `toc_title`
 
     Set the title text of _Table of Content_.  
-    **default**: `Table of Content`
+    **default**: `Table of Content`  
+    _**since**: `v0.4.0`_
 
 * `heading_shift`
 
