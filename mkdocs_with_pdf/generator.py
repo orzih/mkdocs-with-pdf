@@ -124,6 +124,7 @@ class Generator(object):
         abs_pdf_path = os.path.join(config['site_dir'], output_path)
         os.makedirs(os.path.dirname(abs_pdf_path), exist_ok=True)
 
+        self.logger.info(f'Output a PDF to "{abs_pdf_path}".')
         render.write_pdf(abs_pdf_path)
 
     # ------------------------

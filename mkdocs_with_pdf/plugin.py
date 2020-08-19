@@ -89,10 +89,10 @@ class WithPdfPlugin(BasePlugin):
         )
 
     def get_path_to_pdf_from(self, start):
-        pdf_split = os.path.split(self.config['output_path'])
+        dirname, filename = os.path.split(self.config['output_path'])
+        if not dirname:
+            dirname = '.'
         start_dir = os.path.split(start)[0]
         return os.path.join(
-            os.path.relpath(
-                pdf_split[0],
-                start_dir),
-            pdf_split[1])
+            os.path.relpath(dirname, start_dir),
+            filename)
