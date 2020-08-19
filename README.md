@@ -1,6 +1,9 @@
 # PDF Generate Plugin for MkDocs
 
 [![PyPI version](https://img.shields.io/pypi/v/mkdocs-with-pdf.svg)](https://pypi.org/project/mkdocs-with-pdf)
+[![PyPI downloads](https://img.shields.io/pypi/dm/mkdocs-with-pdf.svg)](https://pypi.org/project/mkdocs-with-pdf)
+
+---
 
 This plugin will generate a single PDF file from your MkDocs repository.
 This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
@@ -67,6 +70,7 @@ plugins:
         #cover: false
         #cover_title: TITLE TEXT
         #cover_subtitle: SUBTITLE TEXT
+        #
         #toc_title: TOC TITLE TEXT
         #heading_shift: false
         #toc_level: 3
@@ -74,9 +78,11 @@ plugins:
         #excludes_children:
         #    - 'release-notes/:upgrading'
         #    - 'release-notes/:changelog'
+        #
         #exclude_pages:
         #    - 'bugs/'
         #    - 'appendix/contribute/'
+        #
         #output_path: any-place/document.pdf
         #enabled_if_env: ENABLE_PDF_EXPORT
         #
