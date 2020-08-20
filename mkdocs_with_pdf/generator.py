@@ -209,8 +209,16 @@ class Generator(object):
         elif page.children:
 
             new_article = soup.new_tag('article')
+            found = False
             for c in page.children:
-                new_article.append(self._get_content(soup, c))
+                content = self._get_content(soup, c)
+                if content:
+                    new_article.append(content)
+                    found = True
+
+            if not found:
+                return None
+
             c_classes = None
             for child_article in new_article.find_all('article'):
                 child_article.name = 'section'
@@ -228,6 +236,8 @@ class Generator(object):
             if self._options.heading_shift:
                 return shift_heading(new_article, page)
             return new_article
+
+        return None
 
     # -------------------------------------------------------------
 
