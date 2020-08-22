@@ -1,4 +1,4 @@
-from base64 import urlsafe_b64encode
+from base64 import b32encode
 from uuid import uuid4
 
 
@@ -24,7 +24,7 @@ def _section_slug(section) -> str:
         return slug
 
     title = section.title if len(section.title) else str(uuid4)
-    slug = urlsafe_b64encode(title.encode('utf-8')).rstrip(b'=').decode()
+    slug = b32encode(title.encode('utf-8')).rstrip(b'=').decode()
     setattr(section, 'pdf_slug', slug)
 
     return slug

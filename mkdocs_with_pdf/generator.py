@@ -193,11 +193,6 @@ class Generator(object):
                 return [c for c in classes if not (c in excludes)]
             return classes
 
-        def get_classes(el):
-            if 'class' in el:
-                return el['class']
-            return []
-
         article = getattr(page, 'pdf-article', None)
         if article:
 
@@ -219,19 +214,19 @@ class Generator(object):
             if not found:
                 return None
 
-            c_classes = None
+            child_classes = None
             for child_article in new_article.find_all('article'):
                 child_article.name = 'section'
-                if not c_classes:
-                    c_classes = get_classes(child_article)
-                child_article['class'] = cleanup_class(
-                    get_classes(child_article))
+                classes = child_article.get('class')
+                if classes and not child_classes:
+                    child_classes = classes
+                child_article['class'] = cleanup_class(classes)
 
             page_path = self._page_path_for_id(page)
             new_article['id'] = f'{page_path}:'  # anchor for each page.
             new_article['data-url'] = f'/{page_path}'
-            if c_classes:
-                new_article['class'] = c_classes
+            if child_classes:
+                new_article['class'] = child_classes
 
             if self._options.heading_shift:
                 return shift_heading(new_article, page)
