@@ -28,17 +28,22 @@
   }
 }
 
-article {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend %headings !optional;
+}
+
+article,
+section + section {
   page-break-before: always;
   min-height: 100vh;
 
   /* Defining all page breaks */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
+  %headings,
   img {
     page-break-after: avoid;
     page-break-inside: avoid;
@@ -49,20 +54,40 @@ article {
   table,
   pre,
   ul,
-  ol,
-  dl {
+  ol {
+    page-break-before: avoid;
     page-break-inside: avoid;
+  }
+
+  dt + dd {
+    page-break-before: avoid;
+  }
+
+  %headings > div.highlight > pre,
+  %headings > ul,
+  %headings > ol {
+    page-break-inside: auto;
   }
 
   div.admonition {
     page-break-inside: avoid;
   }
 
-  div.tabbed-set > label {
-    page-break-after: avoid;
-  }
-  div.tabbed-content {
+  div.tabbed-set {
     page-break-inside: avoid;
   }
 
+  div.tabbed-set > label {
+    page-break-after: avoid;
+  }
+  /*
+  div.tabbed-content {
+    page-break-inside: avoid;
+  }
+  */
+
+  * + div.highlight,
+  * + div.tabbed-set {
+    page-break-before: avoid;
+  }
 }

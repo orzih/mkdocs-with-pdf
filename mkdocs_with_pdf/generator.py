@@ -15,6 +15,7 @@ from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.soup_util import clone_element
 from .utils.emoji_util import fix_twemoji
+from .utils.section import get_section_path
 
 
 class Generator(object):
@@ -67,24 +68,11 @@ class Generator(object):
 
         if article:
             # remove 'headerlink' if exists.
-            for a in article.find_all('a', attrs={'class': 'headerlink'}):
+            for a in article.select('a.headerlink'):
                 a.decompose()
-
-            if self._options.heading_shift:
-                article = self._shift_heading(article, page, page.parent)
-
-            page_path = self._page_path_for_id(page)
-            article['id'] = f'{page_path}:'  # anchor for each page.
-            article['data-url'] = f'/{page_path}'
+            for a in article.select('a.md-content__button'):
+                a.decompose()
             setattr(page, 'pdf-article', article)
-
-            '''
-            print(f'url: "{page.url:40s}", id="{page_path}"')
-            for el in article.find_all(id=True):
-                print(f"id={el['id']}")
-            for el in article.find_all('a', href=True):
-                print(f"href={el['href']}")
-            '''
         else:
             self.logger.warning(f'Missing article: [{page.title}]({page.url})')
 
@@ -107,7 +95,9 @@ class Generator(object):
         add_stylesheet(self._theme.get_stylesheet())
 
         for page in self._nav:
-            self._add_content(soup, page)
+            content = self._get_content(soup, page)
+            if content:
+                soup.body.append(content)
 
         make_indexes(soup, self._options)
         make_cover(soup, self._options)
@@ -149,31 +139,14 @@ class Generator(object):
             if not hit:
                 break
 
-    def _shift_heading(self, article: PageElement, page, parent):
-        if not parent:
-            return article
-
-        for i in range(7, 0, -1):
-            while True:
-                h = article.find(f'h{i}')
-                if not h:
-                    break
-                h.name = f'h{i + 1}'
-
-        if page == parent.children[0]:
-            article = self._shift_heading(article, parent, parent.parent)
-
-            page_path = self._page_path_for_id(page)
-            soup = BeautifulSoup('', 'html.parser')
-            h1 = soup.new_tag('h1', id=f'{page_path}')
-            h1.append(parent.title)
-            article.insert(0, h1)
-
-        return article
-
     def _page_path_for_id(self, page):
         """ normalize to directory urls style"""
-        path = page.url
+
+        if page.is_section:
+            path = get_section_path(page)
+        else:
+            path = page.url
+
         path = '.' if not path or path == 'index.html' else path
         if path.endswith('index.html'):
             path = re.sub(r'index\.html$', '', path)
@@ -198,13 +171,68 @@ class Generator(object):
 
         return prep_combined(soup, base_url, page.file.url)
 
-    def _add_content(self, soup: PageElement, page):
+    def _get_content(self, soup: PageElement, page):
+
+        def shift_heading(elem, page):
+            for i in range(7, 0, -1):
+                while True:
+                    h = elem.find(f'h{i}')
+                    if not h:
+                        break
+                    h.name = f'h{i + 1}'
+
+            page_path = self._page_path_for_id(page)
+            h1 = soup.new_tag('h1', id=f'{page_path}')
+            h1.append(page.title)
+            elem.insert(0, h1)
+            return elem
+
+        def cleanup_class(classes: []):
+            if classes and len(classes):
+                excludes = ['md-content__inner']
+                return [c for c in classes if not (c in excludes)]
+            return classes
+
         article = getattr(page, 'pdf-article', None)
         if article:
-            soup.body.append(article)
-        if page.children:
+
+            page_path = self._page_path_for_id(page)
+            article['id'] = f'{page_path}:'  # anchor for each page.
+            article['data-url'] = f'/{page_path}'
+            return article
+
+        elif page.children:
+
+            new_article = soup.new_tag('article')
+            found = False
             for c in page.children:
-                self._add_content(soup, c)
+                content = self._get_content(soup, c)
+                if content:
+                    new_article.append(content)
+                    found = True
+
+            if not found:
+                return None
+
+            child_classes = None
+            for child_article in new_article.find_all('article'):
+                child_article.name = 'section'
+                classes = child_article.get('class')
+                if classes and not child_classes:
+                    child_classes = classes
+                child_article['class'] = cleanup_class(classes)
+
+            page_path = self._page_path_for_id(page)
+            new_article['id'] = f'{page_path}:'  # anchor for each page.
+            new_article['data-url'] = f'/{page_path}'
+            if child_classes:
+                new_article['class'] = child_classes
+
+            if self._options.heading_shift:
+                return shift_heading(new_article, page)
+            return new_article
+
+        return None
 
     # -------------------------------------------------------------
 
