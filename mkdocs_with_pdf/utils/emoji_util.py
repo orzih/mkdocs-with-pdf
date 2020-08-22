@@ -25,6 +25,7 @@ def fix_twemoji(soup: PageElement, logger: Logger = None):
         )
         svg['width'] = int(width)
         svg['height'] = int(height)
+        svg['style'] = 'fill: currentColor;'
 
     if logger:
         logger.debug('Converting emoji SVG to img(workaround).')
