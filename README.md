@@ -26,7 +26,7 @@ This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 ## Requirements
 
 1. This package requires MkDocs version 1.0 or higher (0.17 works as well)
-1. Python 3.4 or higher
+1. Python 3.5 or higher
 1. WeasyPrint depends on cairo, Pango and GDK-PixBuf which need to be installed separately. Please follow the installation instructions for your platform carefully:
     * [Linux][weasyprint-linux]
     * [MacOS][weasyprint-macos]

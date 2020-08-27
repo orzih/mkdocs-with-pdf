@@ -13,9 +13,9 @@ setup(
     author='orzih',
     author_email='orzih@mail.com',
     license='MIT',
-    python_requires='>=3.4',
+    python_requires='>=3.5',
     install_requires=[
-        'mkdocs>=0.17',
+        'mkdocs>=1.1',
         'weasyprint>=0.44',
         'beautifulsoup4>=4.6.3',
         'libsass>=0.15'
@@ -27,7 +27,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7'
