@@ -6,6 +6,14 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 1.3.0 <small>_ August 26, 2020</small>
+
+* Added support for user-selectable color palettes
+
+### 1.2.0 <small>_ August 11, 2020</small>
+
+* Added feature to expand navigation by default
+
 ### 1.1.0 <small>_ August 3, 2020</small>
 
 * Added highlighting of search results
@@ -17,6 +25,37 @@ template: overrides/main.html
 * Improved search result relevance and scoring
 
 ## Material for MkDocs
+
+### 5.5.9 <small>_ August 26, 2020</small>
+
+* Added Esperanto translations
+* Fixed #1884: External links not included in navigation tabs
+
+### 5.5.8 <small>_ August 23, 2020</small>
+
+* Removed focus outline on `details` and content tabs for pointer devices
+* Improved accessibility of content tabs (now navigable via arrow keys)
+* Fixed #1877: `404` on search index when search is disabled
+* Fixed some memleaks in observable subscriptions
+* Fixed color definitions for `theme-color` meta tag
+
+### 5.5.7 <small>_ August 16, 2020</small>
+
+* Improved contrast ratio to 4.5:1 for syntax highlighting
+* Improved contrast ratio to 4.5:1 for table of contents
+
+### 5.5.6 <small>_ August 12, 2020</small>
+
+* Switched base template for `404.html` to `main.html`
+* Fixed #1864: GitHub organisation stats not loading
+
+### 5.5.5 <small>_ August 11, 2020</small>
+
+* Fixed missing vendor and worker distribution files
+
+### 5.5.4 <small>_ August 11, 2020</small>
+
+* Added support for sortable data tables
 
 ### 5.5.3 <small>_ August 4, 2020</small>
 

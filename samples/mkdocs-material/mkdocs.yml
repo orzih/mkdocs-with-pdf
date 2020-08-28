@@ -90,7 +90,7 @@ plugins:
   - with-pdf:
       #cover_title:
       cover_subtitle: A Material Design theme for MkDocs
-      toc_level: 3
+      toc_level: 2
       excludes_children:
         - 'releases/changelog/:upgrading'
       output_path: ../document.pdf
