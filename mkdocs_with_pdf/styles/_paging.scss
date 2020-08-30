@@ -52,20 +52,19 @@ section + section {
   a,
   blockquote,
   table,
-  pre,
   ul,
   ol {
     page-break-before: avoid;
     page-break-inside: avoid;
   }
 
+  pre,
   dt + dd {
     page-break-before: avoid;
   }
 
-  %headings > div.highlight > pre,
-  %headings > ul,
-  %headings > ol {
+  %headings + ul,
+  %headings + ol {
     page-break-inside: auto;
   }
 
@@ -73,18 +72,18 @@ section + section {
     page-break-inside: avoid;
   }
 
+  /*
   div.tabbed-set {
     page-break-inside: avoid;
   }
+  */
 
   div.tabbed-set > label {
     page-break-after: avoid;
   }
-  /*
   div.tabbed-content {
-    page-break-inside: avoid;
+    page-break-before: avoid;
   }
-  */
 
   * + div.highlight,
   * + div.tabbed-set {
