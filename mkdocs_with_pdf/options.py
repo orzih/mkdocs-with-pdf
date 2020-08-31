@@ -34,7 +34,8 @@ class Options(object):
         ('ordered_chapter_level', config_options.Type(int, default=3)),
         ('excludes_children', config_options.Type(list, default=[])),
 
-        ('exclude_pages', config_options.Type(list, default=[]))
+        ('exclude_pages', config_options.Type(list, default=[])),
+        ('convert_iframe', config_options.Type(list, default=[]))
     )
 
     def __init__(self, local_config, config, logger: logging):
@@ -69,6 +70,7 @@ class Options(object):
 
         # Page
         self.exclude_pages = local_config['exclude_pages']
+        self.convert_iframe = local_config['convert_iframe']
 
         # Theming
         self.theme_name = config['theme'].name

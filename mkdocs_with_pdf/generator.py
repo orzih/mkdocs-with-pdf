@@ -13,9 +13,10 @@ from .preprocessor import get_combined as prep_combined
 from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
-from .utils.soup_util import clone_element
 from .utils.emoji_util import fix_twemoji
+from .utils.iframe_util import convert_iframe
 from .utils.section import get_section_path
+from .utils.soup_util import clone_element
 
 
 class Generator(object):
@@ -103,6 +104,11 @@ class Generator(object):
         make_cover(soup, self._options)
 
         fix_twemoji(soup, self._options.logger)
+
+        if len(self._options.convert_iframe) > 0:
+            convert_iframe(soup,
+                           self._options.convert_iframe,
+                           self._options.logger)
 
         if self._options.debug_html:
             self._link_check(soup)

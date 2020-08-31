@@ -82,6 +82,11 @@ plugins:
         #exclude_pages:
         #    - 'bugs/'
         #    - 'appendix/contribute/'
+        #convert_iframe:
+        #    - src: IFRAME SRC
+        #      img: POSTER IMAGE URL
+        #      text: ALTERNATE TEXT
+        #    - src: ...
         #
         #output_path: any-place/document.pdf
         #enabled_if_env: ENABLE_PDF_EXPORT
@@ -171,6 +176,14 @@ plugins:
     Set the page `id` of `nav` url. If the `id` matches in this list, it will be excluded page contents.  
     **default**: `[]`  
     _**since**: `v0.3.0`_
+
+* `convert_iframe`
+
+    List of `iframe` to `a` conversions. Every `iframe` that matches a `src` in this list will be replace to `a` contains each `img` and/or `text`. it's using for such as embedded VIDEO.  
+    **default**: `[]`  
+    _**since**: `v0.6.0`_
+
+    @see [Sample of _MkDocs Material_](https://github.com/orzih/mkdocs-with-pdf/blob/master/samples/mkdocs-material/)
 
 ##### ... and more
 

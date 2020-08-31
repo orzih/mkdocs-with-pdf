@@ -93,6 +93,9 @@ plugins:
       toc_level: 2
       excludes_children:
         - 'releases/changelog/:upgrading'
+      convert_iframe:
+        - src: https://streamable.com/e/lz4me5
+          img: https://cdn-cf-east.streamable.com/image/lz4me5-screenshot147626.jpg
       output_path: ../document.pdf
       #debug_html: true
       #verbose: true
