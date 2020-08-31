@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='mkdocs-with-pdf',
-    version='0.5.0',
+    version='0.6.0',
     description='Generate a single PDF file from MkDocs repository',  # noqa E501
     long_description=io.open('README.md', encoding='utf8').read(),
     long_description_content_type='text/markdown',

@@ -1,3 +1,9 @@
+mkdocs-with-pdf 0.6.0 (2020-08-31)
+
+  * Add 'convert_iframe' option.
+  * Modified some 'page-break' settings.
+  * Changes the required version of python.
+
 mkdocs-with-pdf 0.5.0 (2020-08-22)
 
   * Supports nested sections in `nav`.
