@@ -35,7 +35,9 @@ class Options(object):
         ('excludes_children', config_options.Type(list, default=[])),
 
         ('exclude_pages', config_options.Type(list, default=[])),
-        ('convert_iframe', config_options.Type(list, default=[]))
+        ('convert_iframe', config_options.Type(list, default=[])),
+
+        ('render_js', config_options.Type(bool, default=False))
     )
 
     def __init__(self, local_config, config, logger: logging):
@@ -71,6 +73,8 @@ class Options(object):
         # Page
         self.exclude_pages = local_config['exclude_pages']
         self.convert_iframe = local_config['convert_iframe']
+
+        self.render_js = local_config['render_js']
 
         # Theming
         self.theme_name = config['theme'].name

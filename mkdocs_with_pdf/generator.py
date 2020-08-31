@@ -15,6 +15,7 @@ from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.emoji_util import fix_twemoji
 from .utils.iframe_util import convert_iframe
+from .utils.js_util import render_js
 from .utils.section import get_section_path
 from .utils.soup_util import clone_element
 
@@ -112,9 +113,16 @@ class Generator(object):
 
         if self._options.debug_html:
             self._link_check(soup)
-            print(f'{soup}')
 
-        html = HTML(string=str(soup))
+        html_string = str(soup)
+
+        if self._options.render_js:
+            html_string = render_js(html_string, self._options.logger)
+
+        if self._options.debug_html:
+            print(f'{html_string}')
+
+        html = HTML(string=html_string)
         render = html.render()
 
         abs_pdf_path = os.path.join(config['site_dir'], output_path)
