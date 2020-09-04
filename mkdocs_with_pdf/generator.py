@@ -73,6 +73,7 @@ class Generator(object):
                 a.decompose()
             for a in article.select('a.md-content__button'):
                 a.decompose()
+            self._fix_missing_id_for_h1(article, page)
             setattr(page, 'pdf-article', article)
         else:
             self.logger.warning(f'Missing article: [{page.title}]({page.url})')
@@ -239,6 +240,11 @@ class Generator(object):
             return new_article
 
         return None
+
+    def _fix_missing_id_for_h1(self, content, page):
+        h1 = content.find('h1')
+        if h1 and not h1.get('id'):
+            h1['id'] = self._page_path_for_id(page)
 
     # -------------------------------------------------------------
 
