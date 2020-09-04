@@ -42,6 +42,17 @@ section + section {
   page-break-before: always;
   min-height: 100vh;
 
+  %headings {
+    clear: both;
+  }
+
+  div.tabbed-set>input[type='radio']::before,
+  div.tabbed-content::after {
+    clear: both;
+    content: '';
+    display: block;
+  }
+
   /* Defining all page breaks */
   %headings,
   img {

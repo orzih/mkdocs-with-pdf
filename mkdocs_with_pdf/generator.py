@@ -14,6 +14,7 @@ from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.emoji_util import fix_twemoji
+from .utils.image_util import fix_image_alignment
 from .utils.iframe_util import convert_iframe
 from .utils.js_util import render_js
 from .utils.section import get_section_path
@@ -74,6 +75,7 @@ class Generator(object):
                 a.decompose()
             for a in article.select('a.md-content__button'):
                 a.decompose()
+            self._fix_missing_id_for_h1(article, page)
             setattr(page, 'pdf-article', article)
         else:
             self.logger.warning(f'Missing article: [{page.title}]({page.url})')
@@ -104,6 +106,7 @@ class Generator(object):
         make_indexes(soup, self._options)
         make_cover(soup, self._options)
 
+        fix_image_alignment(soup, self._options.logger)
         fix_twemoji(soup, self._options.logger)
 
         if len(self._options.convert_iframe) > 0:
@@ -247,6 +250,11 @@ class Generator(object):
             return new_article
 
         return None
+
+    def _fix_missing_id_for_h1(self, content, page):
+        h1 = content.find('h1')
+        if h1 and not h1.get('id'):
+            h1['id'] = self._page_path_for_id(page)
 
     # -------------------------------------------------------------
 

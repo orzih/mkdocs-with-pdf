@@ -1,3 +1,8 @@
+mkdocs-with-pdf 0.6.1 (2020-09-04)
+
+  * Add the missing anchors if the document doesn't have first-level headings.
+  * Add a workaround converter for 'img[align]'.
+
 mkdocs-with-pdf 0.6.0 (2020-08-31)
 
   * Add 'convert_iframe' option.
