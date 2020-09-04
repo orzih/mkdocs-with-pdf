@@ -29,7 +29,7 @@ article#doc-toc {
     margin-left: 1em;
     font-size: 90%;
     line-height: 1.8;
-    page-break-inside: auto;
+    page-break-inside: auto !important;
   }
 
   li {
