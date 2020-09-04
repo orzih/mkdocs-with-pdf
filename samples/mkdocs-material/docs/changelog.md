@@ -6,6 +6,10 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 1.4.0 <small>_ August 30, 2020</small>
+
+* Added support for auto-hiding header on scroll
+
 ### 1.3.0 <small>_ August 26, 2020</small>
 
 * Added support for user-selectable color palettes
@@ -26,9 +30,13 @@ template: overrides/main.html
 
 ## Material for MkDocs
 
+### 5.5.12 <small>_ August 31, 2020</small>
+
+* Fixed #1638: occasional `404` for images when using instant loading
+
 ### 5.5.11 <small>_ August 28, 2020</small>
 
-  * Fixed Disqus integration, as the minifier killed the config
+* Fixed Disqus integration, as the minifier killed the config
 
 ### 5.5.10 <small>_ August 28, 2020</small>
 
