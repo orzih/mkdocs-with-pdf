@@ -14,10 +14,11 @@ from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.emoji_util import fix_twemoji
-from .utils.image_util import fix_image_alignment
 from .utils.iframe_util import convert_iframe
+from .utils.image_util import fix_image_alignment
 from .utils.section import get_section_path
 from .utils.soup_util import clone_element
+from .utils.tabbed_set_util import wrap_tabbed_set_content
 
 
 class Generator(object):
@@ -105,6 +106,7 @@ class Generator(object):
         make_indexes(soup, self._options)
         make_cover(soup, self._options)
 
+        wrap_tabbed_set_content(soup, self._options.logger)
         fix_image_alignment(soup, self._options.logger)
         fix_twemoji(soup, self._options.logger)
 

@@ -4,27 +4,28 @@
     .tabbed-set {
       display: block;
 
-      // Hide radio buttons
-      >input {
-        &:checked+label {
+      .tabbed-content--wrap {
+        margin-bottom: 0.25rem;
+
+        // Hide radio buttons
+        > input {
+          display: none;
+        }
+
+        > label {
+          background-color: rgba($color: #aaa, $alpha: 0.2);
+          padding: 0.2rem 2rem;
+          margin: 0;
+          font-weight: 600;
           color: #666;
+          border-radius: 3px 3px 0 0;
           border-bottom-color: transparent;
         }
-      }
 
-      &>label {
-        background-color: rgba($color: #aaa, $alpha: 0.2);
-        padding: 0.2rem 2rem;
-        margin: 0;
-        font-weight: 600;
-        color: #666;
-        border-radius: 3px 3px 0 0;
-      }
-
-      &>.tabbed-content {
-        display: block;
-        box-shadow: none;
-        margin-bottom: 0.25rem;
+        > .tabbed-content {
+          display: block;
+          box-shadow: none;
+        }
       }
     }
 
