@@ -14,11 +14,13 @@ from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.emoji_util import fix_twemoji
-from .utils.image_util import fix_image_alignment
 from .utils.iframe_util import convert_iframe
+from .utils.image_util import fix_image_alignment
 from .utils.js_util import render_js
+from .utils.layout_util import convert_for_two_columns
 from .utils.section import get_section_path
 from .utils.soup_util import clone_element
+from .utils.tabbed_set_util import wrap_tabbed_set_content
 
 
 class Generator(object):
@@ -106,13 +108,16 @@ class Generator(object):
         make_indexes(soup, self._options)
         make_cover(soup, self._options)
 
+        wrap_tabbed_set_content(soup, self._options.logger)
         fix_image_alignment(soup, self._options.logger)
         fix_twemoji(soup, self._options.logger)
 
-        if len(self._options.convert_iframe) > 0:
-            convert_iframe(soup,
-                           self._options.convert_iframe,
-                           self._options.logger)
+        convert_iframe(soup,
+                       self._options.convert_iframe,
+                       self._options.logger)
+        convert_for_two_columns(soup,
+                                self._options.two_columns_level,
+                                self._options.logger)
 
         if self._options.debug_html:
             self._link_check(soup)

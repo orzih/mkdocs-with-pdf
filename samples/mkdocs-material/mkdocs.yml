@@ -96,6 +96,8 @@ plugins:
       convert_iframe:
         - src: https://streamable.com/e/lz4me5
           img: https://cdn-cf-east.streamable.com/image/lz4me5-screenshot147626.jpg
+      two_columns_level: 3
+      render_js: true
       output_path: ../document.pdf
       #debug_html: true
       #verbose: true

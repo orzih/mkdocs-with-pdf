@@ -1,5 +1,5 @@
 from logging import Logger
-from bs4 import PageElement
+from bs4 import PageElement, Tag
 
 
 def fix_image_alignment(soup: PageElement, logger: Logger = None):
@@ -8,7 +8,7 @@ def fix_image_alignment(soup: PageElement, logger: Logger = None):
     """
 
     if logger:
-        logger.debug('Converting img align(workaround).')
+        logger.info('Converting img align(workaround).')
 
     for img in soup.select('img'):
         try:
@@ -44,12 +44,38 @@ def fix_image_alignment(soup: PageElement, logger: Logger = None):
             pass
 
 
+def images_size_to_half_in(section: Tag):
+
+    def _split(s):
+        for i, c in enumerate(s):
+            if not c.isdigit():
+                break
+        number = s[:i]
+        unit = s[i:].lstrip()
+        return (number, unit)
+
+    for img in section.find_all('img'):
+        if not img.has_attr('style'):
+            continue
+        styles = _parse_style(img['style'])
+        if not len(styles):
+            continue
+
+        for key in ['width', 'height', 'padding-left', 'padding-right']:
+            if key in styles:
+                (dim, u) = _split(styles[key])
+                styles[key] = str(int(dim) / 2) + u
+        img['style'] = " ".join(f'{k}: {v};' for k, v in styles.items())
+
+
 def _parse_style(style_string: str) -> dict:
     styles = {}
     if style_string:
         for attr in style_string.split(';'):
+            if not len(attr):
+                continue
             val = attr.split(':', 2)
-            styles[val[0]] = val[1]
+            styles[val[0].strip()] = val[1].strip()
     return styles
 
 

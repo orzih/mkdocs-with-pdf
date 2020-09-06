@@ -185,6 +185,13 @@ plugins:
 
     @see [Sample of _MkDocs Material_](https://github.com/orzih/mkdocs-with-pdf/blob/master/samples/mkdocs-material/)
 
+* `two_columns_level` (Experimental)
+
+    Set the heading level of **_Two Column Layout_**. Currently only `0`(disable) or `3` is valid for this value.  
+
+    **default**: `0`  
+    _**since**: `v0.7.0`_
+
 ##### ... and more
 
 * `output_path`

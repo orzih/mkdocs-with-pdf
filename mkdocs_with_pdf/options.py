@@ -36,6 +36,7 @@ class Options(object):
 
         ('exclude_pages', config_options.Type(list, default=[])),
         ('convert_iframe', config_options.Type(list, default=[])),
+        ('two_columns_level', config_options.Type(int, default=0)),
 
         ('render_js', config_options.Type(bool, default=False))
     )
@@ -74,6 +75,9 @@ class Options(object):
         self.exclude_pages = local_config['exclude_pages']
         self.convert_iframe = local_config['convert_iframe']
 
+        self.two_columns_level = local_config['two_columns_level']
+
+        # ...etc.
         self.render_js = local_config['render_js']
 
         # Theming
