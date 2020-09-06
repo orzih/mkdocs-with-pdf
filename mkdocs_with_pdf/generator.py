@@ -14,8 +14,9 @@ from .styles import style_for_print
 from .themes import generic as generic_theme
 from .toc import make_indexes
 from .utils.emoji_util import fix_twemoji
-from .utils.image_util import fix_image_alignment
 from .utils.iframe_util import convert_iframe
+from .utils.image_util import fix_image_alignment
+from .utils.layout_util import convert_for_two_columns
 from .utils.section import get_section_path
 from .utils.soup_util import clone_element
 
@@ -112,6 +113,10 @@ class Generator(object):
             convert_iframe(soup,
                            self._options.convert_iframe,
                            self._options.logger)
+        if self._options.two_columns_level > 0:
+            convert_for_two_columns(soup,
+                                    self._options.two_columns_level,
+                                    self._options.logger)
 
         if self._options.debug_html:
             self._link_check(soup)

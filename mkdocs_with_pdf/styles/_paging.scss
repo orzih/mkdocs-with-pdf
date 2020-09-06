@@ -101,3 +101,8 @@ section + section {
     page-break-before: avoid;
   }
 }
+
+section.two-columns {
+  columns: 2;
+  column-gap: 1cm;
+}
