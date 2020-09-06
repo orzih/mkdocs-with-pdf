@@ -26,7 +26,8 @@
 
 // Icon definitions
 :root {
-  --print-md-tasklist-icon: svg-load("@mdi/svg/svg/checkbox-blank-circle.svg", fill: "#cccccc"); // --md-default-fg-color--lightest
+  // --print-md-tasklist-icon: svg-load("@mdi/svg/svg/checkbox-blank-circle.svg", fill: "#cccccc"); // --md-default-fg-color--lightest
+  --print-md-tasklist-icon: svg-load("@mdi/svg/svg/check-circle.svg", fill: "#ddd");
   --print-md-tasklist-icon--checked: svg-load("@mdi/svg/svg/check-circle.svg", fill: "#{$clr-green-a400}");
 }
 

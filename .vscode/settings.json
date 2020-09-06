@@ -1,4 +1,7 @@
 {
+    "scss.lint.validProperties": [
+        "bookmark-level"
+    ],
     "cSpell.words": [
         "Pango",
         "iframe",

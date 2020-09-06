@@ -14,6 +14,7 @@ article#doc-toc {
     letter-spacing: -.01em;
     page-break-after: auto;
     page-break-inside: auto;
+    bookmark-level: none;
 
     &::before {
       display: block;
