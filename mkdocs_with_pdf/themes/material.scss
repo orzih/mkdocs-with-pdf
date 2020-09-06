@@ -8,21 +8,23 @@
       >input {
         &:checked+label {
           color: #666;
+          border-bottom-color: transparent;
         }
       }
 
-      >label {
+      &>label {
         background-color: rgba($color: #aaa, $alpha: 0.2);
         padding: 0.2rem 2rem;
         margin: 0;
-        border: none;
-        font-weight: 700;
+        font-weight: 600;
         color: #666;
+        border-radius: 3px 3px 0 0;
       }
 
-      >.tabbed-content {
+      &>.tabbed-content {
         display: block;
         box-shadow: none;
+        margin-bottom: 0.25rem;
       }
     }
 
@@ -49,10 +51,29 @@
       margin-left: 1.5rem;
     }
 
-    &>h4,
-    &>h5,
-    &>h6 {
+    h4,
+    h5,
+    h6 {
       margin-left: 0.25rem;
+    }
+
+    *:not(h3) + h4 {
+      margin-top: 2rem;
+    }
+
+    hr {
+      border-bottom: 1px dotted #999;
+    }
+
+    // Data tables
+    table:not([class]) {
+      th, td {
+        padding: 0.5em 1.25em 0.4em;
+      }
+
+      td {
+        border-bottom: 1px solid #eee;
+      }
     }
   }
 

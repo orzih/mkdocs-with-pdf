@@ -5,9 +5,17 @@ article h2#release-notes\/\:upgrading~ul {
 }
 
 @media print {
-  #doc-toc ul li > a > span,
-  .md-typeset h2 > span {
+  #doc-toc ul li>a>span,
+  .md-typeset h1>span,
+  .md-typeset h2>span,
+  .md-typeset h3>span {
     display: inline-block;
+  }
+
+  .md-typeset h1>span,
+  .md-typeset h2>span,
+  .md-typeset h3>span {
+    padding-right: 0.2em;
   }
 
   .tx-content__footer hr {

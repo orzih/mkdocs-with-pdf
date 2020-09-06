@@ -106,7 +106,7 @@ def _inject_heading_order(soup: Tag, options: Options):
 
             h1n += 1
             h2n = h3n = 0
-            prefix = f'{h1n}.'
+            prefix = f'{h1n}. '
 
             exclude_lv2 = _is_exclude(h.get('id', None), options)
 
@@ -114,7 +114,7 @@ def _inject_heading_order(soup: Tag, options: Options):
 
             h2n += 1
             h3n = 0
-            prefix = f'{h1n}.{h2n}'
+            prefix = f'{h1n}.{h2n} '
 
             exclude_lv3 = _is_exclude(h.get('id', None), options)
 
@@ -122,7 +122,7 @@ def _inject_heading_order(soup: Tag, options: Options):
                 and h.name == 'h3' and level >= 3:
 
             h3n += 1
-            prefix = f'{h1n}.{h2n}.{h3n}'
+            prefix = f'{h1n}.{h2n}.{h3n} '
 
         else:
             continue
