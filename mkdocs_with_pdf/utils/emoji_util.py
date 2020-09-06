@@ -35,7 +35,8 @@ def fix_twemoji(soup: PageElement, logger: Logger = None):
             fix_size(svg)
             encoded = b64encode(str(svg).encode('utf-8')).decode('ascii')
             data = "data:image/svg+xml;charset=utf-8;base64," + encoded
-            img = soup.new_tag('img', src=data)
+            img = soup.new_tag('img', src=data,
+                               **{'class': 'converted-twemoji'})
             svg.replace_with(img)
 
             if logger:

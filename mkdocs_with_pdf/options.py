@@ -36,7 +36,7 @@ class Options(object):
 
         ('exclude_pages', config_options.Type(list, default=[])),
         ('convert_iframe', config_options.Type(list, default=[])),
-        ('two_columns_level', config_options.Type(int, default=3))
+        ('two_columns_level', config_options.Type(int, default=0))
     )
 
     def __init__(self, local_config, config, logger: logging):

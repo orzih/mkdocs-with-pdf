@@ -42,15 +42,10 @@ section + section {
   page-break-before: always;
   min-height: 100vh;
 
-  %headings {
+  &,
+  %headings,
+  div.tabbed-content--wrap > .tabbed-content {
     clear: both;
-  }
-
-  div.tabbed-set>input[type='radio']::before,
-  div.tabbed-content::after {
-    clear: both;
-    content: '';
-    display: block;
   }
 
   /* Defining all page breaks */
@@ -83,17 +78,8 @@ section + section {
     page-break-inside: avoid;
   }
 
-  /*
-  div.tabbed-set {
+  div.tabbed-content--wrap {
     page-break-inside: avoid;
-  }
-  */
-
-  div.tabbed-set > label {
-    page-break-after: avoid;
-  }
-  div.tabbed-content {
-    page-break-before: avoid;
   }
 
   * + div.highlight,

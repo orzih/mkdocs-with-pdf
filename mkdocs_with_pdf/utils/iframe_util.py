@@ -17,6 +17,12 @@ def convert_iframe(soup: PageElement, entries: list, logger: Logger = None):
         ```
     """
 
+    if len(entries) < 1:
+        return
+
+    if logger:
+        logger.info('Converting iframe to poster image.')
+
     for iframe in soup.find_all('iframe', src=True):
         for entry in entries:
             if iframe['src'] != entry.get('src'):
