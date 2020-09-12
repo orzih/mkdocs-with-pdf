@@ -64,8 +64,11 @@ $admonitions: (
   .md-typeset {
     // Admonition title
     .admonition-title {
+      padding: .6rem .6rem .4rem 2.2rem;
+
       // Icon
       &::before {
+        margin-top: -0.15rem;
         background-color: transparent;
         background-image: var(--print-md-admonition-icon--note);
       }
@@ -83,7 +86,10 @@ $admonitions: (
     // Define base class
     .md-typeset .#{$name} > .admonition-title,
     .md-typeset .#{$name} > summary {
+      padding: .6rem .6rem .4rem 2.2rem;
+
       &::before {
+        margin-top: -0.15rem;
         background-color: transparent;
         background-image: var(--print-md-admonition-icon--#{$name});
       }

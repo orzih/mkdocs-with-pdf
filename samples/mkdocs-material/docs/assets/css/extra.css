@@ -1,10 +1,12 @@
-article h2#release-notes\/\:upgrading~h3,
-article h2#release-notes\/\:upgrading~div,
-article h2#release-notes\/\:upgrading~ul {
-	font-size: 80%;
-}
-
 @media print {
+  .md-typeset {
+    line-height: 1.4;
+  }
+  .md-typeset ul li,
+  .md-typeset ol li {
+    margin-bottom: .25em;
+  }
+
   #doc-toc ul li>a>span,
   .md-typeset h1>span,
   .md-typeset h2>span,
@@ -18,10 +20,8 @@ article h2#release-notes\/\:upgrading~ul {
     padding-right: 0.2em;
   }
 
-  .tx-content__footer hr {
-    display: inline-block;
-    width: 64px;
-    height: 1px;
-    background-color: #999999;
+  .md-typeset .tx-content__footer hr {
+    background-color: transparent;
+    border-bottom: 1px solid #e91e63;
   }
 }

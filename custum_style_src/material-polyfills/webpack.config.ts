@@ -31,29 +31,30 @@ function config(args: Configuration): Configuration {
               loader: "css-loader",
               options: {
                 url: false,
-                sourceMap: true
-              }
+                sourceMap: true,
+              },
             },
             {
               loader: "postcss-loader",
               options: {
-                ident: "postcss",
-                plugins: () => [
-                  require("autoprefixer")(),
-                  require("postcss-inline-svg")({
-                    paths: [path.resolve(__dirname, "node_modules")],
-                    encode: false
-                  }),
-                  require("postcss-svgo")({
-                    plugins: [
-                      { removeDimensions: true },
-                      { removeViewBox: false }
-                    ],
-                    encode: false
-                  })
-                ],
-                sourceMap: true
-              }
+                postcssOptions: {
+                  plugins: [
+                    "autoprefixer",
+                    ["postcss-inline-svg", {
+                      paths: [path.resolve(__dirname, "node_modules")],
+                      encode: false,
+                    }],
+                    ["postcss-svgo", {
+                      plugins: [
+                        { removeDimensions: true },
+                        { removeViewBox: false },
+                      ],
+                      encode: false,
+                    }],
+                  ],
+                  sourceMap: true,
+                },
+              },
             },
             {
               loader: "sass-loader",
@@ -62,20 +63,20 @@ function config(args: Configuration): Configuration {
                 sassOptions: {
                   includePaths: [
                     "node_modules/modularscale-sass/stylesheets",
-                    "node_modules/material-design-color"
-                  ]
+                    "node_modules/material-design-color",
+                  ],
                 },
-                sourceMap: true
-              }
-            }
-          ]
-        }
-      ]
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+      ],
     },
 
     /* Module resolver */
     resolve: {
-      modules: [__dirname, path.resolve(__dirname, "node_modules")]
+      modules: [__dirname, path.resolve(__dirname, "node_modules")],
     },
 
     /* Plugins */
@@ -87,9 +88,9 @@ function config(args: Configuration): Configuration {
     /* Filter false positives and omit verbosity */
     stats: {
       entrypoints: false,
-      warningsFilter: [/export '.[^']+' was not found in/]
-    }
-  }
+      warningsFilter: [/export '.[^']+' was not found in/],
+    },
+  };
 }
 
 /* ----------------------------------------------------------------------------
