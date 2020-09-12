@@ -84,10 +84,12 @@ class Generator(object):
         return self._theme.inject_link(output_content, pdf_path)
 
     def on_post_build(self, config, output_path):
-        soup = BeautifulSoup(
-            '<html><head></head><body></body></html>', 'html.parser')
         if self._head:
+            soup = BeautifulSoup('<html><body></body></html>', 'html.parser')
             soup.html.insert(0, self._head)
+        else:
+            soup = BeautifulSoup(
+                '<html><head></head><body></body></html>', 'html.parser')
 
         def add_stylesheet(stylesheet: str):
             if stylesheet:
@@ -109,20 +111,20 @@ class Generator(object):
 
         wrap_tabbed_set_content(soup, self._options.logger)
         fix_image_alignment(soup, self._options.logger)
-        fix_twemoji(soup, self._options.logger)
-
         convert_iframe(soup,
                        self._options.convert_iframe,
                        self._options.logger)
         convert_for_two_columns(soup,
                                 self._options.two_columns_level,
                                 self._options.logger)
+        html_string = self._render_js(soup)
 
         if self._options.debug_html:
             self._link_check(soup)
-            print(f'{soup}')
+            print(f'{html_string}')
 
-        html = HTML(string=str(soup))
+        self.logger.info("Rendering for PDF.")
+        html = HTML(string=html_string)
         render = html.render()
 
         abs_pdf_path = os.path.join(config['site_dir'], output_path)
@@ -314,3 +316,18 @@ class Generator(object):
             self.logger.info('  | --- found anchors:')
             for anchor in sorted(anchors):
                 self.logger.info(f'  | {anchor}')
+
+    # -------------------------------------------------------------
+
+    def _render_js(self, soup):
+        if not self._options.js_renderer:
+            fix_twemoji(soup, self._options.logger)
+            return str(soup)
+
+        scripts = self._theme.get_script_sources()
+        if len(scripts) > 0:
+            body = soup.find('body')
+            if body:
+                for src in scripts:
+                    body.append(soup.new_tag('script', src=f'file://{src}'))
+        return self._options.js_renderer.render(str(soup))

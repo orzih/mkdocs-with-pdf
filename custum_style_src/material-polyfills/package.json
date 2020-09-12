@@ -1,6 +1,6 @@
 {
   "name": "material-polyfills",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The mkdocs-material polyfill styles for Mkdocs-with-PDF.",
   "license": "MIT",
   "private": true,
@@ -10,9 +10,12 @@
   },
   "contributors": [],
   "scripts": {
+    "dev:js": "webpack-dev-server --hot --inline --content-base=dev-site --watch-content-base=true",
     "build": "npm run clean && webpack --mode production",
     "clean": "rimraf dist",
-    "lint": "stylelint \"src/**/*.scss\""
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint --ext .ts,.js",
+    "lint:css": "stylelint \"src/**/*.scss\""
   },
   "dependencies": {},
   "devDependencies": {
@@ -23,15 +26,19 @@
     "autoprefixer": "^9.8.6",
     "bl": ">=4.0.3",
     "css-loader": "^4.3.0",
+    "eslint": "^7.8.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "expose-loader": "^1.0.0",
     "imagemin-webpack-plugin": "^2.4.2",
     "material-design-color": "^2.3.2",
-    "mini-css-extract-plugin": "^0.11.1",
+    "mini-css-extract-plugin": "^0.11.2",
     "modularscale-sass": "^3.0.10",
     "postcss-inline-svg": "^4.1.0",
     "postcss-loader": "^4.0.1",
     "postcss-svgo": "^4.0.2",
     "preact": "^10.4.8",
+    "prettier": "^2.1.1",
     "rimraf": "^3.0.2",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
@@ -46,6 +53,7 @@
     "typescript": "^4.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
     "webpack-fix-style-only-entries": "^0.5.1"
   },
   "engines": {

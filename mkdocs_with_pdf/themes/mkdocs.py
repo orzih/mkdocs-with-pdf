@@ -10,6 +10,10 @@ def get_stylesheet() -> str:
     return sass.compile(filename=filename, output_style='compressed')
 
 
+def get_script_sources() -> list:
+    return []
+
+
 def inject_link(html: str, href: str) -> str:
 
     soup = BeautifulSoup(html, 'html.parser')

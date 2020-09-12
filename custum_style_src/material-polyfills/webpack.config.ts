@@ -22,75 +22,89 @@ function config(args: Configuration): Configuration {
     /* Loaders */
     module: {
       rules: [
+        /* Scripts */
+        {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/
+        },
+
         /* SASS stylesheets */
         {
           test: /\.scss$/,
           use: [
             MiniCssExtractPlugin.loader,
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 url: false,
-                sourceMap: true,
-              },
+                sourceMap: true
+              }
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: {
                 postcssOptions: {
                   plugins: [
-                    "autoprefixer",
-                    ["postcss-inline-svg", {
-                      paths: [path.resolve(__dirname, "node_modules")],
-                      encode: false,
-                    }],
-                    ["postcss-svgo", {
-                      plugins: [
-                        { removeDimensions: true },
-                        { removeViewBox: false },
-                      ],
-                      encode: false,
-                    }],
+                    'autoprefixer',
+                    [
+                      'postcss-inline-svg',
+                      {
+                        paths: [path.resolve(__dirname, 'node_modules')],
+                        encode: false
+                      }
+                    ],
+                    [
+                      'postcss-svgo',
+                      {
+                        plugins: [
+                          { removeDimensions: true },
+                          { removeViewBox: false }
+                        ],
+                        encode: false
+                      }
+                    ]
                   ],
-                  sourceMap: true,
-                },
-              },
+                  sourceMap: true
+                }
+              }
             },
             {
-              loader: "sass-loader",
+              loader: 'sass-loader',
               options: {
-                implementation: require("sass"),
+                implementation: require('sass'),
                 sassOptions: {
                   includePaths: [
-                    "node_modules/modularscale-sass/stylesheets",
-                    "node_modules/material-design-color",
-                  ],
+                    'node_modules/modularscale-sass/stylesheets',
+                    'node_modules/material-design-color'
+                  ]
                 },
-                sourceMap: true,
-              },
-            },
-          ],
-        },
-      ],
+                sourceMap: true
+              }
+            }
+          ]
+        }
+      ]
     },
 
     /* Module resolver */
     resolve: {
-      modules: [__dirname, path.resolve(__dirname, "node_modules")],
+      modules: [__dirname, path.resolve(__dirname, 'node_modules')],
+      extensions: ['.ts', '.js']
     },
 
     /* Plugins */
     plugins: [],
 
     /* Source maps */
-    devtool: args.mode === "production" ? "source-map" : "eval",
+    devtool: args.mode === 'production' ? 'source-map' : 'eval',
 
     /* Filter false positives and omit verbosity */
     stats: {
       entrypoints: false,
-      warningsFilter: [/export '.[^']+' was not found in/],
-    },
-  };
+      warningsFilter: [/export '.[^']+' was not found in/]
+    }
+  }
 }
 
 /* ----------------------------------------------------------------------------
@@ -112,7 +126,10 @@ export default (_env: never, args: Configuration): Configuration[] => {
     {
       ...base,
       entry: {
-        "material-polyfills": "src/stylesheets/polyfills.scss"
+        'material-polyfills': [
+          'src/javascripts/index.ts',
+          'src/stylesheets/polyfills.scss'
+        ]
       },
       output: {
         path: path.resolve(__dirname, "dist")
@@ -120,7 +137,7 @@ export default (_env: never, args: Configuration): Configuration[] => {
 
       /* Plugins */
       plugins: [
-        ...base.plugins,
+        // ...base.plugins,
 
         /* Stylesheets */
         new FixStyleOnlyEntriesPlugin(),

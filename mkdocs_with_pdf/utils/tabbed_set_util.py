@@ -14,3 +14,6 @@ def wrap_tabbed_set_content(soup: PageElement, logger: Logger = None):
             radio.wrap(wrapper)
             for tag in els:
                 wrapper.append(tag)
+
+    for d in soup.select('details'):
+        d['open'] = ''

@@ -28,8 +28,7 @@ article#doc-toc {
     list-style: none;
     padding-left: 0;
     margin-left: 1em;
-    font-size: 90%;
-    line-height: 1.8;
+    font-size: 8pt;
     page-break-inside: auto !important;
   }
 
@@ -39,6 +38,7 @@ article#doc-toc {
       color: inherit;
       text-decoration: none;
 
+      padding-top: 0.4rem;
       border-bottom: 1px dotted #ddd;
       display: inline-block;
       width: 100%;
