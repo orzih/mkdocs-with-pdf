@@ -68,10 +68,14 @@
       border-bottom: 1px dotted #999;
     }
 
+    .footnote {
+      line-height: 1.1;
+    }
+
     // Data tables
     table:not([class]) {
       th, td {
-        padding: 0.5em 1.25em 0.4em;
+        padding: 0.5em 1.25rem 0.4em;
       }
 
       td {
@@ -80,8 +84,15 @@
     }
   }
 
-  #doc-toc .twemoji > img,
-  .md-typeset .twemoji > img {
-    height: 1rem;
+  .md-typeset {
+    span.twemoji {
+      vertical-align: middle;
+      height: 1.125rem;
+
+      > img {
+        height: 1.125rem;
+        vertical-align: middle;
+      }
+    }
   }
 }

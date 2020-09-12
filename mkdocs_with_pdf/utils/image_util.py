@@ -8,7 +8,7 @@ def fix_image_alignment(soup: PageElement, logger: Logger = None):
     """
 
     if logger:
-        logger.info('Converting img align(workaround).')
+        logger.info('Converting <img> alignment(workaround).')
 
     for img in soup.select('img'):
         try:

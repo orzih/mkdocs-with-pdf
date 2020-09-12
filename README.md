@@ -194,6 +194,32 @@ plugins:
 
     @see [Sample of _MkDocs Material_](https://github.com/orzih/mkdocs-with-pdf/blob/master/samples/mkdocs-material/)
 
+##### Renderer for JavaScript
+
+* `render_js`
+
+    Set the value to `true` if you're using '[MathJax](https://www.mathjax.org/)', '[Twemoji](https://twemoji.twitter.com/)' or any more.  
+    Require "Chrome" which has "headless" mode.  
+
+    **default**: `false`  
+    _**since**: `v0.7.0`_
+
+* `headless_chrome_path`
+
+    Set the "Headless Chrome" program path.  
+    If `render_js` is _`false`_, this value will be ignored.  
+
+    **default**: `google-chrome`
+
+> Check on your system:
+>
+> ```
+> $ <PROGRAM_PATH> --headless \
+>    --disable-gpu \
+>    --dump-dom \
+>    <ANY_SITE_URL(eg. 'https://google.com')>
+> ```
+
 ##### ... and more
 
 * `output_path`

@@ -13,6 +13,11 @@ def get_stylesheet() -> str:
     return style
 
 
+def get_script_sources() -> list:
+    base_path = os.path.abspath(os.path.dirname(__file__))
+    return list(map(lambda src: os.path.join(base_path, src), ['material-polyfills.js']))
+
+
 def inject_link(html: str, href: str) -> str:
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -21,7 +26,8 @@ def inject_link(html: str, href: str) -> str:
         container = footer[0]
 
         container.append(' ... ')
-        a = soup.new_tag('a', href=href, title='PDF', download=None)
+        a = soup.new_tag('a', href=href, title='PDF',
+                         download=None, **{'class': 'link--pdf-download'})
         a.append('download PDF')
 
         container.append(a)

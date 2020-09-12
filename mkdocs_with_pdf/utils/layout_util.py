@@ -17,7 +17,7 @@ def convert_for_two_columns(soup: PageElement,
         return
 
     if logger:
-        logger.info('Converting to two columns layout.')
+        logger.info('Converting for two-column layout(heading level 3).')
 
     ignored = []
     for el in soup.find_all('h3'):
@@ -26,7 +26,8 @@ def convert_for_two_columns(soup: PageElement,
         els = [i for i in itertools.takewhile(
             lambda x: x.name not in ['h1', 'h2'],
             el.next_siblings)]
-        section = soup.new_tag('section', **{'class': 'two-columns'})
+        section = soup.new_tag(
+            'section', **{'class': 'md-typeset two-columns'})
         el.wrap(section)
         for tag in els:
             section.append(tag)

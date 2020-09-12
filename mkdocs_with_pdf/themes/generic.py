@@ -5,6 +5,10 @@ def get_stylesheet() -> str:
     return None
 
 
+def get_script_sources() -> list:
+    return []
+
+
 def inject_link(html: str, href: str) -> str:
 
     soup = BeautifulSoup(html, 'html.parser')

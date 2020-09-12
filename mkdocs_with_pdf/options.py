@@ -3,6 +3,8 @@ import logging
 from bs4 import BeautifulSoup
 from mkdocs.config import config_options
 
+from .drivers.headless_chrome import HeadlessChromeDriver
+
 
 def _normalize(text: str) -> str:
     if text:
@@ -38,7 +40,9 @@ class Options(object):
         ('convert_iframe', config_options.Type(list, default=[])),
         ('two_columns_level', config_options.Type(int, default=0)),
 
-        ('render_js', config_options.Type(bool, default=False))
+        ('render_js', config_options.Type(bool, default=False)),
+        ('headless_chrome_path',
+            config_options.Type(str, default='google-chrome'))
     )
 
     def __init__(self, local_config, config, logger: logging):
@@ -78,7 +82,10 @@ class Options(object):
         self.two_columns_level = local_config['two_columns_level']
 
         # ...etc.
-        self.render_js = local_config['render_js']
+        self.js_renderer = None
+        if local_config['render_js']:
+            self.js_renderer = HeadlessChromeDriver.setup(
+                local_config['headless_chrome_path'], logger)
 
         # Theming
         self.theme_name = config['theme'].name
