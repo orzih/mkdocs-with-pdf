@@ -32,11 +32,10 @@
 
 // ----------------------------------------------------------------------------
 
-// Scoped in typesetted content to match specificity of regular content
-.md-typeset {
-  .footnote-backref {
-    // Back reference icon
-    @media print {
+@media print {
+  .md-typeset {
+    .footnote-backref {
+      // Back reference icon
       &::before {
         background-color: transparent;
         background-image: var(--print-md-footnotes-icon);

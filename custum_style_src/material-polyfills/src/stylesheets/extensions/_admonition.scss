@@ -60,7 +60,6 @@ $admonitions: (
 // ----------------------------------------------------------------------------
 
 @media print {
-  // Scoped in typesetted content to match specificity of regular content
   .md-typeset {
     // Admonition title
     .admonition-title {

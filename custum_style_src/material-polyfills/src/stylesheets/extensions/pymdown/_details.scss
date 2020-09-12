@@ -29,18 +29,17 @@
 }
 
 // ----------------------------------------------------------------------------
+@media print {
+  .md-typeset {
 
-// Scoped in typesetted content to match specificity of regular content
-.md-typeset {
-
-  // Details title
-  summary {
-    // Details marker
-    &::after {
-      background-color: transparent;
-      background-image: var(--print-md-details-icon);
-      mask-image: none;
-      transform: rotate(90deg); // 'open' always
+    // Details title
+    summary {
+      // Details marker
+      &::after {
+        background-color: transparent;
+        background-image: var(--print-md-details-icon);
+        mask-image: none;
+      }
     }
   }
 }

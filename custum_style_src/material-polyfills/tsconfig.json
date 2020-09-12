@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "baseUrl": "src/javascripts",
+    "lib": ["dom", "es2019"],
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
