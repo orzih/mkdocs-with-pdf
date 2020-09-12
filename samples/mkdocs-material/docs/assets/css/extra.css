@@ -4,7 +4,7 @@
   }
   .md-typeset ul li,
   .md-typeset ol li {
-    margin-bottom: .25em;
+    margin-bottom: .25rem;
   }
 
   #doc-toc ul li>a>span,
@@ -17,11 +17,33 @@
   .md-typeset h1>span,
   .md-typeset h2>span,
   .md-typeset h3>span {
-    padding-right: 0.2em;
+    padding-right: 0.5rem;
   }
+
+  /** workaround [[ */
+  .md-typeset h2>span.twemoji,
+  .md-typeset h2>span.twemoji>img {
+    height: 1.363em;
+  }
+  .md-typeset h2>span.twemoji>img {
+    margin-top: -0.3em;
+  }
+  #doc-toc span.twemoji,
+  #doc-toc span.twemoji img {
+    height: 1.125rem;
+    vertical-align: middle;
+  }
+  /* ]] **/
 
   .md-typeset .tx-content__footer hr {
     background-color: transparent;
-    border-bottom: 1px solid #e91e63;
+    border-bottom: 0.5px solid #e91e63;
+  }
+
+  section.md-typeset[data-url="/changelog/"] h4+ul {
+    margin: 0;
+  }
+  section.md-typeset[data-url="/changelog/"] ul>li {
+    margin-bottom: 0;
   }
 }
