@@ -5,6 +5,7 @@ $md-typeset-kbd-border-color: #B8B8B8;
 .md-typeset {
   // Keyboard key
   kbd {
+    vertical-align: middle;
     border-color: $md-typeset-kbd-border-color;
     border-style: outset;
     border-width: px2rem(1px) px2rem(1.5px) px2rem(2px) px2rem(1.5px);
