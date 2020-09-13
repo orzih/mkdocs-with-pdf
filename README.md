@@ -87,6 +87,10 @@ plugins:
         #      img: POSTER IMAGE URL
         #      text: ALTERNATE TEXT
         #    - src: ...
+        #two_columns_level: 3
+        #
+        #render_js: true
+        #headless_chrome_path: headless-chromium
         #
         #output_path: any-place/document.pdf
         #enabled_if_env: ENABLE_PDF_EXPORT
