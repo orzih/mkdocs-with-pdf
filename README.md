@@ -213,7 +213,7 @@ plugins:
     Set the "Headless Chrome" program path.  
     If `render_js` is _`false`_, this value will be ignored.  
 
-    **default**: `google-chrome`
+    **default**: `chromium-browser`
 
 > Check on your system:
 >

@@ -1,3 +1,9 @@
+mkdocs-with-pdf 0.7.1 (2020-09-19)
+
+  * Fixed a missing JS file entry in `MANIFEST.in`.
+  * Changed for `Headless Chrome` launch options.
+  * Changed the default value of the `Headless Chrome` pathname option.
+
 mkdocs-with-pdf 0.7.0 (2020-09-14)
 
   * Support two-columns layout.

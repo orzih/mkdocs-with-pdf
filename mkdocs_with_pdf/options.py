@@ -42,7 +42,7 @@ class Options(object):
 
         ('render_js', config_options.Type(bool, default=False)),
         ('headless_chrome_path',
-            config_options.Type(str, default='google-chrome'))
+            config_options.Type(str, default='chromium-browser'))
     )
 
     def __init__(self, local_config, config, logger: logging):

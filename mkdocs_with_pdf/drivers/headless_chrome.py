@@ -27,7 +27,11 @@ class HeadlessChromeDriver(object):
             temp.close()
 
             self._logger.info("Rendering on `Headless Chrome`(execute JS).")
-            with Popen([self._program_path, '--headless', '--disable-gpu',
+            with Popen([self._program_path,
+                        '--disable-web-security',
+                        '--no-sandbox',
+                        '--headless',
+                        '--disable-gpu',
                         '--dump-dom',
                         temp.name], stdout=PIPE) as chrome:
                 return chrome.stdout.read().decode('utf-8')
