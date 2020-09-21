@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  tiny:
+    build: tiny
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docs-src:/docs:rw"
+    dns: 8.8.8.8
+    network_mode: "bridge"
+
+  alpine:
+    build: alpine
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docs-src:/docs:rw"
+    dns: 8.8.8.8
+    network_mode: "bridge"
+
+  debian:
+    build: debian
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docs-src:/docs:rw"
+    dns:
+      - 8.8.8.8
+    network_mode: "bridge"
