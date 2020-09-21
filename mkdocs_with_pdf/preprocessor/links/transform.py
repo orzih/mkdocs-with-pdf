@@ -1,6 +1,6 @@
 import os
 import re
-from urllib.parse import (urljoin, urlparse)
+from urllib.parse import (urljoin, urlparse, quote)
 
 
 def transform_href(href: str, rel_url: str) -> str:
@@ -36,7 +36,7 @@ def transform_href(href: str, rel_url: str) -> str:
         else:
             target = re.sub(r'\.(html|md)$', '/', target)
 
-        return f'#{target}:{hash}'
+        return f'#{quote(target)}:{hash}'
 
     x_href = transform()
 

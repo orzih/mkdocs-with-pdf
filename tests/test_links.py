@@ -155,3 +155,19 @@ class TransformHrefTestCase(unittest.TestCase):
             [['https://ex.com/test.html#frag', 'any/index.html'],      'https://ex.com/test.html#frag'],
             [['mailto:ex.com/test.html',       'any/index.html'],      'mailto:ex.com/test.html'],
         ])
+
+        run_test('path contains escape characters.', [
+            # [[href, rel_url], x_href]
+            [['Q&A/', '.'], '#Q%26A/:'],
+            [['Progress_100%/', '.'], '#Progress_100%25/:'],
+            [['Q&A/', 'any/'], '#any/Q%26A/:'],
+            [['entry_ä/', 'any/'], '#any/entry_%C3%A4/:'],
+            [['entry_&/', 'any/'], '#any/entry_%26/:'],
+            [['../Q&A/', '.'], '#Q%26A/:'],
+            [['../entry_ä/', 'any/'], '#entry_%C3%A4/:'],
+            [['../entry_&/', 'any/'], '#entry_%26/:'],
+            [['Q&A/', 'any/sub/'], '#any/sub/Q%26A/:'],
+            [['../Q&A/', 'any/sub/'], '#any/Q%26A/:'],
+            [['../Q&A/!_Answer', 'any/sub/'], '#any/Q%26A/%21_Answer:'],
+            [['../sub1/Q&A/', 'any/sub/'], '#any/sub1/Q%26A/:'],
+        ])
