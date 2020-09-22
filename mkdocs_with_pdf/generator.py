@@ -117,10 +117,10 @@ class Generator(object):
         convert_for_two_columns(soup,
                                 self._options.two_columns_level,
                                 self._options.logger)
+        self._normalize_link_anchors(soup)
         html_string = self._render_js(soup)
 
         if self._options.debug_html:
-            self._link_check(soup)
             print(f'{html_string}')
 
         self.logger.info("Rendering for PDF.")
@@ -287,7 +287,23 @@ class Generator(object):
 
     # -------------------------------------------------------------
 
-    def _link_check(self, soup):
+    def _normalize_link_anchors(self, soup):
+        def normalize_anchor_chars(anchor: str):
+            # Should PDF hashtag links contain percent encoding?
+            # https://discussions.apple.com/thread/251041261
+
+            # (probably not duplicated.)
+            anchor = anchor.replace('%', '-')
+            return anchor
+
+        for anchor in soup.find_all(id=True):
+            anchor['id'] = normalize_anchor_chars(anchor['id'])
+        for link in soup.find_all('a', href=True):
+            link['href'] = normalize_anchor_chars(link['href'])
+
+        if not self._options.debug_html:
+            return
+
         from urllib.parse import urlparse
 
         anchors = set(map(lambda el: '#' + el['id'], soup.find_all(id=True)))
