@@ -36,6 +36,9 @@ def transform_href(href: str, rel_url: str) -> str:
         else:
             target = re.sub(r'\.(html|md)$', '/', target)
 
+        if not target.endswith('/'):
+            target += '/'
+
         return f'#{quote(target)}:{hash}'
 
     x_href = transform()

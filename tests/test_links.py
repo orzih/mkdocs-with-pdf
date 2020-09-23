@@ -25,56 +25,85 @@ class TransformHrefTestCase(unittest.TestCase):
 
         run_test('on TOP(level 0)', [
             # [[href, rel_url], x_href]
+            [['.', '.'], '#.:'],
             [['./', '.'], '#.:'],
             [['#hash', '.'], '#.:hash'],
         ])
 
         run_test('on Subpath(level 1)', [
             # [[href, rel_url], x_href]
+            [['.', 'path/'], '#path/:'],
             [['./', 'path/'], '#path/:'],
             [['#hash', 'path/'], '#path/:hash'],
             [['#hash:1', 'path/'], '#path/:hash:1'],
+            [['target', 'path/'], '#path/target/:'],
             [['target/', 'path/'], '#path/target/:'],
             [['target/#hash', 'path/'], '#path/target/:hash'],
+            [['..', 'path/'], '#.:'],
             [['../', 'path/'], '#.:'],
             [['../#hash', 'path/'], '#.:hash'],
+            [['../target', 'path/'], '#target/:'],
             [['../target/', 'path/'], '#target/:'],
             [['../target/#hash', 'path/'], '#target/:hash'],
         ])
 
         run_test('on Subpath(level 2)', [
             # [[href, rel_url], x_href]
+            [['.', 'path/sub/'], '#path/sub/:'],
             [['./', 'path/sub/'], '#path/sub/:'],
             [['#hash', 'path/sub/'], '#path/sub/:hash'],
+            [['target', 'path/sub/'], '#path/sub/target/:'],
             [['target/', 'path/sub/'], '#path/sub/target/:'],
+            [['target#hash', 'path/sub/'], '#path/sub/target/:hash'],
             [['target/#hash', 'path/sub/'], '#path/sub/target/:hash'],
+            [['..', 'path/sub/'], '#path/:'],
             [['../', 'path/sub/'], '#path/:'],
+            [['..#hash', 'path/sub/'], '#path/:hash'],
             [['../#hash', 'path/sub/'], '#path/:hash'],
+            [['../target', 'path/sub/'], '#path/target/:'],
             [['../target/', 'path/sub/'], '#path/target/:'],
             [['../target/#hash', 'path/sub/'], '#path/target/:hash'],
+            [['../..', 'path/sub/'], '#.:'],
             [['../../', 'path/sub/'], '#.:'],
+            [['../..#hash', 'path/sub/'], '#.:hash'],
             [['../../#hash', 'path/sub/'], '#.:hash'],
+            [['../../target', 'path/sub/'], '#target/:'],
             [['../../target/', 'path/sub/'], '#target/:'],
             [['../../target/#hash', 'path/sub/'], '#target/:hash'],
+            [['../../target#hash', 'path/sub/'], '#target/:hash'],
         ])
 
         run_test('on Subpath(level 3)', [
             # [[href, rel_url], x_href]
+            [['.', 'p0/p1/p2/'], '#p0/p1/p2/:'],
             [['./', 'p0/p1/p2/'], '#p0/p1/p2/:'],
             [['#h', 'p0/p1/p2/'], '#p0/p1/p2/:h'],
             [['target/', 'p0/p1/p2/'], '#p0/p1/p2/target/:'],
+            [['target#h', 'p0/p1/p2/'], '#p0/p1/p2/target/:h'],
             [['target/#h', 'p0/p1/p2/'], '#p0/p1/p2/target/:h'],
+            [['..', 'p0/p1/p2/'], '#p0/p1/:'],
             [['../', 'p0/p1/p2/'], '#p0/p1/:'],
+            [['..#h', 'p0/p1/p2/'], '#p0/p1/:h'],
             [['../#h', 'p0/p1/p2/'], '#p0/p1/:h'],
+            [['../target', 'p0/p1/p2/'], '#p0/p1/target/:'],
             [['../target/', 'p0/p1/p2/'], '#p0/p1/target/:'],
+            [['../target#h', 'p0/p1/p2/'], '#p0/p1/target/:h'],
             [['../target/#h', 'p0/p1/p2/'], '#p0/p1/target/:h'],
+            [['../..', 'p0/p1/p2/'], '#p0/:'],
             [['../../', 'p0/p1/p2/'], '#p0/:'],
+            [['../..#h', 'p0/p1/p2/'], '#p0/:h'],
             [['../../#h', 'p0/p1/p2/'], '#p0/:h'],
+            [['../../target', 'p0/p1/p2/'], '#p0/target/:'],
             [['../../target/', 'p0/p1/p2/'], '#p0/target/:'],
+            [['../../target#h', 'p0/p1/p2/'], '#p0/target/:h'],
             [['../../target/#h', 'p0/p1/p2/'], '#p0/target/:h'],
+            [['../../..', 'p0/p1/p2/'], '#.:'],
             [['../../../', 'p0/p1/p2/'], '#.:'],
+            [['../../..#h', 'p0/p1/p2/'], '#.:h'],
             [['../../../#h', 'p0/p1/p2/'], '#.:h'],
+            [['../../../target', 'p0/p1/p2/'], '#target/:'],
             [['../../../target/', 'p0/p1/p2/'], '#target/:'],
+            [['../../../target#h', 'p0/p1/p2/'], '#target/:h'],
             [['../../../target/#h', 'p0/p1/p2/'], '#target/:h'],
         ])
 
@@ -127,18 +156,24 @@ class TransformHrefTestCase(unittest.TestCase):
 
         run_test('ignore cases - DO NOT CARE in this plugin.', [
             # [[href, rel_url], x_href]
+            [['..', '.'], '#.:'],
             [['../', '.'], '#.:'],
+            [['..', 'index.html'], '#.:'],
             [['../', 'index.html'], '#.:'],
             [['../index.html', 'index.html'], '#.:'],
             [['../index.html#hash', 'index.html'], '#.:hash'],
 
+            [['../..', 'path/'], '#.:'],
             [['../../', 'path/'], '#.:'],
+            [['../..', 'path/index.html'], '#.:'],
             [['../../', 'path/index.html'], '#.:'],
             [['../../index.html', 'path/'], '#.:'],
             [['../../index.html', 'path/index.html'], '#.:'],
             [['../../index.html#hash', 'path/index.html'], '#.:hash'],
 
+            [['../../..', 'path/sub/'], '#.:'],
             [['../../../', 'path/sub/'], '#.:'],
+            [['../../..', 'path/sub/index.html'], '#.:'],
             [['../../../', 'path/sub/index.html'], '#.:'],
             [['../../../index.html', 'path/sub/'], '#.:'],
             [['../../../index.html', 'path/sub/index.html'], '#.:'],
@@ -158,16 +193,23 @@ class TransformHrefTestCase(unittest.TestCase):
 
         run_test('path contains escape characters.', [
             # [[href, rel_url], x_href]
+            [['Q&A', '.'], '#Q%26A/:'],
             [['Q&A/', '.'], '#Q%26A/:'],
+            [['Progress_100%', '.'], '#Progress_100%25/:'],
             [['Progress_100%/', '.'], '#Progress_100%25/:'],
             [['Q&A/', 'any/'], '#any/Q%26A/:'],
             [['entry_ä/', 'any/'], '#any/entry_%C3%A4/:'],
             [['entry_&/', 'any/'], '#any/entry_%26/:'],
+            [['../Q&A', '.'], '#Q%26A/:'],
             [['../Q&A/', '.'], '#Q%26A/:'],
             [['../entry_ä/', 'any/'], '#entry_%C3%A4/:'],
             [['../entry_&/', 'any/'], '#entry_%26/:'],
+            [['Q&A', 'any/sub/'], '#any/sub/Q%26A/:'],
             [['Q&A/', 'any/sub/'], '#any/sub/Q%26A/:'],
+            [['../Q&A', 'any/sub/'], '#any/Q%26A/:'],
             [['../Q&A/', 'any/sub/'], '#any/Q%26A/:'],
-            [['../Q&A/!_Answer', 'any/sub/'], '#any/Q%26A/%21_Answer:'],
+            [['../Q&A/!_Answer', 'any/sub/'], '#any/Q%26A/%21_Answer/:'],
+            [['../Q&A/!_Answer/', 'any/sub/'], '#any/Q%26A/%21_Answer/:'],
+            [['../sub1/Q&A', 'any/sub/'], '#any/sub1/Q%26A/:'],
             [['../sub1/Q&A/', 'any/sub/'], '#any/sub1/Q%26A/:'],
         ])
