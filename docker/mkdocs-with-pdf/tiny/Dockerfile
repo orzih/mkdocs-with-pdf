@@ -13,7 +13,7 @@ RUN set -ex \
     && pip install --no-cache-dir mkdocs mkdocs-material mkdocs-with-pdf \
     && apk del .build-deps
 
-RUN apk --update --upgrade --no-cache add fontconfig ttf-roboto terminus-font \
+RUN apk --update --upgrade --no-cache add fontconfig ttf-freefont terminus-font \
     && fc-cache -f \
     && fc-list | sort
 
