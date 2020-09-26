@@ -96,6 +96,7 @@ plugins:
         #enabled_if_env: ENABLE_PDF_EXPORT
         #
         #debug_html: true
+        #show_anchors: true
         #verbose: true
 ```
 
@@ -246,6 +247,12 @@ plugins:
     ```bash
     mkdocs build > for_pdf_print.html
     ```
+
+* `show_anchors`
+
+    Setting this to `true` will list out of anchor points provided during the build as info message.  
+    **default**: `false`  
+    _**since**: `v0.7.4`_
 
 * `verbose`
 

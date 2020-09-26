@@ -301,17 +301,18 @@ class Generator(object):
         for link in soup.find_all('a', href=True):
             link['href'] = normalize_anchor_chars(link['href'])
 
-        if not self._options.debug_html:
+        if not self._options.debug_html and not self._options.show_anchors:
             return
 
         from urllib.parse import urlparse
 
         anchors = set(map(lambda el: '#' + el['id'], soup.find_all(id=True)))
 
-        '''
-        from pprint import pprint as pp
-        pp(anchors)
-        '''
+        if not self._options.debug_html:
+            self.logger.info('Anchor points provided:')
+            for anchor in sorted(anchors):
+                self.logger.info(f'| {anchor}')
+            return
 
         missing = set()
         for el in soup.find_all('a', href=True):

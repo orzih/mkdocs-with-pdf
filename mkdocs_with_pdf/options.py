@@ -19,6 +19,7 @@ class Options(object):
 
         ('verbose', config_options.Type(bool, default=False)),
         ('debug_html', config_options.Type(bool, default=False)),
+        ('show_anchors', config_options.Type(bool, default=False)),
 
         ('output_path', config_options.Type(str, default="pdf/document.pdf")),
         ('theme_handler_path', config_options.Type(str, default=None)),
@@ -48,6 +49,7 @@ class Options(object):
     def __init__(self, local_config, config, logger: logging):
         self.verbose = local_config['verbose']
         self.debug_html = local_config['debug_html']
+        self.show_anchors = local_config['show_anchors']
 
         self.output_path = local_config.get('output_path', None)
         self.theme_handler_path = local_config.get('theme_handler_path', None)
