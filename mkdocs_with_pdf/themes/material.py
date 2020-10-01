@@ -15,7 +15,8 @@ def get_stylesheet() -> str:
 
 def get_script_sources() -> list:
     base_path = os.path.abspath(os.path.dirname(__file__))
-    return list(map(lambda src: os.path.join(base_path, src), ['material-polyfills.js']))
+    return list(map(lambda src: os.path.join(base_path, src),
+                    ['material-polyfills.js']))
 
 
 def inject_link(html: str, href: str) -> str:
