@@ -13,8 +13,7 @@ behavior of navigational elements, some of those through _feature flags_.
 ### Instant loading
 
 [:octicons-file-code-24: Source][1] · 
-:octicons-unlock-24: Feature flag · 
-:octicons-beaker-24: Experimental
+:octicons-unlock-24: Feature flag
 
 When _instant loading_ is activated, clicks on all internal links will be
 intercepted and dispatched via [XHR][2] without fully reloading the page. It
@@ -23,7 +22,7 @@ can be enabled via `mkdocs.yml` with:
 ``` yaml
 theme:
   features:
-    - instant
+    - navigation.instant
 ```
 
 The resulting page is parsed and injected and all event handlers and components
@@ -65,7 +64,7 @@ enabled via `mkdocs.yml` with:
 ``` yaml
 theme:
   features:
-    - tabs
+    - navigation.tabs
 ```
 
 Note that all __top-level pages__ (i.e. all top-level entries that directly
@@ -200,6 +199,25 @@ them at your own risk._
   [9]: https://python-markdown.github.io/extensions/toc/#usage
   [10]: https://facelessuser.github.io/pymdown-extensions/extras/slugs/
 
+#### Automatic hiding
+
+[:octicons-file-code-24: Source][3] ·
+:octicons-unlock-24: Feature flag ·
+:octicons-beaker-24: Experimental ·
+[:octicons-heart-fill-24:{: .tx-heart } Insiders only][3]{: .tx-insiders }
+
+When _autohiding_ is activated, the table of contents is automatically hidden
+when the current page defines no headings, or only a single `h1` heading to be
+rendered, so content stretches.
+
+It can be enabled via `mkdocs.yml` with:
+
+``` yaml
+theme:
+  features:
+    - toc.autohide
+```
+
 ## Customization
 
 ### Keyboard shortcuts
@@ -234,7 +252,7 @@ JavaScript][12], you can subscribe to the `keyboard$` observable and attach
 your custom event listener:
 
 ``` js
-app.keyboard$.subscribe(key => {
+app.keyboard$.subscribe(function(key) {
   if (key.mode === "global" && key.type === "x") {
     /* Add custom keyboard handler here */
     key.claim()

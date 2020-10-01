@@ -17,7 +17,7 @@ files to the `docs` directory.
 
   [1]: https://www.mkdocs.org
 
-### Additional stylesheets
+### Additional CSS
 
 If you want to tweak some colors or change the spacing of certain elements,
 you can do this in a separate stylesheet. The easiest way is by creating a
@@ -115,7 +115,6 @@ The directory layout of the theme is as follows:
 │  ├─ language/                        # Localized languages
 │  ├─ footer.html                      # Footer bar
 │  ├─ header.html                      # Header bar
-│  ├─ hero.html                        # Hero teaser
 │  ├─ language.html                    # Localized labels
 │  ├─ logo.html                        # Logo in header and sidebar
 │  ├─ nav.html                         # Main navigation

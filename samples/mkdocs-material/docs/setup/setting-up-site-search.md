@@ -16,8 +16,7 @@ made available [offline][1].
 ### Built-in search
 
 [:octicons-file-code-24: Source][2] ·
-[:octicons-cpu-24: Plugin][3] ·
-[:octicons-heart-fill-24:{: .tx-heart } Insiders – improved user experience][4]{: .tx-insiders }
+[:octicons-cpu-24: Plugin][3]
 
 The [built-in search plugin][3] integrates seamlessly with Material for MkDocs,
 adding multilingual client-side search with [lunr][5] and [lunr-languages][6].
@@ -156,7 +155,7 @@ Searching for `"code blocks"` yields:
 _Give this feature a try on [the official documentation][10] built with Material
 for MkDocs Insiders!_
 
-  [9]: ../assets/search-highlighting.png
+  [9]: ../assets/screenshots/search-highlighting.png
   [10]: https://squidfunk.github.io/mkdocs-material-insiders/reference/code-blocks/?h=code+blocks
 
 ### Offline search
@@ -171,7 +170,7 @@ combination with @squidfunk's [iframe-worker][13] polyfill.
 
 For setup instructions, refer to the [official documentation][14].
 
-  [11]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html#L378-L390
+  [11]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html#L360-L372
   [12]: https://github.com/wilhelmer/mkdocs-localsearch/
   [13]: https://github.com/squidfunk/iframe-worker
   [14]: https://github.com/wilhelmer/mkdocs-localsearch#installation-material-v5
@@ -213,26 +212,20 @@ following transformations, which can be customized by [extending the theme][16]:
  *
  * 3. Trim excess whitespace from left and right.
  *
- * 4. Append a wildcard to the end of every word to make every word a prefix
- *    query in order to provide a good typeahead experience, by adding an
- *    asterisk (wildcard) in between terms, which can be denoted by whitespace,
- *    any non-control character, or a word boundary.
- *
  * @param query - Query value
  *
  * @return Transformed query value
  */
-function defaultTransform(query: string): string {
+export function defaultTransform(query: string): string {
   return query
     .split(/"([^"]+)"/g)                            /* => 1 */
-      .map((terms, i) => i & 1
+      .map((terms, index) => index & 1
         ? terms.replace(/^\b|^(?![^\x00-\x7F]|$)|\s+/g, " +")
         : terms
       )
       .join("")
     .replace(/"|(?:^|\s+)[*+\-:^~]+(?=\s+|$)/g, "") /* => 2 */
     .trim()                                         /* => 3 */
-    .replace(/\s+|(?![^\x00-\x7F]|^)$|\b$/g, "* ")  /* => 4 */
 }
 ```
 

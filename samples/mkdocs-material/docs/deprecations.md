@@ -12,8 +12,8 @@ not be used anymore.
 
 ### Redirect
 
-:octicons-archive-24: Deprecated: 5.5.0 ·
-:octicons-trash-24: Removal: 6.x
+:octicons-archive-24: Deprecated: 5.5 ·
+:octicons-trash-24: Removed: 6.0
 
 The `redirect` key, which could be added via [Metadata][1], allowed to
 specify a redirect from within a document to a new address, which is a good
@@ -47,8 +47,8 @@ plugins:
 
 ### Source link
 
-:octicons-archive-24: Deprecated: 5.5.0 ·
-:octicons-trash-24: Removal: 6.x
+:octicons-archive-24: Deprecated: 5.5 ·
+:octicons-trash-24: Removed: 6.0
 
 The `source` and `path` keys, which could be added via [Metadata][1], showed
 a source icon at the top right corner of a document, linking a document to a
@@ -77,8 +77,8 @@ at arbitrary positions in any document.
 
 ### Hero
 
-:octicons-archive-24: Deprecated: 5.5.0 ·
-:octicons-trash-24: Removal: 6.x
+:octicons-archive-24: Deprecated: 5.5 ·
+:octicons-trash-24: Removed: 6.0
 
 The `hero` key, which could be added via [Metadata][1], allowed to render a
 simple, text-only and page-local teaser text as part of a document. It could
@@ -112,3 +112,25 @@ templates can be shared among multiple pages:
 
   [5]: customization.md#overriding-blocks
   [6]: customization.md#extending-the-theme
+
+## Docker image
+
+### Bundled plugins
+
+:octicons-archive-24: Deprecated: 5.5 ·
+:octicons-trash-24: Removed: 6.0
+
+Over the last years, the Docker image has continually increased in size. For CI
+it's important that download times are as short as possible, which is why the
+following plugins will be removed:
+
+- [mkdocs-awesome-pages-plugin][7]
+- [mkdocs-git-revision-date-localized-plugin][8]
+
+Note that it's trivial to install plugins inside the Docker image before
+building your documentation. See the [installation guide][9] for a step-by-step
+guide.
+
+  [7]: https://github.com/lukasgeiter/mkdocs-awesome-pages-plugin
+  [8]: https://github.com/timvink/mkdocs-git-revision-date-localized-plugin
+  [9]: getting-started.md#with-docker
