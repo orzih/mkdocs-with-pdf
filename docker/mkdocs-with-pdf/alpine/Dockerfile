@@ -6,12 +6,13 @@ ENV PYTHONUNBUFFERED 1
 # Runtimes for WeasyPrint
 #
 RUN apk update \
-    && apk --update --upgrade --no-cache add cairo-dev pango-dev gdk-pixbuf-dev
+    && apk --update --upgrade --no-cache add cairo-dev pango-dev gdk-pixbuf-dev \
+    && apk --update --upgrade --no-cache add libsass
 
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \
-        musl-dev gcc g++ jpeg-dev zlib-dev libffi-dev \
-    && pip install --no-cache-dir \
+        musl-dev g++ jpeg-dev zlib-dev libffi-dev libsass-dev \
+    && SYSTEM_SASS=1 pip install --no-cache-dir \
         mkdocs mkdocs-material \
         mdx-gh-links mkdocs-redirects mkdocs-minify-plugin \
         mkdocs-with-pdf \
@@ -23,7 +24,7 @@ RUN apk --update --upgrade --no-cache add udev chromium \
 
 # Additional font
 COPY fonts /usr/share/fonts/Additional
-RUN apk --update --upgrade --no-cache add fontconfig ttf-roboto font-noto terminus-font \
+RUN apk --update --upgrade --no-cache add fontconfig ttf-freefont font-noto terminus-font \
     && fc-cache -f \
     && fc-list | sort
 
