@@ -293,7 +293,7 @@ class Generator(object):
             # https://discussions.apple.com/thread/251041261
 
             # (probably not duplicated.)
-            anchor = anchor.replace('%', '-')
+            anchor = anchor.replace('%25', '-').replace('%', '-')
             return anchor
 
         for anchor in soup.find_all(id=True):
