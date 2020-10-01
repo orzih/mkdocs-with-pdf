@@ -47,6 +47,8 @@ class Options(object):
     )
 
     def __init__(self, local_config, config, logger: logging):
+        self.strict = True if config['strict'] else False
+
         self.verbose = local_config['verbose']
         self.debug_html = local_config['debug_html']
         self.show_anchors = local_config['show_anchors']

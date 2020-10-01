@@ -10,6 +10,22 @@ from .options import Options
 logging.getLogger(__name__)
 
 
+class _ErrorAndWarningCountFilter(logging.Filter):
+    """ Counts all ERROR and WARNING level log messages. """
+    _error_count = 0
+    _warning_count = 0
+
+    def filter(self, record) -> bool:
+        if record.levelno == logging.ERROR:
+            self._error_count += 1
+        elif record.levelno == logging.WARNING:
+            self._warning_count += 1
+        return True
+
+    def counts(self) -> tuple:
+        return (self._error_count, self._warning_count)
+
+
 class WithPdfPlugin(BasePlugin):
 
     config_scheme = Options.config_scheme
@@ -23,6 +39,8 @@ class WithPdfPlugin(BasePlugin):
 
         self._num_pages = 0
         self._total_time = 0
+
+        self._error_counter = None
 
     def on_config(self, config):
 
@@ -49,6 +67,11 @@ class WithPdfPlugin(BasePlugin):
             self._logger.setLevel(logging.DEBUG)
         else:
             LOGGER.setLevel(logging.ERROR)
+
+        if self._options.strict:
+            self._error_counter = _ErrorAndWarningCountFilter()
+            LOGGER.addFilter(self._error_counter)
+            self._logger.addFilter(self._error_counter)
 
         self.generator = Generator(options=self._options)
 
@@ -87,6 +110,13 @@ class WithPdfPlugin(BasePlugin):
             f'Converting {self._num_pages} articles to PDF'
             f' took {self._total_time:.1f}s'
         )
+
+        if self._error_counter:
+            errors, warnings = self._error_counter.counts()
+            if errors > 0 or warnings > 0:
+                raise RuntimeError(
+                    f'{errors} error(s) and/or {warnings} warning(s)'
+                    + ' occurred while generating PDF.')
 
     def get_path_to_pdf_from(self, start):
         dirname, filename = os.path.split(self.config['output_path'])

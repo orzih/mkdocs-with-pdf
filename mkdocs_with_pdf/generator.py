@@ -301,14 +301,15 @@ class Generator(object):
         for link in soup.find_all('a', href=True):
             link['href'] = normalize_anchor_chars(link['href'])
 
-        if not self._options.debug_html and not self._options.show_anchors:
+        if not (self._options.debug_html or self._options.show_anchors or
+                self._options.strict or self._options.verbose):
             return
 
         from urllib.parse import urlparse
 
         anchors = set(map(lambda el: '#' + el['id'], soup.find_all(id=True)))
 
-        if not self._options.debug_html:
+        if not (self._options.strict or self._options.debug_html):
             self.logger.info('Anchor points provided:')
             for anchor in sorted(anchors):
                 self.logger.info(f'| {anchor}')
@@ -330,9 +331,12 @@ class Generator(object):
             self.logger.error(f'Missing {len(missing)} link(s):')
             for link in sorted(missing):
                 self.logger.warning(f'  | {link}')
-            self.logger.info('  | --- found anchors:')
-            for anchor in sorted(anchors):
-                self.logger.info(f'  | {anchor}')
+            if (self._options.show_anchors or
+               self._options.verbose or
+               self._options.debug_html):
+                self.logger.info('  | --- found anchors:')
+                for anchor in sorted(anchors):
+                    self.logger.info(f'  | {anchor}')
 
     # -------------------------------------------------------------
 
