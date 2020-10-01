@@ -7,7 +7,7 @@
 |            |                                               |
 | ---------: | --------------------------------------------- |
 | Repository | https://github.com/squidfunk/mkdocs-material/ |
-| Commit     | 38942e2af336da6ddd68a9688d6913273ed02a22      |
+| Commit     | f9f48c09c1e33c64cab27250f597e84906c300d5      |
 
 - use Original
   - .browserslistrc
@@ -20,7 +20,7 @@
 - added
   - docs/assets/css
 
-```none
+```console
 $ mkdocs build
 INFO    -  Cleaning site directory
 INFO    -  Building documentation to directory: /tmp/mkdocs-with-pdf/samples/mkdocs-material/site
@@ -28,9 +28,15 @@ WARNING -  Missing article: [Home]()
 INFO    -  Number headings up to level 3.
 INFO    -  Generate a table of contents up to heading level 2.
 INFO    -  Generate a cover page.
+INFO    -  Converting <img> alignment(workaround).
+INFO    -  Converting <iframe> to poster image(if available).
+INFO    -  Converting for two-column layout(heading level 3).
+INFO    -  Rendering on `Headless Chrome`(execute JS).
+INFO    -  Rendering for PDF.
+INFO    -  Output a PDF to "/tmp/mkdocs-with-pdf/samples/mkdocs-material/site/../document.pdf".
 ERROR   -  No anchor #.: for internal URI reference
-INFO    -  Converting 35 articles to PDF took 25.3s
-INFO    -  Documentation built in 28.48 seconds
+INFO    -  Converting 37 articles to PDF took 268.5s
+INFO    -  Documentation built in 271.76 seconds
 ```
 
 ## TODO

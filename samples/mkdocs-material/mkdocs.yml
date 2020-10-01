@@ -51,8 +51,8 @@ theme:
   # Default values, taken from mkdocs_theme.yml
   language: en
   features:
-    - tabs
-    #- instant
+    - navigation.tabs
+    #- navigation.instant
   palette:
     scheme: default
     primary: indigo
@@ -96,10 +96,11 @@ plugins:
           img: https://cdn-cf-east.streamable.com/image/lz4me5-screenshot147626.jpg
       two_columns_level: 3
       render_js: true
-      #headless_chrome_path: chrome
+      #headless_chrome_path: google-chrome
       output_path: ../document.pdf
       #debug_html: true
       #verbose: true
+      #show_anchors: true
 
 #use_directory_urls: false
 
@@ -122,6 +123,7 @@ extra:
 # Extensions
 markdown_extensions:
   - markdown.extensions.admonition
+  - markdown.extensions.abbr
   - markdown.extensions.attr_list
   - markdown.extensions.def_list
   - markdown.extensions.footnotes
@@ -185,6 +187,7 @@ nav:
     - Adding a comment system: setup/adding-a-comment-system.md
     #- Adding a landing page: setup/adding-a-landing-page.md
   - Reference:
+    - Abbreviations: reference/abbreviations.md
     - Admonitions: reference/admonitions.md
     - Buttons: reference/buttons.md
     - Code blocks: reference/code-blocks.md
@@ -197,6 +200,7 @@ nav:
     - Lists: reference/lists.md
     - MathJax: reference/mathjax.md
     - Meta tags: reference/meta-tags.md
+    - Variables: reference/variables.md
   - Changelog:
     - Release notes: changelog.md
     - Upgrading: upgrading.md
