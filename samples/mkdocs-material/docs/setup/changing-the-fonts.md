@@ -109,4 +109,4 @@ globally to be used as the site-wide regular or proportional font:
   [5]: ../data-privacy.md
   [6]: ../customization.md#extending-the-theme
   [7]: ../customization.md#overriding-blocks
-  [8]: ../customization.md#additional-stylesheets
+  [8]: ../customization.md#additional-css
