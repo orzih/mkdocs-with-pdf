@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.7.6 (2020-10-12)
+
+  * options: Allow user to set theme-path in local-conf.
+
 mkdocs-with-pdf 0.7.5 (2020-10-03)
 
   * Support for strict mode.
