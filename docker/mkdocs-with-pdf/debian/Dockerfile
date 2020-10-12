@@ -1,17 +1,19 @@
 FROM python:3.8-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update -y && apt-get upgrade -y \
-    && pip install --no-cache-dir \
+    && pip3 install --no-cache-dir \
         mkdocs mkdocs-material \
         mdx-gh-links mkdocs-redirects mkdocs-minify-plugin \
         weasyprint mkdocs-with-pdf
 
 # Headless Chrome
-RUN apt-get install -y curl gnupg \
+RUN apt-get install --no-install-recommends -y curl gnupg \
     && curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list \
     && apt-get update \
-    && apt-get install -y google-chrome-stable
+    && apt-get install --no-install-recommends -y google-chrome-stable
 
 RUN echo '#!/bin/sh\n\
 exec google-chrome $*\n\
@@ -21,12 +23,13 @@ exec google-chrome $*\n\
 
 # Additional font
 COPY fonts /usr/share/fonts/Additional
-RUN apt-get install -y fontconfig fonts-symbola fonts-roboto fonts-noto fonts-freefont-ttf \
+RUN apt-get install --no-install-recommends -y fontconfig fonts-symbola fonts-noto fonts-freefont-ttf \
     && fc-cache -f \
     && fc-list | sort
 
-RUN apt-get purge --auto-remove -y curl gnupg g++ build-essential \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get purge --auto-remove -y curl gnupg \
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/* \
+    && dpkg -l
 
 # Set working directory and User
 RUN useradd -m --uid 1000 mkdocs
