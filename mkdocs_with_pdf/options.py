@@ -93,7 +93,9 @@ class Options(object):
 
         # Theming
         self.theme_name = config['theme'].name
-        self.theme_handler_path = config.get('theme_handler_path', None)
+        if not self.theme_handler_path:
+            # Read from global config only if plugin config is not set
+            self.theme_handler_path = config.get('theme_handler_path', None)
 
         # for system
         self._logger = logger
