@@ -1,6 +1,9 @@
 from bs4 import PageElement
+from bs4 import BeautifulSoup
+from jinja2 import Template
 
 from .options import Options
+from .options_parser import options_parser
 
 
 def make_cover(soup: PageElement, options: Options):
@@ -16,6 +19,19 @@ def make_cover(soup: PageElement, options: Options):
 
     options.logger.info('Generate a cover page.')
 
+    if options.custom_cover_html:
+        _gen_custom_cover(soup, options)
+    else:
+        _gen_default_cover(soup, options)
+
+
+def _gen_custom_cover(soup: PageElement, options: Options):
+    with open(options.custom_cover_html, 'r') as html_template:
+        template = Template(html_template.read())
+    soup_template = BeautifulSoup(template.render(options_parser()))
+    soup.body.insert(0, soup_template)
+        
+def _gen_default_cover(soup: PageElement, options: Options):
     article = soup.new_tag('article', id='doc-cover')
 
     d = soup.new_tag('div', **{'class': 'wrapper'})

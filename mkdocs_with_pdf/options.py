@@ -28,6 +28,9 @@ class Options(object):
         ('copyright', config_options.Type(str, default=None)),
 
         ('cover', config_options.Type(bool, default=True)),
+        ('custom_cover_html', config_options.Type(str, default=None)),
+        ('custom_cover_scss', config_options.Type(str, default=None)),
+        ('custom_report_print_scss', config_options.Type(str, default=None)),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
 
@@ -72,6 +75,15 @@ class Options(object):
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']
 
+        # custom cover html file
+        self.custom_cover_html = local_config['custom_cover_html']
+
+        # custom cover scss file
+        self.custom_cover_scss = local_config['custom_cover_scss']
+
+        # custom css file for the document
+        self.custom_report_print_scss = local_config['custom_report_print_scss']
+        
         # TOC and Chapter heading
         self.toc_title = _normalize(local_config['toc_title'])
         self.heading_shift = local_config['heading_shift']
@@ -119,3 +131,4 @@ class Options(object):
     @property
     def logger(self) -> logging:
         return self._logger
+
