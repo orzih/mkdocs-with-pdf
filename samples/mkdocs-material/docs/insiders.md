@@ -13,16 +13,6 @@ and how you can [become a sponsor][3].
   [2]: #how-sponsorship-works
   [3]: #how-to-become-a-sponsor
 
-<div style="width:100%;height:0px;position:relative;padding-bottom:56.138%;">
-  <iframe src="https://streamable.com/e/lz4me5" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe>
-</div>
-<p style="text-align: center; font-style: oblique">
-  A demo is worth a thousand words — check it out at <br />
-  <a href="https://squidfunk.github.io/mkdocs-material-insiders/">
-    squidfunk.github.io/mkdocs-material-insiders
-  </a>
-</p>
-
 ## How sponsorship works
 
 New features will first land in Material for MkDocs Insiders, which means that
@@ -59,25 +49,47 @@ get updates for Material for MkDocs Insiders, until you decide to cancel your
 monthly subscription, which you can do at any time.__
 
   [6]: https://github.com/sponsors/squidfunk
-  [7]: #roadmap
+  [7]: #available-features
   [8]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
   [9]: https://gitlab.com
   [10]: https://bitbucket.org
 
+## Available features
+
+The following list shows which features are currently only available in Material
+for MkDocs Insiders. You can click on each feature to learn more about it:
+
+- [x] [Remove _Made with Material for MkDocs_ from footer][11]
+- [x] [Support for user-toggleable themes (light/dark mode switch)][12]
+- [x] [Support for deploying multiple versions][13]
+- [x] [Search suggestions help to save keystrokes][14]
+- [x] [Highlighting of matched search terms in content area][15]
+- [x] Search goes to first result on ++enter++ (I'm feeling lucky)
+- [x] [Navigation can always be expanded via configuration][16]
+- [x] [Header can be automatically hidden on scrolling][17]
+- [x] [Table of contents can be automatically hidden when empty][18]
+
+  [11]: setup/setting-up-the-footer.md#remove-generator
+  [12]: setup/changing-the-colors.md#color-palette-toggle
+  [13]: setup/setting-up-versioning.md#versioning
+  [14]: setup/setting-up-site-search.md#search-suggestions
+  [15]: setup/setting-up-site-search.md#search-highlighting
+  [16]: setup/setting-up-navigation.md#navigation-expansion
+  [17]: setup/setting-up-the-header.md#automatic-hiding
+  [18]: setup/setting-up-navigation.md#automatic-hiding
+
 ## Roadmap
 
 The following list of funding goals – named after varieties of chili peppers 
-[I'm growing on my balcony][11] – shows which features are already available
+[I'm growing on my balcony][19] – shows which features are already available
 in Material for MkDocs Insiders.
 
-  [11]: https://www.instagram.com/squidfunk/
+  [19]: https://www.instagram.com/squidfunk/
 
 ### Madame Jeanette
 
 [:octicons-flame-24: Funding goal: __$500__][6] ·
 :octicons-unlock-24: Status: _released_
-
-New features and improvements for _search_, including:
 
 - [x] Improved search result grouping (pages + headings)
 - [x] Improved search result relevance and scoring
@@ -88,51 +100,48 @@ New features and improvements for _search_, including:
 [:octicons-flame-24: Funding goal: __$1,000__][6] ·
 :octicons-lock-24: Status: _exclusive_
 
-New features and improvements for _content and toc_, including:
-
-- [x] Highlighting of matched search terms in content area
-- [x] Navigation can always be expanded via configuration
-- [x] Header can be automatically hidden on scrolling
-- [x] Table of contents can be automatically hidden when empty
+- [x] [Navigation can always be expanded via configuration][16]
+- [x] [Header can be automatically hidden on scrolling][17]
+- [x] [Table of contents can be automatically hidden when empty][18]
 - [ ] Table of contents can be moved into navigation for more space
-- [ ] Table of contents shows which sections have search results
-- [ ] Table of contents auto-collapses and expands only the active section
 - [ ] Better support for wide screens, i.e. more horizontal space
-- [ ] ... more to come
 
 ### Bhut Jolokia
 
 [:octicons-flame-24: Funding goal: __$1,500__][6] ·
 :octicons-lock-24: Status: _exclusive_
 
-New features and improvements for _hosting multiple versions_, including:
-
-- [ ] Support for multiple languages of documents 
-- [ ] Support for multiple versions of documents
-- [ ] Support for one or more management plugins
-- [ ] ... more to come
+- [x] [Support for deploying multiple versions][13]
+- [ ] Support for deploying multiple languages
 
 ### Black Pearl
 
 [:octicons-flame-24: Funding goal: __$2,000__][6] ·
 :octicons-lock-24: Status: _exclusive_
 
-New features and improvements for _user preferences_, including:
+- [x] [Support for user-toggleable themes (light/dark mode switch)][12]
+- [ ] Support for user-toggleable code-block styles (light/dark mode switch)
+- [ ] Table of contents auto-collapses and expands only the active section
 
-- [x] Support for user-toggleable themes
-- [ ] Support for user-toggleable code-block styles (light/dark)
-- [ ] Display last searches when search is empty
+### Biquinho Vermelho
+
+[:octicons-flame-24: Funding goal: __$2,500__][6] ·
+:octicons-lock-24: Status: _exclusive_
+
+- [x] [Search suggestions help to save keystrokes][14]
+- [x] [Highlighting of matched search terms in content area][15]
+- [x] Search goes to first result on ++enter++ (I'm feeling lucky)
+- [ ] Table of contents shows which sections have search results
+- [ ] Support for a user's last searches
 - [ ] Improved search result summaries
-- [ ] ... more to come
 
 ### Caribbean Red
 
 [:octicons-flame-24: Funding goal: __$3,000__][6] ·
 :octicons-lock-24: Status: _exclusive_
 
-Alternative, completely different _vertical layout_, optimized to read
-documentation and code side-by-side, e.g. for the documentation of APIs with
-the same functionality as Material for MkDocs.
+- [x] [Remove _Made with Material for MkDocs_ from footer][11]
+- [ ] Brand-new and exclusive vertical layout
 
 ## Frequently asked questions
 
@@ -147,8 +156,10 @@ improvements (e.g. search) do not require any changes to existing configuration.
 This means that your users will be able to build the docs locally with the
 regular version and when they push their changes to CI/CD, they will be built
 with Material for MkDocs Insiders. For this reason, it's recommended to
-[install Insiders][12] only in CI, as you don't want to expose your `GH_TOKEN`
+[install Insiders][20] only in CI, as you don't want to expose your `GH_TOKEN`
 to users.
+
+  [20]: publishing-your-site.md#github-pages
 
 ### Terms
 
@@ -158,7 +169,7 @@ terms?_
 
 Yes. Whether you're an individual or a company, you may use _Material for MkDocs
 Insiders_ precisely under the same terms as Material for MkDocs, which are given
-by the [MIT license][13]. However, we kindly ask you to respect the following
+by the [MIT license][21]. However, we kindly ask you to respect the following
 guidelines:
 
 - Please __don't distribute the source code__ from Material for MkDocs Insiders.
@@ -169,8 +180,7 @@ guidelines:
 - If you cancel your subscription, you're removed as a collaborator and will
   miss out on future updates of Material for MkDocs Insiders. However, you may
   __use the latest version__ that's available to you __as long as you like__.
-  Just remember that __[GitHub deletes private forks][14]__.
+  Just remember that __[GitHub deletes private forks][22]__.
 
-  [12]: publishing-your-site.md#github-pages
-  [13]: license.md
-  [14]: https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/removing-a-collaborator-from-a-personal-repository
+  [21]: license.md
+  [22]: https://docs.github.com/en/github/setting-up-and-managing-your-github-user-account/removing-a-collaborator-from-a-personal-repository

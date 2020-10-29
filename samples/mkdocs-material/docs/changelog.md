@@ -6,6 +6,17 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 1.7.0 <small>_ October 25, 2020</small>
+
+* Added support for deploying multiple versions
+* Fixed alignment of sidebar when content area is too small
+
+### 1.6.0 <small>_ October 11, 2020</small>
+
+* Added support for search suggestions to save keystrokes
+* Added support for removing __Made with Material for MkDocs__ from footer
+* Fixed #1915: search should go to first result by pressing ++enter++
+
 ### 1.5.1 <small>_ September 21, 2020</small>
 
 * Fixed content area stretching to whole width for long code blocks
@@ -41,6 +52,19 @@ template: overrides/main.html
 * Improved search result relevance and scoring
 
 ## Material for MkDocs
+
+### 6.1.0 <small>_ October 17, 2020</small>
+
+* Fixed #1973: Added support for printing in dark mode
+* Fixed #1974: Added support for printing content tabs
+* Fixed #1995: Improved customizability of details extension
+
+### 6.0.2 <small>_ October 4, 2020</small>
+
+* Added Georgian translations
+* Added escaping for link `title` attributes where necessary
+* Fixed #1956: Pages with whitespace in names have invalid links in search
+* Removed unnecessary (duplicated) link `title` attributes
 
 ### 6.0.1 <small>_ September 26, 2020</small>
 

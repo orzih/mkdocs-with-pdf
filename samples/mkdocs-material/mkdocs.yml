@@ -77,11 +77,12 @@ plugins:
         extensions/metadata.md: reference/meta-tags.md
         extensions/permalinks.md: setup/setting-up-navigation.md #permalink
         extensions/pymdown.md: reference/admonitions.md
-        plugins/search.md: setup/setting-up-site-search.md
         plugins/revision-date.md: setup/adding-a-git-repository.md #revision-date
+        plugins/search.md: setup/setting-up-site-search.md
         releases/4.md: upgrading.md #upgrading-from-4x-to-5x
         releases/5.md: upgrading.md #upgrading-from-3x-to-4x
         releases/changelog.md: changelog.md
+        setup/adding-social-links.md: setup/setting-up-the-footer.md
         sponsorship.md: insiders.md
   - minify:
       minify_html: true
@@ -122,13 +123,13 @@ extra:
 
 # Extensions
 markdown_extensions:
-  - markdown.extensions.admonition
-  - markdown.extensions.abbr
-  - markdown.extensions.attr_list
-  - markdown.extensions.def_list
-  - markdown.extensions.footnotes
-  - markdown.extensions.meta
-  - markdown.extensions.toc:
+  - admonition
+  - abbr
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - toc:
       permalink: true
   - pymdownx.arithmatex:
       generic: true
@@ -181,8 +182,9 @@ nav:
     - Setting up navigation: setup/setting-up-navigation.md
     - Setting up site search: setup/setting-up-site-search.md
     - Setting up site analytics: setup/setting-up-site-analytics.md
+    - Setting up versioning: setup/setting-up-versioning.md
     - Setting up the header: setup/setting-up-the-header.md
-    - Adding social links: setup/adding-social-links.md
+    - Setting up the footer: setup/setting-up-the-footer.md
     - Adding a git repository: setup/adding-a-git-repository.md
     - Adding a comment system: setup/adding-a-comment-system.md
     #- Adding a landing page: setup/adding-a-landing-page.md
