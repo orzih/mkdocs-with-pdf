@@ -1,21 +1,17 @@
 <article id="doc-cover">
     <div class="wrapper">
     </div><div class="wrapper">
-        {% for plugin in plugins if plugin["with-pdf"] is defined %}
-            <h1>{{ plugin["with-pdf"]["cover_title"] }}</h1>
-            <h2>{{ plugin["with-pdf"]["cover_subtitle"] }}</h2>
-        {% endfor %}
+        <h1>{{ plugin_with_pdf.cover_title }}</h1>
+        <h2>{{ plugin_with_pdf.cover_subtitle }}</h2>
     </div>
     <div class="properties">
         <address>
-            {% for plugin in plugins if plugin["with-pdf"] is defined %}
-                {% if plugin["with-pdf"]["author"] is defined %}
-                    <p id="author">{{ plugin["with-pdf"]["author"] }}</p>
-                {% endif %}
-                {% if plugin["with-pdf"]["copyright"] is defined %}
-                    <p id="copyright">{{ plugin["with-pdf"]["copyright"] }}</p>
-                {% endif %}
-            {% endfor %}
+            {% if plugin_with_pdf.author is defined %}
+                <p id="author">{{ plugin_with_pdf.author }}</p>
+            {% endif %}
+            {% if plugin_with_pdf.copyright is defined %}
+                <p id="copyright">{{ plugin_with_pdf.copyright }}</p>
+            {% endif %}
         </address>
     </div>
 </article>
