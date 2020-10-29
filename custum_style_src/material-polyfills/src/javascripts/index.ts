@@ -4,3 +4,6 @@
 //
 
 import './converter/twemoji'
+
+// and re-definition styles
+import '../stylesheets/polyfills.scss'

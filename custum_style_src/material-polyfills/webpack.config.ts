@@ -1,6 +1,6 @@
 import ImageminPlugin from "imagemin-webpack-plugin"
-import MiniCssExtractPlugin = require("mini-css-extract-plugin")
-import FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries")
 import * as path from "path"
 import { Configuration } from "webpack"
 
@@ -18,6 +18,7 @@ import { Configuration } from "webpack"
 function config(args: Configuration): Configuration {
   return {
     mode: args.mode,
+    target: 'es5',
 
     /* Loaders */
     module: {
@@ -126,10 +127,7 @@ export default (_env: never, args: Configuration): Configuration[] => {
     {
       ...base,
       entry: {
-        'material-polyfills': [
-          'src/javascripts/index.ts',
-          'src/stylesheets/polyfills.scss'
-        ]
+        'material-polyfills': 'src/javascripts/index.ts'
       },
       output: {
         path: path.resolve(__dirname, "dist")
