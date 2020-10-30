@@ -232,6 +232,11 @@ plugins:
     This option allows you to use a different destination for the PDF file.  
     **default**: `pdf/document.pdf`
 
+* `custom_template_path`
+
+    The path where your custom `cover.html` and/or `styles.scss` are located.
+    **default**: `templates`
+
 * `enabled_if_env`
 
     Setting this option will enable the build only if there is an environment variable set to 1. This is useful to disable building the PDF files during development, since it can take a long time to export all files.  
@@ -258,6 +263,39 @@ plugins:
 
     Setting this to `true` will show all WeasyPrint debug messages during the build.  
     **default**: `false`
+
+## Custom cover page and document style
+
+It is possible to create a custom cover page for the document.
+You can also add a custom style sheet to modify the whole document.
+
+To do so, add a `templates` folder at the root level of your `mkdocs` project and place a `cover.html` and/or a `styles.scss` inside.
+Alternatively, you can specify a different location with the `custom_template_path` option.
+
+### Cusstom cover page
+
+Using [jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) syntax, you can access all data from your `mkdocs.yml`.
+To make template creation easier, you can use `plugin_some_plugin` to access variables from plugins.
+E.g. use `plugin_with_pdf.author` to get the author from your `mkdocs.yml` that looks like:
+
+```yaml
+plugins:
+    - with-pdf:
+        author: WHO
+```
+
+Note: Every character that is not `[0-9a-zA-Z]` is replaced with an underscore.
+That's why you have to call variables from `with-pdf` plugin using `plugin_with_pdf`.
+If multiple consecutive characters do not match the above pattern, they are only replaced with one underscore.
+E.g. you can access variables from a plugin called `awesome++plugin` with `plugin_awesome_plugin`.
+
+You can use custom variables inside your `mkdocs.yml`, but doublecheck that they are not already in use. 
+
+### Custom stylesheet
+
+Since your stylesheet is appended to the default ones, you can override every setting from them.
+
+Tip: setting the `debug_html` option to `true` to get the generated html that is passed to `weasyprint` can help you determine the html tags, classes or identifiers you want to modify in your stylesheet.
 
 ## Contributing
 
