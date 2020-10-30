@@ -16,20 +16,24 @@ def style_for_print(options: Options) -> str:
     """
     root = sass.compile(string=scss)
 
+    output_style = 'compressed'
+    if options.debug_html:
+        output_style = 'nested'
+
     base_path = os.path.abspath(os.path.dirname(__file__))
 
     filename = os.path.join(base_path, "report-print.scss")
-    for_printing = sass.compile(filename=filename, output_style='compressed')
+    for_printing = sass.compile(filename=filename, output_style=output_style)
 
     if options.cover:
         filename = os.path.join(base_path, "cover.scss")
-        for_cover = sass.compile(filename=filename, output_style='compressed')
+        for_cover = sass.compile(filename=filename, output_style=output_style)
     else:
         for_cover = ''
     
     filename = os.path.join(options.custom_template_path, 'styles.scss')
     if os.path.exists(filename):
-        custom = sass.compile(filename=filename, output_style='compressed')
+        custom = sass.compile(filename=filename, output_style=output_style)
     else:
         custom = ''
 

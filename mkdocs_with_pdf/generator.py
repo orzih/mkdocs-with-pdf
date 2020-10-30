@@ -99,7 +99,7 @@ class Generator(object):
             pass
 
         add_stylesheet(style_for_print(self._options))
-        add_stylesheet(self._theme.get_stylesheet())
+        add_stylesheet(self._theme.get_stylesheet(self._options.debug_html))
 
         for page in self._nav:
             content = self._get_content(soup, page)
