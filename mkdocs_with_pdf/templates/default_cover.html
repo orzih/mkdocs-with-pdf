@@ -1,0 +1,17 @@
+<article id="doc-cover">
+    <div class="wrapper">
+    </div><div class="wrapper">
+        <h1>{{ plugin_with_pdf.cover_title }}</h1>
+        <h2>{{ plugin_with_pdf.cover_subtitle }}</h2>
+    </div>
+    <div class="properties">
+        <address>
+            {% if plugin_with_pdf.author is defined %}
+                <p id="author">{{ plugin_with_pdf.author }}</p>
+            {% endif %}
+            {% if plugin_with_pdf.copyright is defined %}
+                <p id="copyright">{{ plugin_with_pdf.copyright }}</p>
+            {% endif %}
+        </address>
+    </div>
+</article>

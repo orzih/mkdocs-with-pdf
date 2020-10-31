@@ -4,12 +4,15 @@ import sass
 from bs4 import BeautifulSoup
 
 
-def get_stylesheet() -> str:
+def get_stylesheet(debug_html: bool) -> str:
     base_path = os.path.abspath(os.path.dirname(__file__))
     style = ""
     for src in ["material.scss", "material-polyfills.css"]:
         filename = os.path.join(base_path, src)
-        style += sass.compile(filename=filename, output_style='compressed')
+        output_style = 'compressed'
+        if debug_html:
+            output_style = 'nested'
+        style += sass.compile(filename=filename, output_style=output_style)
     return style
 
 

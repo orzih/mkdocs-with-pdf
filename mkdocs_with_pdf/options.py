@@ -28,6 +28,7 @@ class Options(object):
         ('copyright', config_options.Type(str, default=None)),
 
         ('cover', config_options.Type(bool, default=True)),
+        ('custom_template_path', config_options.Type(str, default="templates")),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
 
@@ -72,6 +73,9 @@ class Options(object):
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']
 
+        # path to custom template 'cover.html' and custom scss 'styles.scss'
+        self.custom_template_path = local_config['custom_template_path']
+        
         # TOC and Chapter heading
         self.toc_title = _normalize(local_config['toc_title'])
         self.heading_shift = local_config['heading_shift']
