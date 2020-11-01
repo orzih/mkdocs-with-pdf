@@ -42,7 +42,7 @@ def style_for_print(options: Options) -> str:
         for_cover = sass.compile(filename=filename, output_style=output_style)
     else:
         for_cover = ''
-    
+
     filename = os.path.join(options.custom_template_path, 'styles.scss')
     if os.path.exists(filename):
         custom = sass.compile(filename=filename, output_style=output_style)

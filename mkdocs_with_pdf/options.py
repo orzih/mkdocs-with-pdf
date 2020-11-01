@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from mkdocs.config import config_options
 
 from .drivers.headless_chrome import HeadlessChromeDriver
+from .template import Template
 
 
 def _normalize(text: str) -> str:
@@ -28,7 +29,8 @@ class Options(object):
         ('copyright', config_options.Type(str, default=None)),
 
         ('cover', config_options.Type(bool, default=True)),
-        ('custom_template_path', config_options.Type(str, default="templates")),
+        ('custom_template_path',
+            config_options.Type(str, default="templates")),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
 
@@ -75,7 +77,7 @@ class Options(object):
 
         # path to custom template 'cover.html' and custom scss 'styles.scss'
         self.custom_template_path = local_config['custom_template_path']
-        
+
         # TOC and Chapter heading
         self.toc_title = _normalize(local_config['toc_title'])
         self.heading_shift = local_config['heading_shift']
@@ -101,6 +103,9 @@ class Options(object):
             # Read from global config only if plugin config is not set
             self.theme_handler_path = config.get('theme_handler_path', None)
 
+        # Template handler(Jinja2 wrapper)
+        self._template = Template(self, config)
+
         # for system
         self._logger = logger
 
@@ -123,3 +128,7 @@ class Options(object):
     @property
     def logger(self) -> logging:
         return self._logger
+
+    @property
+    def template(self) -> Template:
+        return self._template

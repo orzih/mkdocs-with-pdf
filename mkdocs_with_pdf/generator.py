@@ -332,8 +332,8 @@ class Generator(object):
             for link in sorted(missing):
                 self.logger.warning(f'  | {link}')
             if (self._options.show_anchors or
-               self._options.verbose or
-               self._options.debug_html):
+                self._options.verbose or
+                    self._options.debug_html):
                 self.logger.info('  | --- found anchors:')
                 for anchor in sorted(anchors):
                     self.logger.info(f'  | {anchor}')

@@ -1,0 +1,17 @@
+<article id="doc-cover">
+    <div class="wrapper"></div>
+    <div class="wrapper">
+        <h1>{{ cover_title }}</h1>
+        <h2>{{ cover_subtitle }}</h2>
+    </div>
+    <div class="properties">
+        <address>
+            {% if author is defined %}
+                <p id="author">{{ author }}</p>
+            {% endif %}
+            {% if copyright is defined %}
+                <p id="copyright">{{ copyright }}</p>
+            {% endif %}
+        </address>
+    </div>
+</article>
