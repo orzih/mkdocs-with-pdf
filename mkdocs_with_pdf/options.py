@@ -1,4 +1,6 @@
 import logging
+import os
+from urllib.parse import urlparse
 
 from bs4 import BeautifulSoup
 from mkdocs.config import config_options
@@ -33,6 +35,7 @@ class Options(object):
             config_options.Type(str, default="templates")),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
+        ('cover_logo', config_options.Type(str, default=None)),
 
         ('toc_title', config_options.Type(str, default="Table of contents")),
         ('heading_shift', config_options.Type(bool, default=True)),
@@ -106,8 +109,32 @@ class Options(object):
         # Template handler(Jinja2 wrapper)
         self._template = Template(self, config)
 
+        if self.cover:
+            self._logo_url = self._url_for(local_config['cover_logo'], config)
+
         # for system
         self._logger = logger
+
+    def _url_for(self, href: str, config) -> str:
+        target_url = urlparse(href)
+        if target_url.scheme or target_url.netloc:
+            return href
+
+        dirs = [
+            self.custom_template_path,
+            getattr(config['theme'], 'custom_dir', None),
+            config['docs_dir'],
+            '.'
+        ]
+
+        for d in dirs:
+            if not d:
+                continue
+            path = os.path.abspath(os.path.join(d, href))
+            if os.path.isfile(path):
+                return 'file://' + path
+
+        return None
 
     @property
     def author(self) -> str:
@@ -124,6 +151,10 @@ class Options(object):
     @property
     def cover_subtitle(self) -> str:
         return self._cover_subtitle
+
+    @property
+    def logo_url(self) -> str:
+        return self._logo_url
 
     @property
     def logger(self) -> logging:

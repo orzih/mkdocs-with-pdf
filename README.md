@@ -144,6 +144,12 @@ plugins:
     Set the subtitle text in cover page.  
     **default**: `None`
 
+* `cover_logo`
+
+    Set the logo image in cover page. This value is URL or simply specify the relative path to the docs directory.  
+    **default**: `None`  
+    _**since**: `v0.8.0`_
+
 ##### for Heading and TOC
 
 * `toc_title`
@@ -235,7 +241,8 @@ plugins:
 * `custom_template_path`
 
     The path where your custom `cover.html` and/or `styles.scss` are located.
-    **default**: `templates`
+    **default**: `templates`  
+    _**since**: `v0.8.0`_
 
 * `enabled_if_env`
 
@@ -272,11 +279,11 @@ You can also add a custom style sheet to modify the whole document.
 To do so, add a `templates` folder at the root level of your `mkdocs` project and place a `cover.html` and/or a `styles.scss` inside.
 Alternatively, you can specify a different location with the `custom_template_path` option.
 
-### Cusstom cover page
+### Custom cover page
 
 Using [jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) syntax, you can access all data from your `mkdocs.yml`.
 To make template creation easier, you can use `plugin_some_plugin` to access variables from plugins.
-E.g. use `plugin_with_pdf.author` to get the author from your `mkdocs.yml` that looks like:
+E.g. use `{{ author }}` to get the author from your `mkdocs.yml` that looks like:
 
 ```yaml
 plugins:
@@ -284,12 +291,8 @@ plugins:
         author: WHO
 ```
 
-Note: Every character that is not `[0-9a-zA-Z]` is replaced with an underscore.
-That's why you have to call variables from `with-pdf` plugin using `plugin_with_pdf`.
-If multiple consecutive characters do not match the above pattern, they are only replaced with one underscore.
-E.g. you can access variables from a plugin called `awesome++plugin` with `plugin_awesome_plugin`.
-
-You can use custom variables inside your `mkdocs.yml`, but doublecheck that they are not already in use. 
+You can use custom variables [`extra:` in your `mkdocs.yml`](https://www.mkdocs.org/user-guide/configuration/#extra)
+And, you can check it in the log if run with `verbose` or `debug_html` options.
 
 ### Custom stylesheet
 
