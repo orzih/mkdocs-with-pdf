@@ -21,7 +21,8 @@ class Options(object):
         ('debug_html', config_options.Type(bool, default=False)),
         ('show_anchors', config_options.Type(bool, default=False)),
 
-        ('output_path', config_options.Type(str, default="pdf/document.pdf")),
+        ('output_pdf_name', config_options.Type(str, default="document")),
+        ('output_path', config_options.Type(str, default="pdf/")),
         ('theme_handler_path', config_options.Type(str, default=None)),
 
         ('author', config_options.Type(str, default=None)),
@@ -43,7 +44,9 @@ class Options(object):
 
         ('render_js', config_options.Type(bool, default=False)),
         ('headless_chrome_path',
-            config_options.Type(str, default='chromium-browser'))
+            config_options.Type(str, default='chromium-browser')),
+        ('use_relaxed_js_renderer',
+            config_options.Type(bool, default=False)),
     )
 
     def __init__(self, local_config, config, logger: logging):
@@ -54,6 +57,7 @@ class Options(object):
         self.show_anchors = local_config['show_anchors']
 
         self.output_path = local_config.get('output_path', None)
+        self.output_pdf_name = local_config.get('output_pdf_name', None)
         self.theme_handler_path = local_config.get('theme_handler_path', None)
 
         # Author and Copyright
@@ -84,6 +88,11 @@ class Options(object):
         self.convert_iframe = local_config['convert_iframe']
 
         self.two_columns_level = local_config['two_columns_level']
+
+        if local_config['use_relaxed_js_renderer']:
+            self.use_relaxed_js_renderer = True
+        else:
+            self.use_relaxed_js_renderer = False
 
         # ...etc.
         self.js_renderer = None
