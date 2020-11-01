@@ -116,10 +116,15 @@ class Options(object):
         self._logger = logger
 
     def _url_for(self, href: str, config) -> str:
+        if not href:
+            return None
+
+        # Check for URL(eg. 'https://...')
         target_url = urlparse(href)
         if target_url.scheme or target_url.netloc:
             return href
 
+        # Search image file in below directories:
         dirs = [
             self.custom_template_path,
             getattr(config['theme'], 'custom_dir', None),
