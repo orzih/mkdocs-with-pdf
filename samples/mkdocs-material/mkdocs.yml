@@ -88,7 +88,9 @@ plugins:
       minify_html: true
   - with-pdf:
       #cover_title:
-      cover_subtitle: A Material Design theme for MkDocs
+      cover_subtitle: Technical documentation that just works
+      cover_logo: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.png
+      back_cover: true
       toc_level: 2
       excludes_children:
         - 'releases/changelog/:upgrading'
