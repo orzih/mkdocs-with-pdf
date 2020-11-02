@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
 
-def get_stylesheet() -> str:
+def get_stylesheet(debug_html: bool) -> str:
     return None
 
 
