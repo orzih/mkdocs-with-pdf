@@ -19,10 +19,10 @@ class Barcode(_FilterBase):
     #  'isbn10', 'isbn13', 'issn', 'jan',
     #  'pzn', 'upc', 'upca']
 
-    def __call__(self, value, codec='isbn'):
-        coder = barcode.get_barcode_class(codec)
-        img = coder(value)
+    def __call__(self, value, kind, **kwargs):
+        coder = barcode.get_barcode_class(kind)
+        img = coder(value, writer=None, **kwargs)
         with io.BytesIO() as stream:
-            img.write(stream)
+            img.write(stream, dict(compress=True))
             data = base64.b64encode(stream.getvalue())
             return 'data:image/svg;base64,' + data.decode("ascii")

@@ -1,9 +1,12 @@
 import os
+from datetime import datetime
 
 import jinja2
 from mkdocs.config.base import Config
 
+from .filters.datetime import strftime, strptime
 from .filters.url import URLFilter
+
 try:
     from .filters.barcode import Barcode
 except ModuleNotFoundError:
@@ -51,6 +54,9 @@ class Template(object):
                 lstrip_blocks=True,
                 trim_blocks=True)
 
+            env.filters['strptime'] = strptime
+            env.filters['strftime'] = strftime
+
             env.filters['to_url'] = URLFilter(self._options, self._config)
 
             if Barcode:
@@ -77,8 +83,12 @@ class Template(object):
                     keywords[key] = getattr(self._options, key)
                 elif hasattr(self._config, key):
                     keywords[key] = getattr(self._config, key)
+
+            keywords['now'] = datetime.now()
+
             if self._options.verbose or self._options.debug_html:
                 self._options.logger.info(f'Template variables: {keywords}')
+
             return keywords
 
         if not self._keywords:
