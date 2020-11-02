@@ -74,6 +74,31 @@ class Template(object):
     def keywords(self) -> dict:
         """ Keywords to pass when rendering the template. """
 
+        import html
+
+        def unescape_html_in_list(values: list) -> list:
+            new_values = []
+            for v in values:
+                if isinstance(v, str):
+                    new_values.append(html.unescape(v))
+                elif isinstance(v, list):
+                    new_values.append(unescape_html_in_list(v))
+                elif isinstance(v, dict):
+                    unescape_html(v)
+                    new_values.append(v)
+                else:
+                    new_values.append(v)
+            return new_values
+
+        def unescape_html(variables: dict):
+            for k, v in variables.items():
+                if isinstance(v, str):
+                    variables[k] = html.unescape(v)
+                elif isinstance(v, list):
+                    variables[k] = unescape_html_in_list(v)
+                elif isinstance(v, dict):
+                    unescape_html(v)
+
         def build_keywords():
             # keywords = {}
             keywords = self._config['extra']
@@ -83,6 +108,8 @@ class Template(object):
                     keywords[key] = getattr(self._options, key)
                 elif key in self._config:
                     keywords[key] = self._config[key]
+
+            unescape_html(keywords)
 
             keywords['now'] = datetime.now()
 

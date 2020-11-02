@@ -1,4 +1,6 @@
+import html
 import os
+
 import sass
 
 from ..options import Options
@@ -9,6 +11,8 @@ def _css_escape(text: str) -> str:
 
     if not text:
         return ''
+
+    text = html.unescape(text)
 
     # -- probably not needed.
     # text = text.encode('unicode-escape').decode('ascii').replace('\\u', '\\')
