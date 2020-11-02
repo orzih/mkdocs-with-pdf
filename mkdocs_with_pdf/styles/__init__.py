@@ -19,8 +19,9 @@ def _css_escape(text: str) -> str:
 def style_for_print(options: Options) -> str:
     scss = f"""
     :root {{
-        string-set: author '{_css_escape(options.author)}';
-        string-set: copyright '{_css_escape(options.copyright)}';
+        string-set: author '{_css_escape(options.author)}',
+            copyright '{_css_escape(options.copyright)}',
+            title '{_css_escape(options.cover_title)}';
     }}
     h1, h2, h3 {{
         string-set: chapter content();
@@ -37,7 +38,7 @@ def style_for_print(options: Options) -> str:
     filename = os.path.join(base_path, "report-print.scss")
     css += sass.compile(filename=filename, output_style=output_style)
 
-    if options.cover:
+    if options.cover or options.back_cover:
         filename = os.path.join(base_path, "cover.scss")
         css += sass.compile(filename=filename, output_style=output_style)
 

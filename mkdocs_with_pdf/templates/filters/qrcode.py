@@ -50,7 +50,7 @@ def _save_kind(fmt: _Format):
 def _content_type(fmt: _Format) -> str:
     if fmt == _Format.PNG:
         return 'image/png'
-    return 'image/svg'
+    return 'image/svg+xml;charset=utf-8'
 
 
 class QRCode(_FilterBase):

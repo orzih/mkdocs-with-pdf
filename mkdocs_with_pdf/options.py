@@ -22,11 +22,12 @@ class Options(object):
         ('copyright', config_options.Type(str, default=None)),
 
         ('cover', config_options.Type(bool, default=True)),
-        ('custom_template_path',
-            config_options.Type(str, default="templates")),
+        ('back_cover', config_options.Type(bool, default=False)),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
         ('cover_logo', config_options.Type(str, default=None)),
+        ('custom_template_path',
+            config_options.Type(str, default="templates")),
 
         ('toc_title', config_options.Type(str, default="Table of contents")),
         ('heading_shift', config_options.Type(bool, default=True)),
@@ -63,7 +64,8 @@ class Options(object):
 
         # Cover
         self.cover = local_config['cover']
-        if self.cover:
+        self.back_cover = local_config['back_cover']
+        if self.cover or self.back_cover:
             self._cover_title = local_config['cover_title'] \
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']

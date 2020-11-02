@@ -68,8 +68,10 @@ plugins:
         #copyright: ANY TEXT
         #
         #cover: false
+        #back_cover: true
         #cover_title: TITLE TEXT
         #cover_subtitle: SUBTITLE TEXT
+        #custom_template_path: TEMPLATES PATH
         #
         #toc_title: TOC TITLE TEXT
         #heading_shift: false
@@ -133,6 +135,18 @@ plugins:
 
     Set the value to `false` if you don't need a cover page.  
     **default**: `true`
+
+* `back_cover`
+
+    Set the value to `true` if you need a back cover page.  
+    **default**: `false`  
+    _**since**: `v0.8.0`_
+
+    You would be better to install the `qrcode` package:
+
+    ```sh
+    pip install qrcode
+    ```
 
 * `cover_title`
 

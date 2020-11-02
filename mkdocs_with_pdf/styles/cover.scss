@@ -57,5 +57,61 @@ article#doc-cover {
       font-size: 80%;
     }
   }
+}
 
+$back_cover-bg: #eee;
+
+article#doc-back_cover {
+  page: back_cover;
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .wrapper {
+    flex: 1 0 auto;
+    display: inline-block;
+    background: $back_cover-bg;
+  }
+
+  .qrcode {
+    display: inline-block;
+    flex: 0 0 auto;
+    background: $back_cover-bg;
+
+    > a {
+      display: inline-block;
+      padding: 0.5em 2em;
+      border-radius: 1em;
+      background-color: #fff;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+@page back_cover {
+  background-color: $back_cover-bg;
+
+  @top-right {
+    content: normal;
+  }
+
+  @bottom-center {
+    content: normal;
+  }
+
+  @bottom-left {
+    font-size: 8pt;
+    content: string(title);
+  }
+
+  @bottom-right {
+    font-size: 8pt;
+    content: string(copyright);
+  }
 }

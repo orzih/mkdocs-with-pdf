@@ -81,13 +81,16 @@ class Template(object):
             for key in self.__KEYS:
                 if hasattr(self._options, key):
                     keywords[key] = getattr(self._options, key)
-                elif hasattr(self._config, key):
-                    keywords[key] = getattr(self._config, key)
+                elif key in self._config:
+                    keywords[key] = self._config[key]
 
             keywords['now'] = datetime.now()
 
             if self._options.verbose or self._options.debug_html:
-                self._options.logger.info(f'Template variables: {keywords}')
+                from pprint import pformat
+                self._options.logger.info('Template variables:')
+                for line in pformat(keywords).split('\n'):
+                    self._options.logger.info('  ' + line)
 
             return keywords
 

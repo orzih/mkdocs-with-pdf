@@ -25,4 +25,5 @@ class Barcode(_FilterBase):
         with io.BytesIO() as stream:
             img.write(stream, dict(compress=True))
             data = base64.b64encode(stream.getvalue())
-            return 'data:image/svg;base64,' + data.decode("ascii")
+            return 'data:image/svg+xml;charset=utf-8;base64,' + \
+                data.decode("ascii")
