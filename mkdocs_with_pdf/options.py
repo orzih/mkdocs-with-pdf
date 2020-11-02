@@ -1,18 +1,9 @@
 import logging
-import os
-from urllib.parse import urlparse
 
-from bs4 import BeautifulSoup
 from mkdocs.config import config_options
 
 from .drivers.headless_chrome import HeadlessChromeDriver
-from .template import Template
-
-
-def _normalize(text: str) -> str:
-    if text:
-        return BeautifulSoup(text, 'html.parser').text
-    return None
+from .templates.template import Template
 
 
 class Options(object):
@@ -60,16 +51,15 @@ class Options(object):
         self.show_anchors = local_config['show_anchors']
 
         self.output_path = local_config.get('output_path', None)
-        self.theme_handler_path = local_config.get('theme_handler_path', None)
 
         # Author and Copyright
-        self._author = _normalize(local_config['author'])
+        self._author = local_config['author']
         if not self._author:
-            self._author = _normalize(config['site_author'])
+            self._author = config['site_author']
 
-        self._copyright = _normalize(local_config['copyright'])
+        self._copyright = local_config['copyright']
         if not self._copyright:
-            self._copyright = _normalize(config['copyright'])
+            self._copyright = config['copyright']
 
         # Cover
         self.cover = local_config['cover']
@@ -77,12 +67,13 @@ class Options(object):
             self._cover_title = local_config['cover_title'] \
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']
+            self._cover_logo = local_config['cover_logo']
 
         # path to custom template 'cover.html' and custom scss 'styles.scss'
         self.custom_template_path = local_config['custom_template_path']
 
         # TOC and Chapter heading
-        self.toc_title = _normalize(local_config['toc_title'])
+        self.toc_title = local_config['toc_title']
         self.heading_shift = local_config['heading_shift']
         self.toc_level = local_config['toc_level']
         self.ordered_chapter_level = local_config['ordered_chapter_level']
@@ -102,6 +93,7 @@ class Options(object):
 
         # Theming
         self.theme_name = config['theme'].name
+        self.theme_handler_path = local_config.get('theme_handler_path', None)
         if not self.theme_handler_path:
             # Read from global config only if plugin config is not set
             self.theme_handler_path = config.get('theme_handler_path', None)
@@ -109,37 +101,8 @@ class Options(object):
         # Template handler(Jinja2 wrapper)
         self._template = Template(self, config)
 
-        if self.cover:
-            self._logo_url = self._url_for(local_config['cover_logo'], config)
-
         # for system
         self._logger = logger
-
-    def _url_for(self, href: str, config) -> str:
-        if not href:
-            return None
-
-        # Check for URL(eg. 'https://...')
-        target_url = urlparse(href)
-        if target_url.scheme or target_url.netloc:
-            return href
-
-        # Search image file in below directories:
-        dirs = [
-            self.custom_template_path,
-            getattr(config['theme'], 'custom_dir', None),
-            config['docs_dir'],
-            '.'
-        ]
-
-        for d in dirs:
-            if not d:
-                continue
-            path = os.path.abspath(os.path.join(d, href))
-            if os.path.isfile(path):
-                return 'file://' + path
-
-        return None
 
     @property
     def author(self) -> str:
@@ -158,8 +121,8 @@ class Options(object):
         return self._cover_subtitle
 
     @property
-    def logo_url(self) -> str:
-        return self._logo_url
+    def cover_logo(self) -> str:
+        return self._cover_logo
 
     @property
     def logger(self) -> logging:

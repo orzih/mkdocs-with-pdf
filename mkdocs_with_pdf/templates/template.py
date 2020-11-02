@@ -3,13 +3,23 @@ import os
 import jinja2
 from mkdocs.config.base import Config
 
+from .filters.url import URLFilter
+try:
+    from .filters.barcode import Barcode
+except ModuleNotFoundError:
+    Barcode = None
+try:
+    from .filters.qrcode import QRCode
+except ModuleNotFoundError:
+    QRCode = None
+
 
 class Template(object):
 
     """ Pickups key-value from `mkdocs.yml` """
     __KEYS = [
         "author", "copyright",
-        "cover_title", "cover_subtitle", "logo_url",
+        "cover_title", "cover_subtitle", "cover_logo",
 
         "site_url",
         "repo_url"
@@ -24,9 +34,10 @@ class Template(object):
 
     @property
     def _env(self) -> jinja2.Environment:
-        if not self._jinja_env:
+
+        def generate():
             base_path = os.path.abspath(os.path.dirname(__file__))
-            template_paths = [os.path.join(base_path, 'templates')]
+            template_paths = [os.path.join(base_path, '.')]
 
             if os.path.exists(self._options.custom_template_path):
                 template_paths.append(self._options.custom_template_path)
@@ -34,11 +45,23 @@ class Template(object):
             file_loader = jinja2.FileSystemLoader(template_paths)
             logging_undefined = jinja2.make_logging_undefined(
                 logger=self._options.logger, base=jinja2.Undefined)
-            self._jinja_env = jinja2.Environment(
+            env = jinja2.Environment(
                 loader=file_loader,
                 undefined=logging_undefined,
                 lstrip_blocks=True,
                 trim_blocks=True)
+
+            env.filters['to_url'] = URLFilter(self._options, self._config)
+
+            if Barcode:
+                env.filters['barcode'] = Barcode(self._options, self._config)
+            if QRCode:
+                env.filters['qrcode'] = QRCode(self._options, self._config)
+
+            return env
+
+        if not self._jinja_env:
+            self._jinja_env = generate()
         return self._jinja_env
 
     @property
