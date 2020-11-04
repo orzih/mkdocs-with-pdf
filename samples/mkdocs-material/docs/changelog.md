@@ -6,6 +6,11 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 1.8.0 <small>_ November 1, 2020</small>
+
+* Added support for navigation sections
+* Fixed appearance of inactive search suggestions
+
 ### 1.7.0 <small>_ October 25, 2020</small>
 
 * Added support for deploying multiple versions
@@ -52,6 +57,14 @@ template: overrides/main.html
 * Improved search result relevance and scoring
 
 ## Material for MkDocs
+
+### 6.1.2 <small>_ October 31, 2020</small>
+
+* Fixed sizing of icons in Admonition, Tasklist, etc. (6.1.1 regression)
+
+### 6.1.1 <small>_ October 31, 2020</small>
+
+* Fixed #2019: Page title not correctly updated when using instant loading
 
 ### 6.1.0 <small>_ October 17, 2020</small>
 

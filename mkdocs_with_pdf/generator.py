@@ -99,7 +99,7 @@ class Generator(object):
             pass
 
         add_stylesheet(style_for_print(self._options))
-        add_stylesheet(self._theme.get_stylesheet())
+        add_stylesheet(self._theme.get_stylesheet(self._options.debug_html))
 
         for page in self._nav:
             content = self._get_content(soup, page)
@@ -341,8 +341,8 @@ class Generator(object):
             for link in sorted(missing):
                 self.logger.warning(f'  | {link}')
             if (self._options.show_anchors or
-               self._options.verbose or
-               self._options.debug_html):
+                self._options.verbose or
+                    self._options.debug_html):
                 self.logger.info('  | --- found anchors:')
                 for anchor in sorted(anchors):
                     self.logger.info(f'  | {anchor}')

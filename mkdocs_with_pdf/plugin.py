@@ -26,6 +26,20 @@ class _ErrorAndWarningCountFilter(logging.Filter):
         return (self._error_count, self._warning_count)
 
 
+class _CaptureWarnings:
+    """ for Capture bs4 warnings """
+
+    def __init__(self, filter: logging.Filter):
+        logging.captureWarnings(True)
+        self._logger = logging.getLogger("py.warnings")
+        self._logger.addFilter(filter)
+        self._filter = filter
+
+    def __del__(self):
+        logging.captureWarnings(False)
+        self._logger.removeFilter(self._filter)
+
+
 class WithPdfPlugin(BasePlugin):
 
     config_scheme = Options.config_scheme
@@ -83,6 +97,8 @@ class WithPdfPlugin(BasePlugin):
 
     def on_nav(self, nav, config, files):
         if self.enabled:
+            _ = _CaptureWarnings(self._error_counter) \
+                if (self._options.strict) else None
             self.generator.on_nav(nav)
         return nav
 
@@ -90,9 +106,12 @@ class WithPdfPlugin(BasePlugin):
         if not self.enabled:
             return output_content
 
+        _ = _CaptureWarnings(self._error_counter) \
+            if (self._options.strict) else None
+
         self._num_pages += 1
         start = timer()
-        pdf_path = self.get_path_to_pdf_from(page.file.dest_path)
+        pdf_path = self._get_path_to_pdf_from(page.file.dest_path)
         modified = self.generator.on_post_page(output_content, page, pdf_path)
         end = timer()
         self._total_time += (end - start)
@@ -101,6 +120,9 @@ class WithPdfPlugin(BasePlugin):
     def on_post_build(self, config):
         if not self.enabled:
             return
+
+        _ = _CaptureWarnings(self._error_counter) \
+            if (self._options.strict) else None
 
         start = timer()
         self.generator.on_post_build(config, self.config['output_path'])
@@ -112,13 +134,13 @@ class WithPdfPlugin(BasePlugin):
         )
 
         if self._error_counter:
-            errors, warnings = self._error_counter.counts()
-            if errors > 0 or warnings > 0:
+            errors, warns = self._error_counter.counts()
+            if errors > 0 or warns > 0:
                 raise RuntimeError(
-                    f'{errors} error(s) and/or {warnings} warning(s)'
+                    f'{errors} error(s) and/or {warns} warning(s)'
                     + ' occurred while generating PDF.')
 
-    def get_path_to_pdf_from(self, start):
+    def _get_path_to_pdf_from(self, start):
         dirname, filename = os.path.split(self.config['output_path'])
         if not dirname:
             dirname = '.'

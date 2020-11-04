@@ -68,8 +68,10 @@ plugins:
         #copyright: ANY TEXT
         #
         #cover: false
+        #back_cover: true
         #cover_title: TITLE TEXT
         #cover_subtitle: SUBTITLE TEXT
+        #custom_template_path: TEMPLATES PATH
         #
         #toc_title: TOC TITLE TEXT
         #heading_shift: false
@@ -134,6 +136,18 @@ plugins:
     Set the value to `false` if you don't need a cover page.  
     **default**: `true`
 
+* `back_cover`
+
+    Set the value to `true` if you need a back cover page.  
+    **default**: `false`  
+    _**since**: `v0.8.0`_
+
+    You would be better to install the `qrcode` package:
+
+    ```sh
+    pip install qrcode
+    ```
+
 * `cover_title`
 
     Set the title text in cover page.  
@@ -143,6 +157,12 @@ plugins:
 
     Set the subtitle text in cover page.  
     **default**: `None`
+
+* `cover_logo`
+
+    Set the logo image in cover page. This value is URL or simply specify the relative path to the docs directory.  
+    **default**: `None`  
+    _**since**: `v0.8.0`_
 
 ##### for Heading and TOC
 
@@ -248,6 +268,12 @@ plugins:
     This option allows you to use a different destination for the PDF file.  
     **default**: `pdf/document.pdf`
 
+* `custom_template_path`
+
+    The path where your custom `cover.html` and/or `styles.scss` are located.
+    **default**: `templates`  
+    _**since**: `v0.8.0`_
+
 * `enabled_if_env`
 
     Setting this option will enable the build only if there is an environment variable set to 1. This is useful to disable building the PDF files during development, since it can take a long time to export all files.  
@@ -274,6 +300,35 @@ plugins:
 
     Setting this to `true` will show all WeasyPrint debug messages during the build.  
     **default**: `false`
+
+## Custom cover page and document style
+
+It is possible to create a custom cover page for the document.
+You can also add a custom style sheet to modify the whole document.
+
+To do so, add a `templates` folder at the root level of your `mkdocs` project and place a `cover.html` and/or a `styles.scss` inside.
+Alternatively, you can specify a different location with the `custom_template_path` option.
+
+### Custom cover page
+
+Using [jinja2](https://jinja.palletsprojects.com/en/2.11.x/templates/) syntax, you can access all data from your `mkdocs.yml`.
+To make template creation easier, you can use `plugin_some_plugin` to access variables from plugins.
+E.g. use `{{ author }}` to get the author from your `mkdocs.yml` that looks like:
+
+```yaml
+plugins:
+    - with-pdf:
+        author: WHO
+```
+
+You can use custom variables [`extra:` in your `mkdocs.yml`](https://www.mkdocs.org/user-guide/configuration/#extra)
+And, you can check it in the log if run with `verbose` or `debug_html` options.
+
+### Custom stylesheet
+
+Since your stylesheet is appended to the default ones, you can override every setting from them.
+
+Tip: setting the `debug_html` option to `true` to get the generated html that is passed to `weasyprint` can help you determine the html tags, classes or identifiers you want to modify in your stylesheet.
 
 ## Contributing
 

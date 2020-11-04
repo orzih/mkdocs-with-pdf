@@ -42,7 +42,7 @@ def make_indexes(soup: PageElement, options: Options) -> None:
 
     toc = soup.new_tag('article', id='doc-toc')
     title = soup.new_tag('h1')
-    title.append(options.toc_title)
+    title.append(soup.new_string(options.toc_title))
     toc.append(title)
 
     h1ul = soup.new_tag('ul')

@@ -1,0 +1,13 @@
+<article id="doc-back_cover">
+    <div class="wrapper"></div>
+    {%- set target_url = site_url or repo_url -%}
+    {% if target_url is defined -%}
+    <div class="qrcode">
+        <a href="{{ target_url }}">
+            <img src="{{ target_url | qrcode }}"/>
+            <div>{{ target_url }}</div>
+        </a>
+    </div>
+    {%- endif %}
+    <div class="wrapper"></div>
+</article>

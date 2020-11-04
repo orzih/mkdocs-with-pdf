@@ -1,16 +1,10 @@
 import logging
 
-from bs4 import BeautifulSoup
 from mkdocs.config import config_options
 
 from .drivers.headless_chrome import HeadlessChromeDriver
 from .drivers.relaxedjs import RelaxedJSRenderer
-
-
-def _normalize(text: str) -> str:
-    if text:
-        return BeautifulSoup(text, 'html.parser').text
-    return None
+from .templates.template import Template
 
 
 class Options(object):
@@ -29,8 +23,12 @@ class Options(object):
         ('copyright', config_options.Type(str, default=None)),
 
         ('cover', config_options.Type(bool, default=True)),
+        ('back_cover', config_options.Type(bool, default=False)),
         ('cover_title', config_options.Type(str, default=None)),
         ('cover_subtitle', config_options.Type(str, default=None)),
+        ('cover_logo', config_options.Type(str, default=None)),
+        ('custom_template_path',
+            config_options.Type(str, default="templates")),
 
         ('toc_title', config_options.Type(str, default="Table of contents")),
         ('heading_shift', config_options.Type(bool, default=True)),
@@ -57,26 +55,30 @@ class Options(object):
         self.show_anchors = local_config['show_anchors']
 
         self.output_path = local_config.get('output_path', None)
-        self.theme_handler_path = local_config.get('theme_handler_path', None)
 
         # Author and Copyright
-        self._author = _normalize(local_config['author'])
+        self._author = local_config['author']
         if not self._author:
-            self._author = _normalize(config['site_author'])
+            self._author = config['site_author']
 
-        self._copyright = _normalize(local_config['copyright'])
+        self._copyright = local_config['copyright']
         if not self._copyright:
-            self._copyright = _normalize(config['copyright'])
+            self._copyright = config['copyright']
 
         # Cover
         self.cover = local_config['cover']
-        if self.cover:
+        self.back_cover = local_config['back_cover']
+        if self.cover or self.back_cover:
             self._cover_title = local_config['cover_title'] \
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']
+            self._cover_logo = local_config['cover_logo']
+
+        # path to custom template 'cover.html' and custom scss 'styles.scss'
+        self.custom_template_path = local_config['custom_template_path']
 
         # TOC and Chapter heading
-        self.toc_title = _normalize(local_config['toc_title'])
+        self.toc_title = local_config['toc_title']
         self.heading_shift = local_config['heading_shift']
         self.toc_level = local_config['toc_level']
         self.ordered_chapter_level = local_config['ordered_chapter_level']
@@ -99,9 +101,13 @@ class Options(object):
 
         # Theming
         self.theme_name = config['theme'].name
+        self.theme_handler_path = local_config.get('theme_handler_path', None)
         if not self.theme_handler_path:
             # Read from global config only if plugin config is not set
             self.theme_handler_path = config.get('theme_handler_path', None)
+
+        # Template handler(Jinja2 wrapper)
+        self._template = Template(self, config)
 
         # for system
         self._logger = logger
@@ -123,5 +129,13 @@ class Options(object):
         return self._cover_subtitle
 
     @property
+    def cover_logo(self) -> str:
+        return self._cover_logo
+
+    @property
     def logger(self) -> logging:
         return self._logger
+
+    @property
+    def template(self) -> Template:
+        return self._template
