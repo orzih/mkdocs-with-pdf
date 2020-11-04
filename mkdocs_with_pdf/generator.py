@@ -1,7 +1,6 @@
 import logging
 import os
 import re
-import subprocess
 from importlib import import_module
 from importlib.util import module_from_spec, spec_from_file_location
 
@@ -119,29 +118,29 @@ class Generator(object):
                                 self._options.two_columns_level,
                                 self._options.logger)
         self._normalize_link_anchors(soup)
-        html_string = self._render_js(soup)
+
+        if self._options.relaxed_js:
+            html_string = str(soup)
+        else:
+            html_string = self._render_js(soup)
 
         if self._options.debug_html:
             print(f'{html_string}')
 
+        self.logger.info("Rendering for PDF.")
+
         abs_pdf_path = os.path.join(config['site_dir'], output_path)
-        output_pdf_name = self._options.output_pdf_name
         os.makedirs(os.path.dirname(abs_pdf_path), exist_ok=True)
 
-        self.logger.info("Rendering for PDF.")
         self.logger.info(f'Output a PDF to "{abs_pdf_path}".')
 
-        if self._options.use_relaxed_js_renderer:
-            self.logger.info("Use 'Relaxed' JS renderer.")
-            output_html_name = os.path.join(abs_pdf_path, output_pdf_name + '.html')
-            with open(output_html_name, 'w+') as f:
-                f.write(html_string)
-                f.close()
-            subprocess.call(["relaxed", output_html_name, "--build-once"])
+        if self._options.relaxed_js:
+            self._options.relaxed_js.write_pdf(
+                html_string, abs_pdf_path)
         else:
             html = HTML(string=html_string)
             render = html.render()
-            render.write_pdf(abs_pdf_path + output_pdf_name + ".pdf")
+            render.write_pdf(abs_pdf_path)
 
     # ------------------------
     def _remove_empty_tags(self, soup: PageElement):
@@ -362,7 +361,4 @@ class Generator(object):
                 for src in scripts:
                     body.append(soup.new_tag('script', src=f'file://{src}'))
 
-        if self._options.use_relaxed_js_renderer:
-            return str(soup)
-        else:
-            return self._options.js_renderer.render(str(soup))
+        return self._options.js_renderer.render(str(soup))

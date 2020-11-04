@@ -225,14 +225,15 @@ plugins:
 >    <ANY_SITE_URL(eg. 'https://google.com')>
 > ```
 
-* `use_relaxed_js_renderer`
+* `relaxed_js_path`
 
-    Set the value to `true` if you're using e.g. '[Mermaid](https://mermaid-js.github.io) diagrams and Headless Chrome is not working for you.
+    Set the value to execute command of relaxed if you're using e.g. '[Mermaid](https://mermaid-js.github.io) diagrams and Headless Chrome is not working for you.
     Require "ReLaXed" Javascript PDF renderer to be installed on your system. See: '[ReLaXed](https://github.com/RelaxedJS/ReLaXed)'.
 
     Please use 'theme_handler_path' option to specify custom JS sources and CSS Stylesheets which covers your needs. E.g. for Material
-    theme it would be **material.py**. See: **mkdocs-with-pdf/mkdocs_with_pdf/themes/material.py** for implementation details.
-    **default**: `false`
+    theme it would be **material.py**. See: **mkdocs-with-pdf/mkdocs_with_pdf/themes/material.py** for implementation details.  
+    **default**: `None`  
+    _**since**: `v0.7.0`_
 
 > Install on your system:
 > ```
