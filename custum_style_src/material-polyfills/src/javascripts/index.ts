@@ -4,6 +4,7 @@
 //
 
 import './converter/twemoji'
+import './converter/mermaid'
 
 // and re-definition styles
 import '../stylesheets/polyfills.scss'

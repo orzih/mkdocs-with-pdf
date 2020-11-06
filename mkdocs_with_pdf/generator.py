@@ -31,6 +31,9 @@ class Generator(object):
         self._nav = None
         self._head = None
 
+        self._scraped_scripts = []
+        self._mixed_script = ''
+
     def on_nav(self, nav):
         """ on_nav """
         self._nav = nav
@@ -78,6 +81,7 @@ class Generator(object):
                 a.decompose()
             self._fix_missing_id_for_h1(article, page)
             setattr(page, 'pdf-article', article)
+            self._scrap_scripts(soup)
         else:
             self.logger.warning(f'Missing article: [{page.title}]({page.url})')
 
@@ -349,6 +353,43 @@ class Generator(object):
         if len(scripts) > 0:
             body = soup.find('body')
             if body:
+                for script in self._scraped_scripts:
+                    body.append(script)
+                if len(self._mixed_script) > 0:
+                    tag = soup.new_tag('script')
+                    tag.text = self._mixed_script
+                    body.append(tag)
                 for src in scripts:
                     body.append(soup.new_tag('script', src=f'file://{src}'))
+
         return self._options.js_renderer.render(str(soup))
+
+    def _scrap_scripts(self, soup):
+        if not self._options.js_renderer:
+            return
+
+        # CAUTION:
+        # It does not consider cases where the tag contains both src and text.
+
+        scripts = soup.select('body>script')
+        if not scripts:
+            return
+
+        def exists_src(src):
+            for script in self._scraped_scripts:
+                if src == script['src']:
+                    return True
+            return False
+
+        for script in scripts:
+            if script.has_attr('src'):
+                src = script['src']
+                if (not src
+                    or not re.match(r'^http?s://', src)
+                        or exists_src(src)):
+                    continue
+                self._scraped_scripts.append(script)
+            else:
+                text = script.get_text()
+                if text:
+                    self._mixed_script += ';' + text
