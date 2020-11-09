@@ -11,14 +11,13 @@ const convertSVGto = (svgElement: SVGSVGElement) => {
   image.style.height = svgElement.height + "px";
 
   const xml = new XMLSerializer().serializeToString(svgElement);
-  const svg64 = btoa(xml);
+  const svg64 = btoa(unescape(encodeURIComponent(xml)));
   const image64 = 'data:image/svg+xml;base64,' + svg64;
 
   // Get data URL encoding of image
   image.setAttribute("src", image64);
 
-  parent.insertBefore(image, svgElement);
-  parent.removeChild(svgElement);
+  parent.replaceChild(image, svgElement);
 }
 
 /**
