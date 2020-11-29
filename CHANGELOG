@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.8.1 (2020-11-30)
+
+  * Removed compressed css output_style to avoid problems with umlauts.
+
 mkdocs-with-pdf 0.8.0 (2020-11-03)
 
   * Changed for the template processing of the cover page to be based on jinja2.
