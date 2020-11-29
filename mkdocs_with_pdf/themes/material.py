@@ -9,10 +9,7 @@ def get_stylesheet(debug_html: bool) -> str:
     style = ""
     for src in ["material.scss", "material-polyfills.css"]:
         filename = os.path.join(base_path, src)
-        output_style = 'compressed'
-        if debug_html:
-            output_style = 'nested'
-        style += sass.compile(filename=filename, output_style=output_style)
+        style += sass.compile(filename=filename)
     return style
 
 

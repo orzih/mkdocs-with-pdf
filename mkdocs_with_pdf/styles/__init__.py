@@ -33,21 +33,17 @@ def style_for_print(options: Options) -> str:
     """
     css = sass.compile(string=scss)
 
-    output_style = 'compressed'
-    if options.debug_html:
-        output_style = 'nested'
-
     base_path = os.path.abspath(os.path.dirname(__file__))
 
     filename = os.path.join(base_path, "report-print.scss")
-    css += sass.compile(filename=filename, output_style=output_style)
+    css += sass.compile(filename=filename)
 
     if options.cover or options.back_cover:
         filename = os.path.join(base_path, "cover.scss")
-        css += sass.compile(filename=filename, output_style=output_style)
+        css += sass.compile(filename=filename)
 
     filename = os.path.join(options.custom_template_path, 'styles.scss')
     if os.path.exists(filename):
-        css += sass.compile(filename=filename, output_style=output_style)
+        css += sass.compile(filename=filename)
 
     return css

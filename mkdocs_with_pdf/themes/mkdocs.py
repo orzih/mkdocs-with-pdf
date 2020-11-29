@@ -7,10 +7,7 @@ from bs4 import BeautifulSoup
 def get_stylesheet(debug_html: bool) -> str:
     base_path = os.path.abspath(os.path.dirname(__file__))
     filename = os.path.join(base_path, "mkdocs.scss")
-    output_style = 'compressed'
-    if debug_html:
-        output_style = 'nested'
-    return sass.compile(filename=filename, output_style=output_style)
+    return sass.compile(filename=filename)
 
 
 def get_script_sources() -> list:
