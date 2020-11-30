@@ -1,4 +1,4 @@
-recursive-include mkdocs_with_pdf *.scss *.css *.js *.j2 *.html
+recursive-include mkdocs_with_pdf *.scss *.css *.js *.j2 *.html *.map
 recursive-exclude samples *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
