@@ -40,10 +40,33 @@
     border-bottom: 0.5px solid #e91e63;
   }
 
+  .md-typeset .tx-insiders-container {
+    display: block;
+    clear: both;
+  }
+
+  .md-typeset .tx-insiders-container .tx-insiders-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .md-typeset .tx-insiders-container .tx-insiders-list .tx-insiders-list__item {
+    float: none;
+  }
+
   section.md-typeset[data-url="/changelog/"] h4+ul {
     margin: 0;
   }
   section.md-typeset[data-url="/changelog/"] ul>li {
     margin-bottom: 0;
+  }
+
+  article a,
+  article blockquote,
+  article table,
+  article ul,
+  article ol {
+    page-break-before: auto !important;
+    page-break-inside: auto !important;
   }
 }

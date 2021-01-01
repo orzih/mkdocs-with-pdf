@@ -59,16 +59,16 @@ theme:
 
 Some popular choices:
 
-* :fontawesome-brands-git: – `fontawesome/brands/git`
-* :fontawesome-brands-git-alt: – `fontawesome/brands/git-alt`
-* :fontawesome-brands-git-square: – `fontawesome/brands/git-square`
-* :fontawesome-brands-github: – `fontawesome/brands/github`
-* :fontawesome-brands-github-alt: – `fontawesome/brands/github-alt`
-* :fontawesome-brands-github-square: – `fontawesome/brands/github-square`
-* :fontawesome-brands-gitlab: – `fontawesome/brands/gitlab`
-* :fontawesome-brands-gitkraken: – `fontawesome/brands/gitkraken`
-* :fontawesome-brands-bitbucket: – `fontawesome/brands/bitbucket`
-* :fontawesome-solid-trash: – `fontawesome/solid/trash`
+- :fontawesome-brands-git: – `fontawesome/brands/git`
+- :fontawesome-brands-git-alt: – `fontawesome/brands/git-alt`
+- :fontawesome-brands-git-square: – `fontawesome/brands/git-square`
+- :fontawesome-brands-github: – `fontawesome/brands/github`
+- :fontawesome-brands-github-alt: – `fontawesome/brands/github-alt`
+- :fontawesome-brands-github-square: – `fontawesome/brands/github-square`
+- :fontawesome-brands-gitlab: – `fontawesome/brands/gitlab`
+- :fontawesome-brands-gitkraken: – `fontawesome/brands/gitkraken`
+- :fontawesome-brands-bitbucket: – `fontawesome/brands/bitbucket`
+- :fontawesome-solid-trash: – `fontawesome/solid/trash`
 
   [4]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
 
@@ -93,7 +93,7 @@ behavior can be changed by setting [`edit_uri`][9] in `mkdocs.yml`:
     edit_uri: ""
     ```
 
-  [5]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html#L285-L294
+  [5]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html
   [6]: https://github.com/
   [7]: https://about.gitlab.com/
   [8]: https://bitbucket.org/

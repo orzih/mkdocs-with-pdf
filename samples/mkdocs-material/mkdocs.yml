@@ -51,8 +51,9 @@ theme:
   # Default values, taken from mkdocs_theme.yml
   language: en
   features:
+    # - navigation.instant
+    - navigation.sections
     - navigation.tabs
-    #- navigation.instant
   palette:
     scheme: default
     primary: indigo
@@ -95,8 +96,8 @@ plugins:
       excludes_children:
         - 'releases/changelog/:upgrading'
       convert_iframe:
-        - src: https://streamable.com/e/lz4me5
-          img: https://cdn-cf-east.streamable.com/image/lz4me5-screenshot147626.jpg
+        - src: https://streamable.com/e/zmtb00
+          img: https://cdn-cf-east.streamable.com/image/zmtb00-screenshot75403.jpg
       two_columns_level: 3
       render_js: true
       #headless_chrome_path: google-chrome
@@ -131,6 +132,7 @@ markdown_extensions:
   - def_list
   - footnotes
   - meta
+  - md_in_html
   - toc:
       permalink: true
   - pymdownx.arithmatex:
@@ -189,7 +191,6 @@ nav:
     - Setting up the footer: setup/setting-up-the-footer.md
     - Adding a git repository: setup/adding-a-git-repository.md
     - Adding a comment system: setup/adding-a-comment-system.md
-    #- Adding a landing page: setup/adding-a-landing-page.md
   - Reference:
     - Abbreviations: reference/abbreviations.md
     - Admonitions: reference/admonitions.md
@@ -206,9 +207,11 @@ nav:
     - Meta tags: reference/meta-tags.md
     - Variables: reference/variables.md
   - Changelog:
-    - Release notes: changelog.md
-    - Upgrading: upgrading.md
-    - Deprecations: deprecations.md
+    - Material for MkDocs: changelog.md
+    - Material for MkDocs Insiders: changelog/insiders.md
+    - Guides:
+      - Upgrading: upgrading.md
+      - Deprecations: deprecations.md
 
 # Google Analytics
 google_analytics:
