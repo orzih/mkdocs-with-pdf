@@ -263,6 +263,29 @@ plugins:
     Setting this option will enable the build only if there is an environment variable set to 1. This is useful to disable building the PDF files during development, since it can take a long time to export all files.  
     **default**: `None`
 
+    PDF generation can take significantly longer than HTML generation which can slow down mkdocs's built-in dev-server.
+
+    Adding `enabled_if_env: ENABLE_PDF_EXPORT` under `- with-pdf:` disables PDF generation during development.  Run the dev-server normally:
+
+    ```sh
+    $ mkdocs serve
+    INFO    -  Browser Connected: http://127.0.0.1:8000/
+    INFO    -  Running task: builder (delay: None)
+    INFO    -  Building documentation...
+    WARNING -  without generate PDF(set environment variable ENABLE_PDF_EXPORT to 1 to enable)
+    ... 2 seconds later ...
+    INFO    -  Reload 1 waiters: /.../index.md
+    ```
+
+    and to build files to deploy specify `ENABLE_PDF_EXPORT=1` at the command line:
+
+    ```sh
+    $ ENABLE_PDF_EXPORT=1 mkdocs build
+    ...
+    INFO    -  Converting 10 articles to PDF took 7.1s
+    INFO    -  Documentation built in 8.29 seconds
+    ```
+
 * `debug_html`
 
     Setting this to `true` will out HTML to `stdout` on build time.  
