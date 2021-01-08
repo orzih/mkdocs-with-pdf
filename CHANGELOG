@@ -1,3 +1,10 @@
+mkdocs-with-pdf 0.8.2 (2021-01-08)
+
+  * Added a rendering hook module handler.
+  * Added highlighttable style for material.
+  * Added headless-chrome launch options.
+  * Changed to collect JS for each page.
+
 mkdocs-with-pdf 0.8.1 (2020-11-30)
 
   * Removed compressed css output_style to avoid problems with umlauts.
