@@ -81,7 +81,8 @@ class Generator(object):
         else:
             self.logger.warning(f'Missing article: [{page.title}]({page.url})')
 
-        return self._theme.inject_link(output_content, pdf_path)
+        return self._options.hook.inject_link(
+            output_content, pdf_path, page, self._theme)
 
     def on_post_build(self, config, output_path):
         if self._head:
@@ -119,6 +120,8 @@ class Generator(object):
                                 self._options.logger)
         self._normalize_link_anchors(soup)
         html_string = self._render_js(soup)
+
+        html_string = self._options.hook.pre_pdf_render(html_string)
 
         if self._options.debug_html:
             print(f'{html_string}')
@@ -344,6 +347,8 @@ class Generator(object):
         if not self._options.js_renderer:
             fix_twemoji(soup, self._options.logger)
             return str(soup)
+
+        soup = self._options.hook.pre_js_render(soup)
 
         scripts = self._theme.get_script_sources()
         if len(scripts) > 0:

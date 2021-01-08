@@ -2,6 +2,7 @@ import logging
 
 from mkdocs.config import config_options
 
+from .drivers.event_hook import EventHookHandler
 from .drivers.headless_chrome import HeadlessChromeDriver
 from .templates.template import Template
 
@@ -103,6 +104,8 @@ class Options(object):
         # Template handler(Jinja2 wrapper)
         self._template = Template(self, config)
 
+        self._hook = EventHookHandler(self, config, logger)
+
         # for system
         self._logger = logger
 
@@ -133,3 +136,7 @@ class Options(object):
     @property
     def template(self) -> Template:
         return self._template
+
+    @property
+    def hook(self) -> EventHookHandler:
+        return self._hook

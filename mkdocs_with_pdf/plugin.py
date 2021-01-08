@@ -4,6 +4,7 @@ from timeit import default_timer as timer
 
 from mkdocs.plugins import BasePlugin
 
+from .drivers.event_hook import EventHookHandler
 from .generator import Generator
 from .options import Options
 
@@ -55,6 +56,11 @@ class WithPdfPlugin(BasePlugin):
         self._total_time = 0
 
         self._error_counter = None
+
+    def on_serve(self, server, config, builder, **kwargs):
+        EventHookHandler.on_serve(server, builder, self._logger)
+
+        return server
 
     def on_config(self, config):
 
