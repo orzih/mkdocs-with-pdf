@@ -23,10 +23,10 @@ libsass = "*"
 weasyprint = "*"
 
 [requires]
-python_version = "3.6"
+#python_version = "3.6"
 
 [pipenv]
-allow_prereleases = true
+#allow_prereleases = true
 
 [scripts]
 lint = "flake8 --show-source mkdocs_with_pdf"
