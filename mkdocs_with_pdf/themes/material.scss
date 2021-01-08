@@ -31,6 +31,11 @@
       }
     }
 
+    .admonition-title+.tabbed-set:last-child,
+    summary+.tabbed-set:last-child {
+      margin-top: 0.5rem;
+    }
+
     // details
     > details summary::after {
         display: none;
