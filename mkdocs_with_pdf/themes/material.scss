@@ -50,6 +50,16 @@
     &>table.highlighttable {
       margin: 0 0 0 0.7rem;
     }
+    table.highlighttable,
+    table.highlighttable>tbody {
+      width: 100%;
+    }
+    table.highlighttable {
+      padding-bottom: 0.5em;
+      .linenos {
+        padding-bottom: 0;
+      }
+    }
     &>ul {
       margin-left: 1.5rem;
     }
