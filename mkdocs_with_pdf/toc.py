@@ -12,6 +12,11 @@ def make_indexes(soup: PageElement, options: Options) -> None:
         options {Options} -- The options of this sequence.
     """
 
+    if options.toc:
+        _make_indexes(soup, options)
+
+
+def _make_indexes(soup: PageElement, options: Options) -> None:
     # Step 1: (re)ordered headdings
     _inject_heading_order(soup, options)
 

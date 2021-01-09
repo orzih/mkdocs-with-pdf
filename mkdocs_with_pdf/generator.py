@@ -102,7 +102,7 @@ class Generator(object):
         add_stylesheet(self._theme.get_stylesheet(self._options.debug_html))
 
         for page in self._nav:
-            if getattr(page, "url", None) == "toc":
+            if getattr(page, "url", None) == "toc" and self._options.toc:
                 content = soup.new_tag('article', id='doc-toc') 
             else:
                 content = self._get_content(soup, page)
