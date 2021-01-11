@@ -9,11 +9,11 @@ from .filters.url import URLFilter
 
 try:
     from .filters.barcode import Barcode
-except ModuleNotFoundError:
+except ImportError:
     Barcode = None
 try:
     from .filters.qrcode import QRCode
-except ModuleNotFoundError:
+except ImportError:
     QRCode = None
 
 

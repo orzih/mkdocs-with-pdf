@@ -13,7 +13,7 @@ class HeadlessChromeDriver(object):
         if not which(program_path):
             raise RuntimeError(
                 'No such `Headless Chrome` program or not executable'
-                + f': "{program_path}".')
+                + ': ' + program_path + '.')
         return self(program_path, logger)
 
     def __init__(self, program_path: str, logger: Logger):
@@ -41,7 +41,7 @@ class HeadlessChromeDriver(object):
                 return chrome.stdout.read().decode('utf-8')
 
         except Exception as e:
-            self._logger.error(f'Failed to render by JS: {e}')
+            self._logger.error('Failed to render by JS: %s', e)
         finally:
             os.unlink(temp.name)
 

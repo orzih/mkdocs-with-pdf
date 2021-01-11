@@ -21,16 +21,20 @@ def _css_escape(text: str) -> str:
 
 
 def style_for_print(options: Options) -> str:
-    scss = f"""
-    :root {{
-        string-set: author '{_css_escape(options.author)}',
-            copyright '{_css_escape(options.copyright)}',
-            title '{_css_escape(options.cover_title)}';
-    }}
-    h1, h2, h3 {{
+    scss = """
+    :root {
+        string-set: author '%s',
+            copyright '%s',
+            title '%s';
+    }
+    h1, h2, h3 {
         string-set: chapter content();
-    }}
-    """
+    }
+    """ % (
+        _css_escape(options.author),
+        _css_escape(options.copyright),
+        _css_escape(options.cover_title)
+    )
     css = sass.compile(string=scss)
 
     base_path = os.path.abspath(os.path.dirname(__file__))

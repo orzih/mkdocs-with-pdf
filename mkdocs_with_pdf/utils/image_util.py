@@ -17,7 +17,7 @@ def fix_image_alignment(soup: PageElement, logger: Logger = None):
 
             styles = _parse_style(getattr(img, 'style', ''))
 
-            logger.debug(f'  | {img}')
+            logger.debug('  | {}'.format(img))
             if img.has_attr('align'):
                 if img['align'] == 'left':
                     styles['float'] = 'left'
@@ -37,10 +37,11 @@ def fix_image_alignment(soup: PageElement, logger: Logger = None):
                 styles['height'] = _convert_dimension(img['height'])
                 img.attrs.pop('height')
 
-            img['style'] = " ".join(f'{k}: {v};' for k, v in styles.items())
+            img['style'] = " ".join('{}: {};'.format(k, v)
+                                    for k, v in styles.items())
         except Exception as e:
             if logger:
-                logger.warning(f'Failed to convert img align: {e}')
+                logger.warning('Failed to convert img align: %s', e)
             pass
 
 
@@ -65,7 +66,8 @@ def images_size_to_half_in(section: Tag):
             if key in styles:
                 (dim, u) = _split(styles[key])
                 styles[key] = str(int(dim) / 2) + u
-        img['style'] = " ".join(f'{k}: {v};' for k, v in styles.items())
+        img['style'] = " ".join('{}: {};'.format(k, v)
+                                for k, v in styles.items())
 
 
 def _parse_style(style_string: str) -> dict:

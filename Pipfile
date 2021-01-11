@@ -13,7 +13,6 @@ autopep8 = "*"
 mdx-gh-links = "*"
 mkdocs-redirects = "*"
 mkdocs-minify-plugin = "*"
-python-barcode = "*"
 qrcode = "*"
 
 [packages]
@@ -30,5 +29,5 @@ weasyprint = "*"
 
 [scripts]
 lint = "flake8 --show-source mkdocs_with_pdf"
-format = "autopep8 -ivr mkdocs_with_pdf"
+format = "autopep8 -ivaar mkdocs_with_pdf"
 test = "python -m unittest discover -v -s tests"

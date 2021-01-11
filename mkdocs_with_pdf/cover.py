@@ -23,7 +23,7 @@ def _make_cover(soup: PageElement, options: Options):
         keywords = options.template.keywords
         template = options.template.select(['cover', 'default_cover'])
 
-        options.logger.info(f'Generate a cover page with "{template.name}".')
+        options.logger.info('Generate a cover page with "%s".', template.name)
         soup_template = BeautifulSoup(template.render(keywords), 'html.parser')
 
         soup.body.insert(0, soup_template)
@@ -38,7 +38,7 @@ def _make_back_cover(soup: PageElement, options: Options):
             ['back_cover', 'default_back_cover'])
 
         options.logger.info(
-            f'Generate a back cover page with "{template.name}".')
+            'Generate a back cover page with "%s".', template.name)
         soup_template = BeautifulSoup(template.render(keywords), 'html.parser')
 
         soup.body.append(soup_template)

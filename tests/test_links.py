@@ -21,7 +21,7 @@ class TransformHrefTestCase(unittest.TestCase):
                         continue
 
                     r = transform_href(href, rel_url)
-                    self.assertEqual(r, x_href, f'"{scene}" at {index}')
+                    self.assertEqual(r, x_href, '"{}" at {}'.format(scene, index))
 
         run_test('on TOP(level 0)', [
             # [[href, rel_url], x_href]

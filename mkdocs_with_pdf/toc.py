@@ -21,7 +21,7 @@ def make_indexes(soup: PageElement, options: Options) -> None:
         return
 
     options.logger.info(
-        f'Generate a table of contents up to heading level {level}.')
+        'Generate a table of contents up to heading level %d.', level)
 
     h1li = None
     h2ul = h2li = h3ul = None
@@ -30,14 +30,14 @@ def make_indexes(soup: PageElement, options: Options) -> None:
     def makeLink(h: Tag) -> Tag:
         li = soup.new_tag('li')
         ref = h.get('id', '')
-        a = soup.new_tag('a', href=f'#{ref}')
+        a = soup.new_tag('a', href='#{}'.format(ref))
         for el in h.contents:
             if el.name == 'a':
                 a.append(el.contents[0])
             else:
                 a.append(clone_element(el))
         li.append(a)
-        options.logger.debug(f"| [{h.get_text(separator=' ')}]({ref})")
+        options.logger.debug("| [%s](%s)", h.get_text(separator=' '), ref)
         return li
 
     toc = soup.new_tag('article', id='doc-toc')
@@ -94,7 +94,7 @@ def _inject_heading_order(soup: Tag, options: Options):
     if level < 1 or level > 3:
         return
 
-    options.logger.info(f'Number headings up to level {level}.')
+    options.logger.info('Number headings up to level %d.', level)
 
     h1n = h2n = h3n = 0
     exclude_lv2 = exclude_lv3 = False
@@ -106,7 +106,7 @@ def _inject_heading_order(soup: Tag, options: Options):
 
             h1n += 1
             h2n = h3n = 0
-            prefix = f'{h1n}. '
+            prefix = '{}. '.format(h1n)
 
             exclude_lv2 = _is_exclude(h.get('id', None), options)
 
@@ -114,7 +114,7 @@ def _inject_heading_order(soup: Tag, options: Options):
 
             h2n += 1
             h3n = 0
-            prefix = f'{h1n}.{h2n} '
+            prefix = '{}.{} '.format(h1n, h2n)
 
             exclude_lv3 = _is_exclude(h.get('id', None), options)
 
@@ -122,12 +122,13 @@ def _inject_heading_order(soup: Tag, options: Options):
                 and h.name == 'h3' and level >= 3:
 
             h3n += 1
-            prefix = f'{h1n}.{h2n}.{h3n} '
+            prefix = '{}.{}.{} '.format(h1n, h2n, h3n)
 
         else:
             continue
 
-        options.logger.debug(f"| [{prefix} {h.text}]({h.get('id', '(none)')})")
+        options.logger.debug('| [%s %s](%s)', prefix,
+                             h.text, h.get('id', '(none)'))
 
         nm_tag = soup.new_tag('span', **{'class': 'pdf-order'})
         nm_tag.append(prefix)
@@ -139,7 +140,7 @@ def _is_exclude(url: str, options: Options) -> bool:
         return False
 
     if url in options.excludes_children:
-        options.logger.info(f"|  (exclude '{url}')")
+        options.logger.info("|  (exclude '%s')", url)
         return True
 
     return False

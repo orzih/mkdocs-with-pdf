@@ -38,7 +38,7 @@ class Generator(object):
         """ on_nav """
         self._nav = nav
         if nav:
-            self._options.logger.debug(f'theme: {self._theme}')
+            self._options.logger.debug('theme: %s', self._theme)
 
     def on_post_page(self, output_content: str, page, pdf_path: str) -> str:
         """ on_post_page """
@@ -47,10 +47,10 @@ class Generator(object):
             return url in self._options.exclude_pages
 
         if is_excluded(page.url):
-            self.logger.info(f'Page skipped: [{page.title}]({page.url})')
-            return f"<!-- skipped '{page}' -->"
+            self.logger.info('Page skipped: [%s](%s)', page.title, page.url)
+            return "<!-- skipped '{}' -->".format(page)
         else:
-            self.logger.debug(f' (post: [{page.title}]({page.url})')
+            self.logger.debug(' (post: [%s](%s)', page.title, page.url)
 
         soup = self._soup_from_content(output_content, page)
 
@@ -58,7 +58,7 @@ class Generator(object):
 
         if not self._head:
             self._head = soup.find('head')
-            # self.logger.debug(f'{self._head}')
+            # self.logger.debug('%s', self._head)
 
         # for 'material'
         article = soup.find('article')
@@ -83,7 +83,8 @@ class Generator(object):
             setattr(page, 'pdf-article', article)
             self._scrap_scripts(soup)
         else:
-            self.logger.warning(f'Missing article: [{page.title}]({page.url})')
+            self.logger.warning(
+                'Missing article: [%s](%s)', page.title, page.url)
 
         return self._options.hook.inject_link(
             output_content, pdf_path, page, self._theme)
@@ -128,7 +129,7 @@ class Generator(object):
         html_string = self._options.hook.pre_pdf_render(html_string)
 
         if self._options.debug_html:
-            print(f'{html_string}')
+            print(html_string)
 
         self.logger.info("Rendering for PDF.")
         html = HTML(string=html_string)
@@ -137,7 +138,7 @@ class Generator(object):
         abs_pdf_path = os.path.join(config['site_dir'], output_path)
         os.makedirs(os.path.dirname(abs_pdf_path), exist_ok=True)
 
-        self.logger.info(f'Output a PDF to "{abs_pdf_path}".')
+        self.logger.info('Output a PDF to "%s".', abs_pdf_path)
         render.write_pdf(abs_pdf_path)
 
     # ------------------------
@@ -156,7 +157,7 @@ class Generator(object):
             hit = False
             for x in soup.find_all():
                 if x.name in includes and is_blank(x):
-                    # self.logger.debug(f'Strip: {x}')
+                    # self.logger.debug('Strip: %s'%(x))
                     x.extract()
                     hit = True
             if not hit:
@@ -199,13 +200,13 @@ class Generator(object):
         def shift_heading(elem, page):
             for i in range(7, 0, -1):
                 while True:
-                    h = elem.find(f'h{i}')
+                    h = elem.find('h%d' % (i))
                     if not h:
                         break
-                    h.name = f'h{i + 1}'
+                    h.name = 'h%d' % (i + 1)
 
             page_path = self._page_path_for_id(page)
-            h1 = soup.new_tag('h1', id=f'{page_path}')
+            h1 = soup.new_tag('h1', id=str(page_path))
             h1.append(page.title)
             elem.insert(0, h1)
             return elem
@@ -220,8 +221,8 @@ class Generator(object):
         if article:
 
             page_path = self._page_path_for_id(page)
-            article['id'] = f'{page_path}:'  # anchor for each page.
-            article['data-url'] = f'/{page_path}'
+            article['id'] = '{}:'.format(page_path)  # anchor for each page.
+            article['data-url'] = '/{}'.format(page_path)
             return article
 
         elif page.children:
@@ -246,8 +247,9 @@ class Generator(object):
                 child_article['class'] = cleanup_class(classes)
 
             page_path = self._page_path_for_id(page)
-            new_article['id'] = f'{page_path}:'  # anchor for each page.
-            new_article['data-url'] = f'/{page_path}'
+            # anchor for each page.
+            new_article['id'] = '{}:'.format(page_path)
+            new_article['data-url'] = '/{}'.format(page_path)
             if child_classes:
                 new_article['class'] = child_classes
 
@@ -282,14 +284,15 @@ class Generator(object):
                 return mod
             except FileNotFoundError as e:
                 self.logger.error(
-                    f'Could not load theme handler {theme}'
-                    f' from custom directory "{custom_handler_path}": {e}')
+                    'Could not load theme handler %s'
+                    ' from custom directory "%s": %s',
+                    theme, custom_handler_path, e)
                 pass
 
         try:
             return import_module(module_name, 'mkdocs_with_pdf.themes')
         except ImportError as e:
-            self.logger.error(f'Could not load theme handler {theme}: {e}')
+            self.logger.error('Could not load theme handler %s: %s', theme, e)
             return generic_theme
 
     # -------------------------------------------------------------
@@ -319,7 +322,7 @@ class Generator(object):
         if not (self._options.strict or self._options.debug_html):
             self.logger.info('Anchor points provided:')
             for anchor in sorted(anchors):
-                self.logger.info(f'| {anchor}')
+                self.logger.info('| %s', anchor)
             return
 
         missing = set()
@@ -335,15 +338,15 @@ class Generator(object):
             missing.add(href)
 
         if len(missing):
-            self.logger.error(f'Missing {len(missing)} link(s):')
+            self.logger.error('Missing %d link(s):', len(missing))
             for link in sorted(missing):
-                self.logger.warning(f'  | {link}')
+                self.logger.warning('  | %s', link)
             if (self._options.show_anchors or
                 self._options.verbose or
                     self._options.debug_html):
                 self.logger.info('  | --- found anchors:')
                 for anchor in sorted(anchors):
-                    self.logger.info(f'  | {anchor}')
+                    self.logger.info('  | %s', anchor)
 
     # -------------------------------------------------------------
 
@@ -365,7 +368,8 @@ class Generator(object):
                     tag.text = self._mixed_script
                     body.append(tag)
                 for src in scripts:
-                    body.append(soup.new_tag('script', src=f'file://{src}'))
+                    body.append(soup.new_tag(
+                        'script', src='file://%s' % (src)))
 
         return self._options.js_renderer.render(str(soup))
 

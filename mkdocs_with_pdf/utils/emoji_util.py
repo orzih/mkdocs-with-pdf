@@ -40,12 +40,12 @@ def fix_twemoji(soup: PageElement, logger: Logger = None):
             svg.replace_with(img)
 
             if logger:
-                logger.debug(f'> svg: {svg}')
-                logger.debug(f'< img: {img}')
+                logger.debug('> svg: {}'.format(svg))
+                logger.debug('< img: {}'.format(img))
 
         except Exception as e:
             if logger:
-                logger.warning(f'Failed to convert SVG: {e}')
+                logger.warning('Failed to convert SVG: %s', e)
             pass
 
 

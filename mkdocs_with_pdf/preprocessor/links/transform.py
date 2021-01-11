@@ -27,7 +27,7 @@ def transform_href(href: str, rel_url: str) -> str:
         target = urljoin(rel_url, target_url.path)
 
         if target in ['/', '.', 'index.html']:
-            return f'#.:{hash}'
+            return '#.:{}'.format(hash)
 
         if target.endswith('.png'):
             return href
@@ -39,7 +39,7 @@ def transform_href(href: str, rel_url: str) -> str:
         if not target.endswith('/'):
             target += '/'
 
-        return f'#{quote(target)}:{hash}'
+        return '#{}:{}'.format(quote(target), hash)
 
     x_href = transform()
 
@@ -63,7 +63,7 @@ def transform_id(id: str, rel_url: str):
     """normalize id to foo/bar/section:id"""
 
     if rel_url in ['.', 'index.html']:
-        return f'.:{id}'
+        return '.:{}'.format(id)
 
     head, tail = os.path.split(rel_url)
     section, _ = os.path.splitext(tail)
@@ -77,4 +77,4 @@ def transform_id(id: str, rel_url: str):
     head = normalize(head)
     section = normalize(section)
 
-    return f'{head}{section}:{id}'
+    return '{}{}:{}'.format(head, section, id)

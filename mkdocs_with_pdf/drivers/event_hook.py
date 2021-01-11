@@ -16,9 +16,9 @@ class EventHookHandler(object):
 
     @classmethod
     def on_serve(cls, server, builder, logger: logging):
-        path = f'./{cls._module_name}.py'
+        path = './' + cls._module_name + '.py'
         if os.path.isfile(path):
-            logger.warn(f'watch {path}')
+            logger.warn('watch %s', path)
             server.watch(path, builder)
 
     def __init__(self, options: object, config: Config, logger: logging):
@@ -37,7 +37,7 @@ class EventHookHandler(object):
             module = __import__(self.__class__._module_name)
             importlib.reload(module)
             self._logger.info('Found PDF rendering event hook module.')
-        except ModuleNotFoundError:
+        except ImportError:
             module = None
 
         return module

@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.8.3 (2021-01-11)
+
+  * Fixed run on Python 3.5.
+
 mkdocs-with-pdf 0.8.2 (2021-01-08)
 
   * Added a rendering hook module handler.

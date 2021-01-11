@@ -78,4 +78,5 @@ class QRCode(_FilterBase):
         with io.BytesIO() as stream:
             img.save(stream, kind=_save_kind(fmt))
             data = base64.b64encode(stream.getvalue())
-            return f'data:{_content_type(fmt)};base64,' + data.decode("ascii")
+            return 'data:{};base64,'.format(
+                _content_type(fmt)) + data.decode("ascii")

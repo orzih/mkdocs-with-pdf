@@ -71,7 +71,8 @@ class WithPdfPlugin(BasePlugin):
                 if not self.enabled:
                     self._logger.warning(
                         'without generate PDF'
-                        f'(set environment variable {env_name} to 1 to enable)'
+                        '(set environment variable %s to 1 to enable)',
+                        env_name
                     )
                     return
             else:
@@ -135,15 +136,15 @@ class WithPdfPlugin(BasePlugin):
         end = timer()
         self._total_time += (end - start)
         self._logger.info(
-            f'Converting {self._num_pages} articles to PDF'
-            f' took {self._total_time:.1f}s'
+            'Converting {} articles to PDF'
+            ' took {:.1f}s'.format(self._num_pages, self._total_time)
         )
 
         if self._error_counter:
             errors, warns = self._error_counter.counts()
             if errors > 0 or warns > 0:
                 raise RuntimeError(
-                    f'{errors} error(s) and/or {warns} warning(s)'
+                    '{} error(s) and/or {} warning(s)'.format(errors, warns)
                     + ' occurred while generating PDF.')
 
     def _get_path_to_pdf_from(self, start):
