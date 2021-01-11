@@ -26,7 +26,7 @@ This plugin is inspired by [MkDocs PDF Export Plugin][mkdocs-pdf-export-plugin].
 ## Requirements
 
 1. This package requires MkDocs version 1.0 or higher (0.17 works as well)
-1. Python 3.5 or higher
+1. Python 3.6 or higher
 1. WeasyPrint depends on cairo, Pango and GDK-PixBuf which need to be installed separately. Please follow the installation instructions for your platform carefully:
     * [Linux][weasyprint-linux]
     * [MacOS][weasyprint-macos]
@@ -339,10 +339,10 @@ Tip: setting the `debug_html` option to `true` to get the generated html that is
 
 ### Advanced Rendering Hooks (Experimental)
 
-You can hook the PDF rendering process by creating a `pdf_event_hook.py` in your working directory _(usually the same directory as` mkdocs.yml`)_.  
+You can hook the PDF rendering process by creating a `pdf_event_hook.py`(or `pdf_event_hook/__init__.py`) in your working directory _(usually the same directory as` mkdocs.yml`)_.  
 _**since**: `v0.8.2`_
 
-#### Sample `pdf_event_hook.py`
+#### Sample `pdf_event_hook.py` (or `pdf_event_hook/__init__.py`)
 
 ```python
 import logging
