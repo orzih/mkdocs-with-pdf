@@ -297,6 +297,10 @@ plugins:
     mkdocs build > for_pdf_print.html
     ```
 
+    ...and browse output with Google Chrome. [Chrome DevTools Into Print Preview Mode](https://developers.google.com/web/tools/chrome-devtools/css/print-preview) will you help.
+
+    Note: WeasyPrint and Google Chrome are not fully compatible.
+
 * `show_anchors`
 
     Setting this to `true` will list out of anchor points provided during the build as info message.  
