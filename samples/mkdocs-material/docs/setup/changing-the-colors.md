@@ -32,7 +32,7 @@ theme:
 
 _Click on a tile to change the color scheme_:
 
-<div class="tx-switch">
+<div class="mdx-switch">
   <button data-md-color-scheme="default"><code>default</code></button>
   <button data-md-color-scheme="slate"><code>slate</code></button>
 </div>
@@ -77,7 +77,7 @@ theme:
 
 _Click on a tile to change the primary color_:
 
-<div class="tx-switch">
+<div class="mdx-switch">
   <button data-md-color-primary="red"><code>red</code></button>
   <button data-md-color-primary="pink"><code>pink</code></button>
   <button data-md-color-primary="purple"><code>purple</code></button>
@@ -138,7 +138,7 @@ _Click on a tile to change the accent color_:
   }
 </style>
 
-<div class="tx-switch">
+<div class="mdx-switch">
   <button data-md-color-accent="red"><code>red</code></button>
   <button data-md-color-accent="pink"><code>pink</code></button>
   <button data-md-color-accent="purple"><code>purple</code></button>
@@ -184,8 +184,7 @@ _Click on a tile to change the accent color_:
 ### Color palette toggle
 
 [:octicons-file-code-24: Source][6] ·
-:octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .tx-heart } Insiders only][6]{: .tx-insiders }
+[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][6]{: .mdx-insiders }
 
 [Insiders][6] can easily add multiple color palettes, including a [scheme][8],
 [primary][9] and [accent][10] color each, and let the user choose. A color
@@ -195,21 +194,21 @@ palette toggle can be added via `mkdocs.yml`:
 theme:
   palette:
 
-    # Toggle light mode
+    # Light mode
     - scheme: default
       primary: indigo
       accent: indigo
       toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
 
-    # Toggle dark mode
+    # Dark mode
     - scheme: slate
       primary: blue
       accent: blue
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
+        icon: material/toggle-switch
+        name: Switch to light mode
 ```
 
 This will render a color palette toggle in the header next to the search bar:

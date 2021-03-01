@@ -41,9 +41,9 @@ This will create the following structure:
 
 ### Minimal configuration
 
-To enable the theme, you can now simply add the following lines to `mkdocs.yml`.
-Note that since there are several [installation methods][2], configuration will
-be slightly different:
+Simply add the following lines to `mkdocs.yml` to enable the theme. Note that
+since there are several [installation methods][2], configuration might be
+slightly different:
 
 === "pip, docker"
 
@@ -91,7 +91,7 @@ Material for MkDocs comes with many configuration options. The _setup_ section
 explains in great detail how to configure and customize colors, fonts, icons
 and much more:
 
-<div class="tx-columns" markdown="1">
+<div class="mdx-columns" markdown="1">
 
 - [Changing the colors][5]
 - [Changing the fonts][6]

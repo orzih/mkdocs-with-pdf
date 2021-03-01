@@ -17,12 +17,11 @@ It also includes the [search bar][1] and a place to display your project's
 ### Automatic hiding
 
 [:octicons-file-code-24: Source][3] · 
-:octicons-unlock-24: Feature flag · 
-:octicons-beaker-24: Experimental
+:octicons-unlock-24: Feature flag
 
 When _autohiding_ is enabled, the header is automatically hidden when the
-user scrolls past a certain threshold, leaving more space for content. It can
-be enabled via `mkdocs.yml` with:
+user scrolls past a certain threshold, leaving more space for content. Add the
+following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:

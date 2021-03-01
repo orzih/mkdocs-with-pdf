@@ -24,10 +24,11 @@ theme:
 
 The following languages are supported:
 
-<div class="tx-columns" markdown="1">
+<div class="mdx-columns" markdown="1">
 
 - `af` – Afrikaans
 - `ar` – Arabic
+- `bg` – Bulgarian
 - `bn` – Bengali (Bangla)
 - `ca` – Catalan
 - `cs` – Czech
@@ -60,8 +61,9 @@ The following languages are supported:
 - `ro` – Romanian
 - `ru` – Russian
 - `sh` – Serbo-Croatian
-- `si` – Slovenian
+- `si` – Sinhalese
 - `sk` – Slovak
+- `sl` – Slovenian
 - `sr` – Serbian
 - `sv` – Swedish
 - `th` – Thai
@@ -79,18 +81,17 @@ _Note that some languages will produce unreadable anchor links, due to the way
 the default slug function works. Consider using a Unicode-aware slug function,
 as [documented here][2]._
 
-  [1]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/language/en.html
+  [1]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/languages/en.html
   [2]: setting-up-navigation.md#slugify
 
 ### Site language selector
 
 [:octicons-file-code-24: Source][3] ·
-:octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .tx-heart } Insiders only][3]{: .tx-insiders }
+:octicons-beaker-24: Experimental
 
 If your documentation is available in multiple languages, a _language selector_
-can be added to the header next to the search bar. Languages can be defined via
-`mkdocs.yml`:
+can be added to the header next to the search bar. Alternate languages can be
+defined via `mkdocs.yml`:
 
 ``` yaml
 extra:
@@ -116,7 +117,7 @@ This will render a language selector in the header next to the search bar:
 
 [![Language selection][4]][4]
 
-  [3]: ../insiders.md
+  [3]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/header.html
   [4]: ../assets/screenshots/language-selection.png
 
 ### Site search language
@@ -149,7 +150,7 @@ theme:
 
 Click on a tile to change the directionality:
 
-<div class="tx-switch">
+<div class="mdx-switch">
   <button data-md-dir="ltr"><code>ltr</code></button>
   <button data-md-dir="rtl"><code>rtl</code></button>
 </div>
@@ -177,7 +178,7 @@ Click on a tile to change the directionality:
 
 If you want to customize some (or all) of the translations for your language,
 you may follow the guide on [theme extension][9] and create a new partial in
-`partials/language`, e.g. `en-custom.html`. Next, look up the translation you
+`partials/languages`, e.g. `en-custom.html`. Next, look up the translation you
 want to change in the [base translation][1] and add it to the partial.
 
 Let's say you want to change "__Table of contents__" to "__On this page__":

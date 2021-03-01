@@ -5,9 +5,28 @@ template: overrides/main.html
 # Icons + Emojis
 
 One of the best features of Material for MkDocs is the possibility to use [more
-than 7.000 icons][1] and thousands of emojis in your project documentation
+than 8.000 icons][1] and thousands of emojis in your project documentation
 with practically zero additional effort. Furthermore, custom icons can be added
 and used in `mkdocs.yml`, documents and templates.
+
+## Search
+
+<div class="mdx-iconsearch" data-mdx-component="iconsearch">
+  <input
+    class="md-input md-input--stretch mdx-iconsearch__input"
+    placeholder="Search the icon and emoji database"
+    data-mdx-component="iconsearch-query"
+  />
+  <div class="mdx-iconsearch-result" data-mdx-component="iconsearch-result">
+    <div class="mdx-iconsearch-result__meta"></div>
+    <ol class="mdx-iconsearch-result__list"></ol>
+  </div>
+</div>
+<small>
+  :octicons-light-bulb-16:
+  **Tip:** Enter some keywords to find the perfect icon or emoji and click on
+  the shortcode to copy it to your clipboard.
+</small>
 
 ## Configuration
 
@@ -36,7 +55,7 @@ You can also add [additional icons][9]. When using emojis, it's recommended to
 consult the official documentation of [Python Markdown Extensions][3] to learn
 about configuration options.
 
-  [1]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
+  [1]: icons-emojis.md#search
   [2]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/extensions/pymdownx/_emoji.scss
   [3]: https://facelessuser.github.io/pymdown-extensions/extensions/emoji/
   [4]: https://facelessuser.github.io/pymdown-extensions/
@@ -186,7 +205,7 @@ _Example_:
 
 _Result_:
 
-:octicons-heart-fill-24:{: .tx-heart }
+:octicons-heart-fill-24:{: .mdx-heart }
 
   [20]: #with-colors
   [21]: https://developer.mozilla.org/en-US/docs/Web/CSS/animation

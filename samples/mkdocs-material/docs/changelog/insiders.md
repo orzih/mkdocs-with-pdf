@@ -6,6 +6,34 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 2.1.0 <small>_ February 26, 2021</small>
+
+- Added support for anchor tracking
+
+### 2.0.0 <small>_ February 24, 2021</small>
+
+- Migrated Insiders to the new architecture
+- Swapped color palette toggle configuration
+
+### 1.17.0 <small>_ January 31, 2021</small>
+
+- Added support for section index pages
+
+### 1.16.1 <small>_ January 26, 2021</small>
+
+- Fixed #2249: Instant loading + sticky tabs result in invalid links
+- Fixed #2248: Search highlighting URL parameter always added
+- Fixed #2235: Version selector doesn't select current version for aliases
+
+### 1.16.0 <small>_ January 7, 2021</small>
+
+- Added latest release to repository info (GitHub)
+- Slight facelift of repository info (lighter fonts, spacing and icons)
+
+### 1.15.0 <small>_ January 2, 2021</small>
+
+- Added support for native Mermaid.js integration
+
 ### 1.14.0 <small>_ December 30, 2020</small>
 
 - Added support for sharing searches

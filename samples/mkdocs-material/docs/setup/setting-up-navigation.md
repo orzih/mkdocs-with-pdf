@@ -21,8 +21,8 @@ and its flag-ship feature: [instant loading][3].
 :octicons-unlock-24: Feature flag
 
 When _instant loading_ is enabled, clicks on all internal links will be
-intercepted and dispatched via [XHR][5] without fully reloading the page. It
-can be enabled via `mkdocs.yml` with:
+intercepted and dispatched via [XHR][5] without fully reloading the page. Add
+the following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -41,13 +41,29 @@ _Material for MkDocs is the only MkDocs theme offering this feature._
   [4]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/javascripts/integrations/instant/index.ts
   [5]: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 
+### Anchor tracking
+
+[:octicons-file-code-24: Source][9] ·
+:octicons-unlock-24: Feature flag ·
+[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][9]{: .mdx-insiders }
+
+When _anchor tracking_ is enabled, the URL in the address bar is automatically
+updated with the active anchor as highlighted in the table of contents. Add the
+following lines to `mkdocs.yml`:
+
+``` yaml
+theme:
+  features:
+    - navigation.tracking
+```
+
 ### Navigation tabs
 
 [:octicons-file-code-24: Source][6] · :octicons-unlock-24: Feature flag
 
 When _tabs_ are enabled, top-level sections are rendered in a menu layer below
-the header for viewports above `1220px`, but remain as-is on mobile.[^1] They
-can be enabled via `mkdocs.yml`:
+the header for viewports above `1220px`, but remain as-is on mobile.[^1] Add
+the following lines to `mkdocs.yml`:
 
   [^1]:
     Prior to version 6.2, navigation tabs had a slightly different behavior.
@@ -81,7 +97,7 @@ theme:
 [:octicons-file-code-24: Source][9] ·
 :octicons-unlock-24: Feature flag ·
 :octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .tx-heart } Insiders only][9]{: .tx-insiders }
+[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][9]{: .mdx-insiders }
 
 When _sticky tabs_ are enabled, navigation tabs will lock below the header and
 always remain visible when scrolling down. Just add the following two feature
@@ -112,8 +128,8 @@ theme:
 :octicons-unlock-24: Feature flag
 
 When _sections_ are enabled, top-level sections are rendered as groups in the
-sidebar for viewports above `1220px`, but remain as-is on mobile. They can also
-be enabled via `mkdocs.yml`:
+sidebar for viewports above `1220px`, but remain as-is on mobile. Add the
+following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -143,7 +159,7 @@ items.
 
 When _expansion_ is enabled, the left sidebar will expand all collapsible
 subsections by default, so the user doesn't have to open subsections manually.
-It can be enabled via `mkdocs.yml` with:
+Add the following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -161,11 +177,64 @@ theme:
 
   [14]: ../assets/screenshots/navigation-expand.png
 
+### Section index pages
+
+[:octicons-file-code-24: Source][9] ·
+:octicons-unlock-24: Feature flag ·
+:octicons-beaker-24: Experimental ·
+[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][9]{: .mdx-insiders }
+
+When _section index pages_ are enabled, documents can be directly attached to
+sections, which is particularly useful for providing overview pages. Add the
+following lines to `mkdocs.yml`:
+
+``` yaml
+theme:
+  features:
+    - navigation.indexes
+```
+
+=== "With section index pages"
+
+    [![With expansion][15]][15]
+
+=== "Without section index pages"
+
+    [![Without expansion][16]][16]
+
+In order to link a page to a section, create a new document with the name
+`index.md` in the respective folder, and add it to the beginning of your
+navigation section:
+
+``` yaml
+nav:
+  - Section:
+    - section/index.md
+    - Page 1: section/page-1.md
+    ...
+    - Page n: section/page-n.md
+```
+
+_This feature flag can be combined with all other feature flags, e.g. [tabs][1]
+and [sections][2], except for table of contents [navigation integration][17].
+Note that it doesn't rely on third-party plugins[^2]._
+
+  [^2]:
+    If you don't want to use the native integration, the
+    [mkdocs-section-index][18] plugin might be an alternative. However, note
+    that this plugin may not be compatible with all navigation-related features
+    offered by Material for MkDocs.
+
+  [15]: ../assets/screenshots/navigation-index-on.png
+  [16]: ../assets/screenshots/navigation-index-off.png
+  [17]: #navitation-intergation
+  [18]: https://github.com/oprypin/mkdocs-section-index
+
 ### Table of contents
 
-[:octicons-file-code-24: Source][15] · [:octicons-workflow-24: Extension][16]
+[:octicons-file-code-24: Source][19] · [:octicons-workflow-24: Extension][20]
 
-The [Table of contents][17] extension, which is part of the standard Markdown
+The [Table of contents][21] extension, which is part of the standard Markdown
 library, provides some options that are supported by Material for MkDocs to
 customize its appearance:
 
@@ -197,7 +266,7 @@ customize its appearance:
 :   :octicons-milestone-24: Default: `headerid.slugify` – This option allows for 
     customization of the slug function. For some languages, the default may not
     produce good and readable identifiers – consider using another slug function
-    like for example those from [Python Markdown Extensions][18]:
+    like for example those from [Python Markdown Extensions][22]:
 
     === "Unicode"
 
@@ -238,30 +307,23 @@ customize its appearance:
               toc_depth: 0
         ```
 
-    Note that MkDocs will not generate [anchor links][19] for levels outside
-    the range defined with `toc_depth`. However, Material for MkDocs also allows
-    to [hide the table of contents][20] on a specific page while keeping
-    permalinks.
-
 _Material for MkDocs doesn't provide official support for the other options of
 this extension, so they may be supported but can also yield weird results. Use
 them at your own risk._
 
-  [15]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc.html
-  [16]: https://python-markdown.github.io/extensions/toc/
-  [17]: https://python-markdown.github.io/extensions/toc/#usage
-  [18]: https://facelessuser.github.io/pymdown-extensions/extras/slugs/
-  [19]: #permalink
-  [20]: #hide-the-sidebars
+  [19]: https://github.com/squidfunk/mkdocs-material/blob/master/src/partials/toc.html
+  [20]: https://python-markdown.github.io/extensions/toc/
+  [21]: https://python-markdown.github.io/extensions/toc/#usage
+  [22]: https://facelessuser.github.io/pymdown-extensions/extras/slugs/
 
 #### Navigation integration
 
-[:octicons-file-code-24: Source][21] ·
+[:octicons-file-code-24: Source][23] ·
 :octicons-unlock-24: Feature flag
 
 When _integration_ is enabled, the table of contents is rendered as part of
-the navigation for viewports above `1220px`, but remains as-is on mobile. This
-can be enabled via `mkdocs.yml`:
+the navigation for viewports above `1220px`, but remains as-is on mobile. Add
+the following lines to `mkdocs.yml`:
 
 ``` yaml
 theme:
@@ -271,14 +333,14 @@ theme:
 
 === "Integrate table of contents"
 
-    [![Integrate table of contents][22]][22]
+    [![Integrate table of contents][24]][24]
 
 === "Separate table of contents"
 
     [![Separate table of contents][8]][8]
 
-  [21]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/layout/_nav.scss
-  [22]: ../assets/screenshots/toc-integrate.png
+  [23]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/layout/_nav.scss
+  [24]: ../assets/screenshots/toc-integrate.png
 
 The content section will now always stretch to the right side, resulting in
 more space for your content. This feature flag can be combined with all other
@@ -286,12 +348,12 @@ feature flags, e.g. [tabs][1] and [sections][2].
 
 ### Hide the sidebars
 
-[:octicons-file-code-24: Source][23] ·
+[:octicons-file-code-24: Source][25] ·
 :octicons-note-24: Metadata
 
 Sometimes it's desirable to hide the navigation and/or table of contents
 sidebar, especially when there's a single navigation item. This can be done for
-any page using the [Metadata][24] extension:
+any page using the [Metadata][26] extension:
 
 ``` yaml
 ---
@@ -305,27 +367,27 @@ hide:
 
 === "Hide navigation"
 
-    [![Hide navigation][25]][25]
+    [![Hide navigation][27]][27]
 
 === "Hide table of contents"
 
-    [![Hide table of contents][26]][26]
+    [![Hide table of contents][28]][28]
 
 === "Hide both"
 
-    [![Hide navigation and table of contents][27]][27]
+    [![Hide navigation and table of contents][29]][29]
 
-  [23]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html
-  [24]: ../../reference/meta-tags/#metadata
-  [25]: ../assets/screenshots/hide-navigation.png
-  [26]: ../assets/screenshots/hide-toc.png
-  [27]: ../assets/screenshots/hide-navigation-toc.png
+  [25]: https://github.com/squidfunk/mkdocs-material/blob/master/src/base.html
+  [26]: ../../reference/meta-tags/#metadata
+  [27]: ../assets/screenshots/hide-navigation.png
+  [28]: ../assets/screenshots/hide-toc.png
+  [29]: ../assets/screenshots/hide-navigation-toc.png
 
 ## Customization
 
 ### Keyboard shortcuts
 
-[:octicons-file-code-24: Source][28] ·
+[:octicons-file-code-24: Source][30] ·
 :octicons-mortar-board-24: Difficulty: _easy_
 
 Material for MkDocs includes several keyboard shortcuts that make it possible
@@ -351,11 +413,11 @@ to navigate your project documentation via keyboard. There're two modes:
     * ++n++ , ++period++ : go to next page
 
 Let's say you want to bind some action to the ++x++ key. By using [additional
-JavaScript][29], you can subscribe to the `keyboard$` observable and attach
+JavaScript][31], you can subscribe to the `keyboard$` observable and attach
 your custom event listener:
 
 ``` js
-app.keyboard$.subscribe(function(key) {
+keyboard$.subscribe(function(key) {
   if (key.mode === "global" && key.type === "x") {
     /* Add custom keyboard handler here */
     key.claim()
@@ -367,12 +429,12 @@ The call to `#!js key.claim()` will essentially execute `#!js preventDefault()`
 on the underlying event, so the keypress will not propagate further and touch
 other event listeners.
 
-  [28]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/javascripts/integrations/keyboard/index.ts
-  [29]: ../customization.md#additional-javascript
+  [30]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/javascripts/integrations/keyboard/index.ts
+  [31]: ../customization.md#additional-javascript
 
 ### Content area width
 
-[:octicons-file-code-24: Source][30] ·
+[:octicons-file-code-24: Source][32] ·
 :octicons-mortar-board-24: Difficulty: _easy_
 
 The width of the content area is set so the length of each line doesn't exceed
@@ -381,7 +443,7 @@ is a reasonable default, as longer lines tend to be harder to read, it may be
 desirable to increase the overall width of the content area, or even make it
 stretch to the entire available space.
 
-This can easily be achieved with an [additional stylesheet][31] and a few lines
+This can easily be achieved with an [additional stylesheet][33] and a few lines
 of CSS:
 
 === "Increase width"
@@ -400,5 +462,5 @@ of CSS:
     }
     ```
 
-  [30]: https://github.com/squidfunk/mkdocs-material/blob/aeaa00a625abf952f355164de02c539b061e6127/src/assets/stylesheets/main/layout/_base.scss
-  [31]: ../customization.md#additional-css
+  [32]: https://github.com/squidfunk/mkdocs-material/blob/aeaa00a625abf952f355164de02c539b061e6127/src/assets/stylesheets/main/layout/_base.scss
+  [33]: ../customization.md#additional-css

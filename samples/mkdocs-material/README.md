@@ -7,7 +7,7 @@
 |            |                                               |
 | ---------: | --------------------------------------------- |
 | Repository | https://github.com/squidfunk/mkdocs-material/ |
-| Commit     | 9203255595a6d6df0a0d85a853416d0bf9e2f040      |
+| Commit     | 9ed181b697537dc71407ab4529e2791cdfbf8b23      |
 
 - use Original
   - .browserslistrc
@@ -17,8 +17,7 @@
   - material/
 - modified
   - mkdocs.yml - modified
-- added
-  - docs/assets/css
+- added extra scss and pdf event hooks
 
 ```console
 $ mkdocs build
@@ -43,6 +42,6 @@ INFO    -  Documentation built in 275.89 seconds
 ## TODO
 
 - [ ] `Hero page` conversion.
-- [ ] `twemoji` polyfill.
+- [x] `twemoji` polyfill.
 - [ ] `MathJax` supports (with rendering with JS).
 - [ ] ... and something.

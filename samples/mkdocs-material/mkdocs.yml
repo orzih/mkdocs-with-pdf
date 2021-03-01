@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2020 Martin Donath <martin.donath@squidfunk.com>
+# Copyright (c) 2016-2021 Martin Donath <martin.donath@squidfunk.com>
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to
@@ -33,14 +33,14 @@ repo_url: https://github.com/squidfunk/mkdocs-material
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2020 Martin Donath
+copyright: Copyright &copy; 2016 - 2021 Martin Donath
 
 # Configuration
 theme:
   name: material
   custom_dir: material
 
-  # 404 page
+  # Static files
   static_templates:
     - 404.html
 
@@ -64,8 +64,6 @@ theme:
   favicon: assets/favicon.png
   icon:
     logo: logo
-extra_css:
-  - assets/css/extra.css
 
 # Plugins
 plugins:
@@ -87,10 +85,11 @@ plugins:
         sponsorship.md: insiders.md
   - minify:
       minify_html: true
+  - extra-sass
   - with-pdf:
       #cover_title:
       cover_subtitle: Technical documentation that just works
-      cover_logo: https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/.github/assets/logo.png
+      cover_logo: assets/images/banner.png
       back_cover: true
       toc_level: 2
       excludes_children:
@@ -105,6 +104,7 @@ plugins:
       #debug_html: true
       #verbose: true
       #show_anchors: true
+      #enabled_if_env: ENABLE_PDF_EXPORT
 
 #use_directory_urls: false
 
@@ -154,8 +154,6 @@ markdown_extensions:
       repo: mkdocs-material
   - pymdownx.mark
   - pymdownx.smartsymbols
-  - pymdownx.snippets:
-      check_paths: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -198,6 +196,7 @@ nav:
     - Code blocks: reference/code-blocks.md
     - Content tabs: reference/content-tabs.md
     - Data tables: reference/data-tables.md
+    - Diagrams: reference/diagrams.md
     - Footnotes: reference/footnotes.md
     - Formatting: reference/formatting.md
     - Icons + Emojis: reference/icons-emojis.md
