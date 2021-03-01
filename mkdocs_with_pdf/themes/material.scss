@@ -103,10 +103,12 @@
     span.twemoji {
       vertical-align: middle;
       height: 1.125rem;
+      display: inline-block;
 
       > img {
         height: 1.125rem;
         vertical-align: middle;
+        display: inline-block;
       }
     }
   }

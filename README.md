@@ -350,6 +350,7 @@ _**since**: `v0.8.2`_
 
 ```python
 import logging
+
 from bs4 import BeautifulSoup
 from mkdocs.structure.pages import Page
 
@@ -380,6 +381,7 @@ def inject_link(html: str, href: str,
 
     nav = soup.find(class_='md-header-nav')
     if not nav:
+        # after 7.x
         nav = soup.find('nav', class_='md-header__inner')
     if nav:
         a = soup.new_tag('a', href=href, title='PDF',
