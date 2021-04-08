@@ -17,7 +17,7 @@ popular and flexible solution for drawing diagrams.
 
 [:octicons-file-code-24: Source][2] ·
 :octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][2]{: .mdx-insiders }
+[:octicons-heart-fill-24:{ .mdx-heart } Insiders only][2]{ .mdx-insiders }
 
 The [SuperFences][3] extension, which is part of [Python Markdown
 Extensions][4], allows for adding __custom fences__, which can be used to
@@ -57,7 +57,7 @@ ensures interoperability with all Material for MkDocs features._
     in conjunction with the [mkdocs-minify-plugin][9] and doesn't adapt to
     dark mode.
 
-  [2]: ../insiders.md
+  [2]: ../insiders/index.md
   [3]: https://facelessuser.github.io/pymdown-extensions/extensions/superfences/
   [4]: https://facelessuser.github.io/pymdown-extensions/
   [5]: #usage
@@ -89,7 +89,7 @@ graph LR
 
 _Result_:
 
-[![Diagram][12]{: style="width: 100%; max-width: 594px" }][12]
+[![Diagram][12]{ style="width: 100%; max-width: 594px" }][12]
 
 _See the [official documentation][1] to learn about all available diagram 
 types._

@@ -6,6 +6,47 @@ template: overrides/main.html
 
 ## Material for MkDocs
 
+### 7.1.0 <small>_ March 29, 2021</small>
+
+- Added support for back-to-top button
+- Added support for color palette toggle
+- Added latest release to repository info (GitHub)
+- Slight facelift of repository info (lighter fonts, spacing and icons)
+
+### 7.0.7 <small>_ March 28, 2021</small>
+
+- Updated Hungarian translations
+- Fixed #2466: Docker image not based on latest Python and Alpine
+- Fixed #2488: Inconsistent header shadow behavior
+- Fixed #2492: Inline code blocks in admonition titles missing background
+
+### 7.0.6 <small>_ March 14, 2021</small>
+
+- Added trailing slash to version selector URL
+- Added support for out-of-order anchors in table of contents
+- Added `extra.homepage` option to link logo to arbitrary URL
+- Improved security of Docker image (always update apk)
+- Fixed horizontal spacing for nested inline admonitions
+- Fixed text color of nested code blocks inside links
+- Fixed version selector to always use version title
+- Fixed logo link when using versioning with instant loading
+
+### 7.0.5 <small>_ March 7, 2021</small>
+
+- Added `extracopyright` block to allow for custom copyright info
+- Fixed evaluation of third-party scripts when using instant loading
+- Fixed edge cases when using instant loading without directory URLs
+- Fixed handling of version selector when using instant loading
+- Fixed regression with header title not being updated correctly
+- Fixed expanded sections not opening on first click (7.0.4 regression)
+
+### 7.0.4 <small>_ March 4, 2021</small>
+
+- Added Icelandic translations
+- Fixed #2386: Section close requires two clicks (navigation expansion)
+- Fixed console error when search is disabled (7.0.0 regression)
+- Fixed localsearch integration (7.0.0 regression)
+
 ### 7.0.3 <small>_ February 26, 2021</small>
 
 - Fixed JavaScript errors in older browsers (target ES2020 -> ES2015)

@@ -7,7 +7,7 @@
 |            |                                               |
 | ---------: | --------------------------------------------- |
 | Repository | https://github.com/squidfunk/mkdocs-material/ |
-| Commit     | 9ed181b697537dc71407ab4529e2791cdfbf8b23      |
+| Commit     | de428d16611512f321732c0f7fe5fcc2bd4cbff1      |
 
 - use Original
   - .browserslistrc

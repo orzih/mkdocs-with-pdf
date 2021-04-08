@@ -30,7 +30,7 @@ plugins:
 
 The following options are supported:
 
-`lang`{: #lang }
+`lang`{ #lang }
 
 :   :octicons-milestone-24: Default: _automatically set_ – This option allows
     to include the language-specific stemmers provided by [lunr-languages][5].
@@ -91,7 +91,7 @@ The following options are supported:
         JavaScript payload by around 20kb (before `gzip`) and by another 15-30kb
         per language.
 
-`separator`{: #separator }
+`separator`{ #separator }
 
 :   :octicons-milestone-24: Default: _automatically set_ – The separator for
     indexing and query tokenization can be customized, making it possible to
@@ -104,7 +104,7 @@ The following options are supported:
           separator: '[\s\-\.]+'
     ```
 
-`prebuild_index`{: #prebuild-index }
+`prebuild_index`{ #prebuild-index }
 
 :   :octicons-milestone-24: Default: `false` · :octicons-beaker-24:
     Experimental – MkDocs can generate a [prebuilt index][7] of all pages during
@@ -122,8 +122,8 @@ The following options are supported:
     deployment is recommended.
 
 _Material for MkDocs doesn't provide official support for the other options of
-this plugin, so they may be supported but can also yield weird results. Use
-them at your own risk._
+this plugin, so they may be supported but might yield unexpected results.
+Use them at your own risk._
 
   [2]: https://github.com/squidfunk/mkdocs-material/tree/master/src/assets/javascripts/integrations/search
   [3]: https://www.mkdocs.org/user-guide/configuration/#search
@@ -137,7 +137,7 @@ them at your own risk._
 [:octicons-file-code-24: Source][8] ·
 :octicons-unlock-24: Feature flag ·
 :octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][8]{: .mdx-insiders }
+[:octicons-heart-fill-24:{ .mdx-heart } Insiders only][8]{ .mdx-insiders }
 
 When _search suggestions_ are enabled, the search will display the likeliest
 completion for the last word, saving the user many key strokes by accepting the
@@ -151,7 +151,7 @@ theme:
     - search.suggest
 ```
 
-Searching for ^^code high^^ yields ^^code highlighting^^ as a suggestion:
+Searching for ^^search su^^ yields ^^search suggestions^^ as a suggestion:
 
 <figure markdown="1">
 
@@ -165,7 +165,7 @@ A demo is worth a thousand words — check it out at
   </figcaption>
 </figure>
 
-  [8]: ../insiders.md
+  [8]: ../insiders/index.md
   [9]: ../assets/screenshots/search-suggestions.png
   [10]: https://squidfunk.github.io/mkdocs-material-insiders/reference/code-blocks/?q=code+high
 
@@ -174,7 +174,7 @@ A demo is worth a thousand words — check it out at
 [:octicons-file-code-24: Source][8] ·
 :octicons-unlock-24: Feature flag ·
 :octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][8]{: .mdx-insiders }
+[:octicons-heart-fill-24:{ .mdx-heart } Insiders only][8]{ .mdx-insiders }
 
 When _search highlighting_ is enabled and a user clicks on a search result,
 Material for MkDocs will highlight all occurrences after following the link.
@@ -186,7 +186,7 @@ theme:
     - search.highlight
 ```
 
-Searching for ^^code blocks^^ yields:
+Searching for ^^code highlighting^^ yields:
 
 <figure markdown="1">
 
@@ -208,7 +208,7 @@ A demo is worth a thousand words — check it out at
 [:octicons-file-code-24: Source][8] ·
 :octicons-unlock-24: Feature flag ·
 :octicons-beaker-24: Experimental ·
-[:octicons-heart-fill-24:{: .mdx-heart } Insiders only][8]{: .mdx-insiders }
+[:octicons-heart-fill-24:{ .mdx-heart } Insiders only][8]{ .mdx-insiders }
 
 When _search sharing_ is activated, a :material-share-variant: share button is
 rendered next to the reset button, which allows to deep link to the current
@@ -254,6 +254,12 @@ For setup instructions, refer to the [official documentation][18].
   [16]: https://github.com/wilhelmer/mkdocs-localsearch/
   [17]: https://github.com/squidfunk/iframe-worker
   [18]: https://github.com/wilhelmer/mkdocs-localsearch#installation-material-v5
+
+!!! tip
+
+    When distributing documentation as HTML files to be opened from the file
+    system, you will also want to set `use_directory_urls: false` in
+    `mkdocs.yml` to make page links function correctly.
 
 ## Customization
 

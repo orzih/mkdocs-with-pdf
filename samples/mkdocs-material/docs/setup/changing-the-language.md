@@ -48,6 +48,7 @@ The following languages are supported:
 - `hr` – Croatian
 - `hu` – Hungarian
 - `id` – Indonesian
+- `is` – Icelandic
 - `it` – Italian
 - `ja` – Japanese
 - `ka` – Georgian
@@ -176,8 +177,8 @@ Click on a tile to change the directionality:
 [:octicons-file-code-24: Source][1] ·
 :octicons-mortar-board-24: Difficulty: _easy_
 
-If you want to customize some (or all) of the translations for your language,
-you may follow the guide on [theme extension][9] and create a new partial in
+If you want to customize some of the translations for your language, just follow
+the guide on [theme extension][9] and create a new partial in
 `partials/languages`, e.g. `en-custom.html`. Next, look up the translation you
 want to change in the [base translation][1] and add it to the partial.
 

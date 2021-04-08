@@ -6,6 +6,31 @@ template: overrides/main.html
 
 ## Material for MkDocs Insiders
 
+### 2.5.0 <small>_ March 28, 2021</small>
+
+- Added support for version warning
+
+### 2.4.0 <small>_ March 20, 2021</small>
+
+- Added support for custom admonition icons
+- Fixed #2444: Code block annotations with extra comments have wrong index
+
+### 2.3.1 <small>_ March 14, 2021</small>
+
+- Fixed anchor offset for permalinks when using sticky navigation tabs
+
+### 2.3.0 <small>_ March 13, 2021</small>
+
+- Added support for back-to-top button
+
+### 2.2.1 <small>_ March 4, 2021</small>
+
+- Fixed #2382: Repository stats failing when no release tag is present
+
+### 2.2.0 <small>_ February 28, 2021</small>
+
+- Added support for code block annotations
+
 ### 2.1.0 <small>_ February 26, 2021</small>
 
 - Added support for anchor tracking

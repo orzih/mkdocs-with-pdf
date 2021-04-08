@@ -231,8 +231,13 @@ _Result_:
 :octicons-beaker-24: Experimental
 
 Admonitions and [Details][11] can also be rendered as inline blocks (i.e.
-sidebars), moving them to the right using the `inline` + `end` modifiers, or
+sidebars), placing them to the right using the `inline` + `end` modifiers, or
 to the left using only the `inline` modifier.
+
+__Important__: Admonitions that use the `inline` modifiers _must_ be declared
+prior to the content block you want to place them beside. If there's
+insufficient space to render the admonition next to the block, the admonition
+will stretch to the full width of the viewport, e.g. on mobile viewports.
 
 === "inline end"
 
@@ -276,10 +281,6 @@ to the left using only the `inline` modifier.
 
     Use `inline` to align to the left (right for rtl languages).
 
-_If there's insufficient space to render the admonition next to the block, the
-admonition will stretch to the full width of the viewport, e.g. on mobile
-viewports._
-
   [12]: https://github.com/squidfunk/mkdocs-material/blob/master/src/assets/stylesheets/main/_modifiers.scss
 
 ### Supported types
@@ -287,7 +288,7 @@ viewports._
 Following is a list of type qualifiers provided by Material for MkDocs, whereas
 the default type, and thus fallback for unknown type qualifiers, is `note`:
 
-`note`{: #note }, `seealso`
+`note`{ #note }, `seealso`
 
 :   !!! note
 
@@ -295,7 +296,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`abstract`{: #abstract }, `summary`, `tldr`
+`abstract`{ #abstract }, `summary`, `tldr`
 
 :   !!! abstract
 
@@ -303,7 +304,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`info`{: #info }, `todo`
+`info`{ #info }, `todo`
 
 :   !!! info
 
@@ -311,7 +312,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`tip`{: #tip }, `hint`, `important`
+`tip`{ #tip }, `hint`, `important`
 
 :   !!! tip
 
@@ -319,7 +320,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`success`{: #success }, `check`, `done`
+`success`{ #success }, `check`, `done`
 
 :   !!! success
 
@@ -327,7 +328,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`question`{: #question }, `help`, `faq`
+`question`{ #question }, `help`, `faq`
 
 :   !!! question
 
@@ -335,7 +336,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`warning`{: #warning }, `caution`, `attention`
+`warning`{ #warning }, `caution`, `attention`
 
 :   !!! warning
 
@@ -343,7 +344,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`failure`{: #failure }, `fail`, `missing`
+`failure`{ #failure }, `fail`, `missing`
 
 :   !!! failure
 
@@ -351,7 +352,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`danger`{: #danger }, `error`
+`danger`{ #danger }, `error`
 
 :   !!! danger
 
@@ -359,7 +360,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`bug`{: #bug }
+`bug`{ #bug }
 
 :   !!! bug
 
@@ -367,7 +368,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`example`{: #example }
+`example`{ #example }
 
 :   !!! example
 
@@ -375,7 +376,7 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
-`quote`{: #quote }, `cite`
+`quote`{ #quote }, `cite`
 
 :   !!! quote
 
@@ -383,13 +384,79 @@ the default type, and thus fallback for unknown type qualifiers, is `note`:
         euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo
         purus auctor massa, nec semper lorem quam in massa.
 
+### Changing the icons
+
+[:octicons-file-code-24: Source][13] ·
+[:octicons-heart-fill-24:{ .mdx-heart } Insiders only][13]{ .mdx-insiders }
+
+Each of the supported admonition types has a distinct icon, which can be changed
+to any icon bundled with the theme. Just set the name of the admonition type to
+a valid icon in `mkdocs.yml`:
+
+=== "Octicons"
+
+    _Example_:
+
+    ``` yaml
+    theme:
+      icon:
+        admonition:
+          note: octicons/tag-16
+          abstract: octicons/checklist-16
+          info: octicons/info-16
+          tip: octicons/squirrel-16
+          success: octicons/check-16
+          question: octicons/question-16
+          warning: octicons/alert-16
+          failure: octicons/x-circle-16
+          danger: octicons/zap-16
+          bug: octicons/bug-16
+          example: octicons/beaker-16
+          quote: octicons/quote-16
+    ```
+
+    _Result_:
+
+    [![Admonition with Octicons icons][14]][14]
+
+
+=== "FontAwesome"
+
+    _Example_:
+
+    ``` yaml
+    theme:
+      icon:
+        admonition:
+          note: fontawesome/solid/sticky-note
+          abstract: fontawesome/solid/book
+          info: fontawesome/solid/info-circle
+          tip: fontawesome/solid/bullhorn
+          success: fontawesome/solid/check
+          question: fontawesome/solid/question-circle
+          warning: fontawesome/solid/exclamation-triangle
+          failure: fontawesome/solid/bomb
+          danger: fontawesome/solid/skull
+          bug: fontawesome/solid/robot
+          example: fontawesome/solid/flask
+          quote: fontawesome/solid/quote-left
+    ```
+
+    _Result_:
+
+    [![Admonition with FontAwesome icons][15]][15]
+
+  [13]: ../insiders/index.md
+  [14]: ../assets/screenshots/admonition-octicons.png
+  [15]: ../assets/screenshots/admonition-fontawesome.png
+
 ## Customization
 
 ### Custom admonitions
 
 If you want to add a custom admonition type, all you need is a color and an
-`svg` icon. Copy the icon's `svg` code from the [`.icons`][13] folder and add the
-following CSS to an [additional stylesheet][14]:
+`svg` icon. Copy the icon's `svg` code from the [`.icons`][16] folder and add the
+following CSS to an [additional stylesheet][17]:
 
 ``` css
 :root {
@@ -402,6 +469,7 @@ following CSS to an [additional stylesheet][14]:
 .md-typeset .pied-piper > .admonition-title,
 .md-typeset .pied-piper > summary {
   background-color: rgba(43, 155, 70, 0.1);
+  border-color: rgb(43, 155, 70);
 }
 .md-typeset .pied-piper > .admonition-title::before,
 .md-typeset .pied-piper > summary::before {
@@ -413,7 +481,7 @@ following CSS to an [additional stylesheet][14]:
 
 You should now be able to create an admonition of the `pied-piper` type. Note
 that you can also use this technique to override existing admonition icons or
-colors. [You can even add animations][15].
+colors. [You can even add animations][18].
 
 <style>
   :root {
@@ -426,6 +494,7 @@ colors. [You can even add animations][15].
   .md-typeset .pied-piper > .admonition-title,
   .md-typeset .pied-piper > summary {
     background-color: rgba(43, 155, 70, 0.1);
+    border-color: rgb(43, 155, 70);
   }
   .md-typeset .pied-piper > .admonition-title::before,
   .md-typeset .pied-piper > summary::before {
@@ -452,6 +521,6 @@ _Result_:
     nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
     massa, nec semper lorem quam in massa.
 
-  [13]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
-  [14]: ../customization.md#additional-css
-  [15]: https://facelessuser.github.io/pymdown-extensions/extensions/details/
+  [16]: https://github.com/squidfunk/mkdocs-material/tree/master/material/.icons
+  [17]: ../customization.md#additional-css
+  [18]: icons-emojis.md#with-animations
