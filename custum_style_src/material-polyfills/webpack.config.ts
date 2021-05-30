@@ -1,6 +1,5 @@
-import ImageminPlugin from "imagemin-webpack-plugin"
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const FixStyleOnlyEntriesPlugin = require("webpack-fix-style-only-entries")
+const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts")
 import * as path from "path"
 import { Configuration } from "webpack"
 
@@ -59,6 +58,8 @@ function config(args: Configuration): Configuration {
                       'postcss-svgo',
                       {
                         plugins: [
+                          { removeDoctype: true },
+                          { removeComments: true },
                           { removeDimensions: true },
                           { removeViewBox: false }
                         ],
@@ -102,8 +103,7 @@ function config(args: Configuration): Configuration {
 
     /* Filter false positives and omit verbosity */
     stats: {
-      entrypoints: false,
-      warningsFilter: [/export '.[^']+' was not found in/]
+      entrypoints: false
     }
   }
 }
@@ -138,16 +138,9 @@ export default (_env: never, args: Configuration): Configuration[] => {
         // ...base.plugins,
 
         /* Stylesheets */
-        new FixStyleOnlyEntriesPlugin(),
+        new RemoveEmptyScriptsPlugin(),
         new MiniCssExtractPlugin({
           filename: `[name].css`
-        }),
-
-        /* Minify SVGs */
-        new ImageminPlugin({
-          svgo: {
-            plugins: [{ removeDimensions: true }, { removeViewBox: false }]
-          }
         })
       ],
 
