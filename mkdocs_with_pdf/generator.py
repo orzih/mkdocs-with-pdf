@@ -3,7 +3,6 @@ import os
 import re
 from importlib import import_module
 from importlib.util import module_from_spec, spec_from_file_location
-from typing import List
 
 from bs4 import BeautifulSoup, PageElement
 from weasyprint import HTML, urls
@@ -35,6 +34,18 @@ class Generator(object):
         self._scraped_scripts = []
         self._mixed_script = ''
 
+        def to_pattern(s: str) -> re.Pattern:
+            if s.startswith('^'):
+                return re.compile(s)
+            return re.compile(f'^{s}')
+
+        self._exclude_page_patterns = list(map(
+            to_pattern,
+            self._options.exclude_pages
+        ))
+        self._options.logger.debug(
+            f'Exclude page patterns: {self._exclude_page_patterns}')
+
     def on_nav(self, nav):
         """ on_nav """
         self._nav = nav
@@ -44,31 +55,11 @@ class Generator(object):
     def on_post_page(self, output_content: str, page, pdf_path: str) -> str:
         """ on_post_page """
 
-        def get_excluded_pages(e_paths: List[str]) -> List[str]:
-
-            def get_files_in_dir(path: str) -> List[str]:
-                files = list()
-                for f in os.listdir(path):
-                    sub_path = os.path.join(path, f)
-                    if os.path.isdir(sub_path):
-                        files += get_files_in_dir(sub_path)
-                    else:
-                        files.append(os.path.splitext(sub_path)[0] + '/')
-                return files
-
-            excluded_pages = list()
-            cwd = os.getcwd()
-            os.chdir("docs")
-            for path in e_paths:
-                if os.path.isdir(path):
-                    excluded_pages += get_files_in_dir(path)
-                else:
-                    excluded_pages.append(path)
-            os.chdir(cwd)
-            return excluded_pages
-
         def is_excluded(url: str) -> bool:
-            return url in get_excluded_pages(self._options.exclude_pages)
+            for p in self._exclude_page_patterns:
+                if p.match(url):
+                    return True
+            return False
 
         if is_excluded(page.url):
             self.logger.info(f'Page skipped: [{page.title}]({page.url})')
@@ -234,7 +225,7 @@ class Generator(object):
             elem.insert(0, h1)
             return elem
 
-        def cleanup_class(classes: []):
+        def cleanup_class(classes):
             if classes and len(classes):
                 excludes = ['md-content__inner']
                 return [c for c in classes if not (c in excludes)]
