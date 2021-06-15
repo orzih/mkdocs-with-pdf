@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+from typing import Pattern
 from importlib import import_module
 from importlib.util import module_from_spec, spec_from_file_location
 
@@ -34,7 +35,7 @@ class Generator(object):
         self._scraped_scripts = []
         self._mixed_script = ''
 
-        def to_pattern(s: str) -> re.Pattern:
+        def to_pattern(s: str) -> Pattern:
             if s.startswith('^'):
                 return re.compile(s)
             return re.compile(f'^{s}')
