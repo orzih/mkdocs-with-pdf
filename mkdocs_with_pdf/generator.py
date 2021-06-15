@@ -63,7 +63,7 @@ class Generator(object):
 
         if is_excluded(page.url):
             self.logger.info(f'Page skipped: [{page.title}]({page.url})')
-            return f"<!-- skipped '{page}' -->"
+            return output_content
         else:
             self.logger.debug(f' (post: [{page.title}]({page.url})')
 
