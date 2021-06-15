@@ -1,3 +1,7 @@
+mkdocs-with-pdf 0.9.1 (2021-06-15)
+
+  * Fixed a bug about `exclude_pages` option. #64
+
 mkdocs-with-pdf 0.9.0 (2021-06-12)
 
   * Drop support for Python 3.5.
