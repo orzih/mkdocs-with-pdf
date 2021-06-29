@@ -385,7 +385,7 @@ def inject_link(html: str, href: str,
         nav = soup.find('nav', class_='md-header__inner')
     if nav:
         a = soup.new_tag('a', href=href, title='PDF',
-                         **{'class': 'md-header-nav__button md-icon'})
+                         **{'class': 'md-header__button md-header-nav__button md-icon'})
         a.append(_pdf_icon())
         nav.append(a)
         return str(soup)
