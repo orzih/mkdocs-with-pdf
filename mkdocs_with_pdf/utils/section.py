@@ -23,7 +23,8 @@ def _section_slug(section) -> str:
     if slug:
         return slug
 
-    title = section.title if len(section.title) else str(uuid4)
+    title = str(section.title).strip()
+    title = title if title else str(uuid4)
     slug = b32encode(title.encode('utf-8')).rstrip(b'=').decode()
     setattr(section, 'pdf_slug', slug)
 
