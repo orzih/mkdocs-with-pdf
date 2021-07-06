@@ -1,6 +1,7 @@
 import logging
 import os
 from timeit import default_timer as timer
+from copy import deepcopy
 
 from mkdocs.plugins import BasePlugin
 
@@ -45,7 +46,7 @@ class WithPdfPlugin(BasePlugin):
 
     config_scheme = Options.config_scheme
 
-    def __init__(self):
+    def __init__(self, config=None):
         self._logger = logging.getLogger('mkdocs.with-pdf')
         self._logger.setLevel(logging.INFO)
 
@@ -56,6 +57,12 @@ class WithPdfPlugin(BasePlugin):
         self._total_time = 0
 
         self._error_counter = None
+
+        if config:
+            self.config = config
+
+    def __deepcopy__(self, memo):
+        return WithPdfPlugin(deepcopy(self.config, memo))
 
     def on_serve(self, server, config, builder, **kwargs):
         EventHookHandler.on_serve(server, builder, self._logger)
