@@ -52,8 +52,7 @@ class Options(object):
         self.debug_html = local_config['debug_html']
         self.show_anchors = local_config['show_anchors']
 
-        self.output_path = config["plugins"]["with-pdf"].config.get(
-            "output_path", None)
+        self.output_path = config["plugins"]["with-pdf"].config["output_path"]
 
         # Author and Copyright
         self._author = local_config['author']
