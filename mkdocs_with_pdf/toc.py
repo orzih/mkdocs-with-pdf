@@ -12,6 +12,11 @@ def make_indexes(soup: PageElement, options: Options) -> None:
         options {Options} -- The options of this sequence.
     """
 
+    if options.toc:
+        _make_indexes(soup, options)
+
+
+def _make_indexes(soup: PageElement, options: Options) -> None:
     # Step 1: (re)ordered headdings
     _inject_heading_order(soup, options)
 
@@ -40,7 +45,11 @@ def make_indexes(soup: PageElement, options: Options) -> None:
         options.logger.debug(f"| [{h.get_text(separator=' ')}]({ref})")
         return li
 
-    toc = soup.new_tag('article', id='doc-toc')
+    toc = soup.find(id='doc-toc')
+    custom_doc_pos = True
+    if not toc:
+        toc = soup.new_tag('article', id='doc-toc')
+        custom_doc_pos = False
     title = soup.new_tag('h1')
     title.append(soup.new_string(options.toc_title))
     toc.append(title)
@@ -50,6 +59,9 @@ def make_indexes(soup: PageElement, options: Options) -> None:
 
     headings = soup.find_all(['h1', 'h2', 'h3'])
     for h in headings:
+
+        if h.find(string=options.toc_title):
+            continue
 
         if h.name == 'h1':
 
@@ -84,8 +96,9 @@ def make_indexes(soup: PageElement, options: Options) -> None:
         else:
             continue
         pass
-
-    soup.body.insert(0, toc)
+    
+    if not custom_doc_pos:
+        soup.body.insert(0, toc)
 
 
 def _inject_heading_order(soup: Tag, options: Options):

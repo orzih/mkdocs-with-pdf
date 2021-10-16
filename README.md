@@ -166,10 +166,16 @@ plugins:
 
 ##### for Heading and TOC
 
+* `toc`
+
+    Generate a Table of Contents.  
+    **default**: `true`  
+    _**since**: <!-- add version -->_
+
 * `toc_title`
 
-    Set the title text of _Table of Content_.  
-    **default**: `Table of Content`  
+    Set the title text of _Table of Contents_.  
+    **default**: `Table of Contents`  
     _**since**: `v0.4.0`_
 
 * `heading_shift`
@@ -193,6 +199,24 @@ plugins:
 
     Set the page `id` of `nav` url. If the `id` matches in this list, it will be excluded from the heading number addition and table of contents.  
     **default**: `[]`
+
+* Changing the position of the TOC
+
+    By default, the TOC is inserted at the beginning of the document.
+    You can change the position of the TOC by adding a `- toc` entry to the nav section.
+
+    ```
+    nav:
+        - Foreword: foreword.md
+        - toc
+        - Introduction: introduction.md
+        ...
+    ```
+
+    Note: The TOC must be toplevel.
+    It can not be inserted in a nested docment section.
+
+    _**since**: <!-- add version -->_
 
 ##### for Page
 

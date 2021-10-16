@@ -30,6 +30,7 @@ class Options(object):
         ('custom_template_path',
             config_options.Type(str, default="templates")),
 
+        ('toc', config_options.Type(bool, default=True)),
         ('toc_title', config_options.Type(str, default="Table of contents")),
         ('heading_shift', config_options.Type(bool, default=True)),
         ('toc_level', config_options.Type(int, default=2)),
@@ -76,6 +77,7 @@ class Options(object):
         self.custom_template_path = local_config['custom_template_path']
 
         # TOC and Chapter heading
+        self.toc = local_config['toc']
         self.toc_title = local_config['toc_title']
         self.heading_shift = local_config['heading_shift']
         self.toc_level = local_config['toc_level']
