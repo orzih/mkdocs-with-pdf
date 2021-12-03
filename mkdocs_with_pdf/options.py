@@ -71,6 +71,11 @@ class Options(object):
                 if local_config['cover_title'] else config['site_name']
             self._cover_subtitle = local_config['cover_subtitle']
             self._cover_logo = local_config['cover_logo']
+        else:
+            self._cover_title = ""
+            self._cover_subtitle = ""
+            self._cover_logo = ""
+
 
         # path to custom template 'cover.html' and custom scss 'styles.scss'
         self.custom_template_path = local_config['custom_template_path']
