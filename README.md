@@ -181,12 +181,12 @@ plugins:
 
 * `toc_level`
 
-    Set the level of _Table of Content_. This value is enabled in the range of from `1` to `3`.  
+    Set the level of _Table of Content_. This value is enabled in the range of from `1` to `6`.  
     **default**: `3`
 
 * `ordered_chapter_level`
 
-    Set the level of heading number addition. This value is enabled in the range of from `1` to `3`.  
+    Set the level of heading number addition. This value is enabled in the range of from `1` to `6`.  
     **default**: `3`
 
 * `excludes_children`
