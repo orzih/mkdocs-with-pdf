@@ -69,7 +69,7 @@ class WithPdfPlugin(BasePlugin):
             if env_name:
                 self.enabled = os.environ.get(env_name) == '1'
                 if not self.enabled:
-                    self._logger.warning(
+                    self._logger.info(
                         'without generate PDF'
                         f'(set environment variable {env_name} to 1 to enable)'
                     )
