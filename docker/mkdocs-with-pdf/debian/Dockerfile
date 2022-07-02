@@ -3,9 +3,9 @@ FROM python:3.8-slim
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && apt-get upgrade -y \
-    && pip3 install --no-cache-dir \
+    && pip3 install --no-cache-dir beautifulsoup4==4.9.3\
         mkdocs mkdocs-material \
-        mdx-gh-links mkdocs-redirects mkdocs-minify-plugin \
+        mdx-gh-links mkdocs-redirects mkdocs-minify-plugin mkdocs-extra-sass-plugin livereload \
         weasyprint mkdocs-with-pdf
 
 # Headless Chrome
