@@ -378,7 +378,7 @@ class Generator(object):
                     body.append(script)
                 if len(self._mixed_script) > 0:
                     tag = soup.new_tag('script')
-                    tag.text = self._mixed_script
+                    tag.append(self._mixed_script)
                     body.append(tag)
                 for src in scripts:
                     body.append(soup.new_tag('script', src=f'file://{src}'))
