@@ -1,3 +1,11 @@
+.md-typeset > ul {
+  margin-left: 0rem !important;
+}
+.md-typeset ul li,
+.md-typeset ol li {
+  margin-left: 1.5rem !important;
+}
+
 @media print {
   .md-typeset {
     // Tabbed code block container
@@ -65,7 +73,8 @@
         padding-bottom: 0;
       }
     }
-    &>ul {
+    &>ul,
+    &>ol {
       margin-left: 1.5rem;
     }
 
