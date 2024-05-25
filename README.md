@@ -431,9 +431,9 @@ If you want to contribute to the code of this project, please read the [Contribu
 [zhaoterryy]:  https://github.com/zhaoterryy
 
 [weasyprint]: http://weasyprint.org/
-[weasyprint-linux]: https://weasyprint.readthedocs.io/en/latest/install.html#linux
-[weasyprint-macos]: https://weasyprint.readthedocs.io/en/latest/install.html#os-x
-[weasyprint-windows]: https://weasyprint.readthedocs.io/en/latest/install.html#windows
+[weasyprint-linux]: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#linux
+[weasyprint-macos]: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#macos
+[weasyprint-windows]: https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#windows
 
 [mkdocs-plugins]: http://www.mkdocs.org/user-guide/plugins/
 [mkdocs-material]: https://github.com/squidfunk/mkdocs-material
