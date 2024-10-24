@@ -35,6 +35,7 @@ class Options(object):
         ('toc_level', config_options.Type(int, default=2)),
         ('ordered_chapter_level', config_options.Type(int, default=3)),
         ('excludes_children', config_options.Type(list, default=[])),
+        ('ignore_top_header', config_options.Type(bool, default=False)),
 
         ('exclude_pages', config_options.Type(list, default=[])),
         ('convert_iframe', config_options.Type(list, default=[])),
@@ -81,6 +82,7 @@ class Options(object):
         self.toc_level = local_config['toc_level']
         self.ordered_chapter_level = local_config['ordered_chapter_level']
         self.excludes_children = local_config['excludes_children']
+        self.ignore_top_header = local_config['ignore_top_header']
 
         # Page
         self.exclude_pages = local_config['exclude_pages']
